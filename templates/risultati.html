@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block  body%}
+
+
+<div class="container">
+<table>
+            <h2>Manoscritto </h2>
+
+
+            {% for index, field in descrizione.iterrows() %}
+    		
+            <h3>Descrizione Esterna</h3><br>
+           <tr>
+            <tr><td><b>Segnatura: </b></td><td>{{field.Segnatura}}</td></tr>
+            <tr><td><b>Datazione: </b></td><td>{{field.datazione}}</td></tr>
+            <tr><td><b>Tipologia di supporto e qualità: </b></td><td>{{field.tipo_di_supporto_e_qualita}}</td></tr>
+            <tr><td><b>Consistenza: </b></td><td>{{field.consistenza}}</td></tr>
+            <tr><td><b>Numerazione delle carte: </b></td><td>{{field.numerazione_carte}}</td></tr>
+            <tr><td><b>Carte di guardia: </b></td><td>{{field.carte_di_guardia}}</td></tr>
+            <tr><td><b>Prospetto fascicolazione: </b></td><td>{{field.prospetto_fascicolazione}}</td></tr>
+            <tr><td><b>Arrangiamento dei fogli (regola di Gregory): </b></td><td>{{field.arrangiamento_fogli_gregory}}</td></tr>
+            <tr><td><b>Dimensioni: </b></td><td>{{field.dimensioni}}</td></tr>
+            <tr><td><b>Rigatura: </b></td><td>{{field.rigatura}}</td></tr>
+            <tr><td><b>Foratura: </b></td><td>{{field.foratura}}</td></tr>
+            <tr><td><b>Legatura: </b></td><td>{{field.legatura}}</td></tr>
+            <tr><td><b>Utente: </b></td><td>{{field.utenti_email}}</td></tr>
+            <tr><td><b>Palinsesto: </b></td><td>{{field.Descrizione_Esterna_Segnatura}}</td></tr>
+
+            {% endfor %}
+        </table>
+</div>
+
+{% endblock body %}

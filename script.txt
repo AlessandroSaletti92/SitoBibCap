@@ -1,0 +1,27 @@
+Da Giacomo Marchioro a tutti:  11:06 AM
+if __name__  == '__main__':
+    app.run(debug=True)
+Da Giacomo Marchioro a tutti:  11:14 AM
+,render_template
+Da Giacomo Marchioro a tutti:  11:36 AM
+{% block body %}
+{% endblock body %}
+{% extends 'layout.html' %}
+{% block  body%}
+{% endblock  %}
+Da Giacomo Marchioro a tutti:  11:45 AM
+{% include 'includes/_navbar.html' %}
+Da Giacomo Marchioro a tutti:  12:17 PM
+pip install SQLAlchemy
+Da Giacomo Marchioro a tutti:  12:25 PM
+from sqlalchemy import create_engine
+engine = create_engine('postgresql://scott:tiger@localhost:5432/mydatabase')
+engine = create_engine('mysql://scott:tiger@localhost/foo')
+Da Giacomo Marchioro a tutti:  12:34 PM
+https://www.codementor.io/@adityamalviya/python-flask-mysql-connection-rxblpje73
+import pandas as pd
+import pymysql
+from sqlalchemy import create_engine
+
+cnx = create_engine('mysql+pymysql://<username>:<password>@<host>/<dbname>')    
+df = pd.read_sql('SELECT * FROM <table_name>', cnx) #read the entire table
