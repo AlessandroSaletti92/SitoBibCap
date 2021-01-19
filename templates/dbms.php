@@ -3,7 +3,7 @@
 //funzione per stabilire la connessione con il database
 
 function open_connection(){
-	$con = mysqli_connect("localhost","root","","capitolare");
+	$con = mysqli_connect("http://lezioni.meneghetti.univr.it","Univr!!!!","database","capitolare");
 	// Check connection
 
 	if (mysqli_connect_errno()) {
