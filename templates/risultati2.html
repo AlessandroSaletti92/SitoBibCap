@@ -3,12 +3,12 @@
 
 <br>
 <div class="container">
-    <table>
+    <table class="table">
       <tr>
-      <td>
+      <td style="width:  2.33%">
         <img src="http://lezioni.meneghetti.univr.it//imageapi/LXI/m0061_0visn20_0000a2.jp2/1312,104,1904,7776/90,/180/default.jpg" class="rounded mx-auto d-block" >
       </td>
-      <td>
+      <td style="width:  10.33%" >
 
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -26,6 +26,7 @@
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             
             {% for index, field in descrizione.iterrows() %}
+        <span class="fs-18">
         <table>
            <tr>
             <tr><td><b>Segnatura: </b></td><td>{{field.Segnatura}}</td></tr>
@@ -43,6 +44,7 @@
             <tr><td><b>Utente: </b></td><td>{{field.utenti_email}}</td></tr>
             <tr><td><b>Palinsesto: </b></td><td>{{field.Descrizione_Esterna_Segnatura}}</td></tr>
         </table>
+        </span>
             {% endfor %}
         
             </div>
@@ -50,13 +52,16 @@
             <table>
             <tr>
             <tr><td><b>Tipologia:</b></td><td>Copia digitale</td></tr>
-            <tr><td><b>Manifest:</b></td><td> <a href=http://lezioni.meneghetti.univr.it//manifests/e818fc3783fb461f156dae89b25140e0.json>http://lezioni.meneghetti.univr.it//manifests/e818fc3783fb461f156dae89b25140e0.json</a></td></tr>
+            <tr><td><b>Manifest:</b></td><td><a href="default_target?manifest=http://lezioni.meneghetti.univr.it//manifests/e818fc3783fb461f156dae89b25140e0.json">
+              <img src={{url_for('static', filename="imgs/iiificon.png")}} alt="IIIF Drag-n-drop"/>
+            </a> <a href=http://lezioni.meneghetti.univr.it//manifests/e818fc3783fb461f156dae89b25140e0.json>http://lezioni.meneghetti.univr.it//manifests/e818fc3783fb461f156dae89b25140e0.json</a></td></tr>
             <tr><td><b>Visualizzazione:</b></td><td> <a href=http://lezioni.meneghetti.univr.it:8085/?manifest=http://lezioni.meneghetti.univr.it//manifests/e818fc3783fb461f156dae89b25140e0.json>Universal viewer</a> </td></tr>
         </table>
         </div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
             
       </td>
+      <td style="width:  10.33%" ></td>
       </tr>
   </table>
 </div>
