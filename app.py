@@ -34,7 +34,7 @@ def search():
 		print(segnatura)
 		descrizione_esterna = pd.read_sql("Select * from descrizione_esterna where segnatura='%s';" %segnatura, cnx)
 		
-	return render_template("risultati.html", descrizione=descrizione_esterna)
+	return render_template("risultati2.html", descrizione=descrizione_esterna)
 
 	
 
