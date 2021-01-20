@@ -31,6 +31,7 @@ def ricerca():
 def search():
 	if request.method == 'POST':
 		segnatura = request.form.get('search')
+		print(segnatura)
 		descrizione_esterna = pd.read_sql("Select * from descrizione_esterna where segnatura='%s';" %segnatura, cnx)
 		
 	return render_template("risultati.html", descrizione=descrizione_esterna)
