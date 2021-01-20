@@ -1,0 +1,17 @@
+mysql -u giacomo –-password=Univr!!!! capitolare < /home/giacomo/public_html/SitoBibCap/capitolare.sql
+
+mysql -u giacomo –p capitolare < /home/giacomo/public_html/SitoBibCap/capitolare.sql
+
+
+CREATE USER 'utente1'@'localhost' IDENTIFIED BY 'Univr!!!!';
+GRANT ALL PRIVILEGES ON * . * TO 'utente1'@'localhost';
+
+
+mysql -u giacomo -p capitolare < capitolare.sql
+
+
+CREATE USER 'giacomo'@'localhost' IDENTIFIED BY 'Univr!!!!';
+GRANT ALL PRIVILEGES ON *.* TO 'giacomo'@'localhost';
+UPDATE user SET plugin='auth_socket' WHERE User='giacomo';
+FLUSH PRIVILEGES;
+exit;
