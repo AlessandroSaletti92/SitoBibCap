@@ -139,3 +139,5 @@ cython_debug/
 passwords.py
 
 confidenziale.py
+
+.DS_Store
