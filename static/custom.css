@@ -6,3 +6,7 @@
 body { background: #f3f1ef;
        padding-top: 65px;} /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
 
+#navbarSupportContent > ul > li:nth-child(n) > a:active{
+    color: #00BF85;
+}
+
