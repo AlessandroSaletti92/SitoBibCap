@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">About</a>
+          <a class="nav-link active" aria-current="page" href="#about" data-bs-target="#about">About</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="/esplora" data-bs-target="#esplora" data-target="#esplora">Esplora</a>
@@ -27,9 +27,9 @@
           </ul>
         </li>
       </ul>
-      <form class="d-flex"  action="{{ url_for('search') }}" method="POST">
-        <input class="form-control me-2" data-target="#vai" name="search" type="search" placeholder="Segnatura e.g. XXVIII (26)" aria-label="Search">
-        <button class="btn btn-outline-success"  data-target="#vai" type="submit">Vai</button>
+      <form class="d-flex"  data-target="#vai" data-bs-target="#vai" action="{{ url_for('search') }}" method="POST">
+        <input class="form-control me-2" data-target="#vai" data-bs-target="#vai" name="search" type="search" placeholder="Segnatura e.g. XXVIII (26)" aria-label="Search">
+        <button class="btn btn-outline-success"  data-target="#vai" data-bs-target="#vai" type="submit">Vai</button>
       </form>
     </div>
   </div>
