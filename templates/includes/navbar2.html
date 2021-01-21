@@ -1,4 +1,4 @@
-<nav id="navbarCapi" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav id="navbarCapi" class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">Capitolar-<b>e</b></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,10 +10,10 @@
           <a class="nav-link active" aria-current="page" href="#">About</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#esplora" data-target="#esplora">Esplora</a>
+          <a class="nav-link" href="/esplora" data-bs-target="#esplora" data-target="#esplora">Esplora</a>
       <li class="nav-item dropdown">
         <li class="nav-item active">
-            <a class="nav-link" href="//ricerca/#ricerca" data-target="#ricerca">Ricerca</a>
+            <a class="nav-link" href="/ricerca" data-bs-target="#ricerca" data-target="#ricerca">Ricerca</a>
           </li>
           
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -26,13 +26,10 @@
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
       </ul>
       <form class="d-flex"  action="{{ url_for('search') }}" method="POST">
         <input class="form-control me-2" data-target="#vai" name="search" type="search" placeholder="Segnatura e.g. XXVIII (26)" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Vai</button>
+        <button class="btn btn-outline-success"  data-target="#vai" type="submit">Vai</button>
       </form>
     </div>
   </div>

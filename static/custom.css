@@ -1,5 +1,5 @@
 .navbar{
-    padding: 0.2rem 2rem;
+    padding: 0.1rem 2rem;
     
 }
 
@@ -10,3 +10,9 @@ body { background: #f3f1ef;
     color: #00BF85;
 }
 
+@media screen and (max-width:988px){
+    .navbar{
+        padding: 0.2rem;
+        
+    }
+}
