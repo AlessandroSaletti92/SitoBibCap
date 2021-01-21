@@ -97,5 +97,14 @@
   <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">..ss.</div>
 </div>
 
+<div id="openseadragon1" style="width: 800px; height: 600px;"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.2/openseadragon.min.js"></script>
+<script type="text/javascript">
+    var viewer = OpenSeadragon({
+        id: "openseadragon1",
+        tileSources: "http://lezioni.meneghetti.univr.it//imageapi/tests/test.JPG.ptif/full/full/0/default.jpg"
+    });
+</script>
+
 
 {% endblock body %}
