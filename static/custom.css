@@ -1,6 +1,8 @@
 .navbar{
-    padding: 1rem 2rem;
+    padding: 0.2rem 2rem;
     
 }
 
-body { background: #f3f1ef} /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+body { background: #f3f1ef;
+       padding-top: 65px;} /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+

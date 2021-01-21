@@ -80,31 +80,67 @@
 
 </div>
 
-<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <a class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
-  </li>
-</ul>
-<div class="tab-content" id="pills-tabContent">
-  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">...</div>
-  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">..dd.</div>
-  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">..ss.</div>
-</div>
 
-<div id="openseadragon1" style="width: 800px; height: 600px;"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.2/openseadragon.min.js"></script>
-<script type="text/javascript">
-    var viewer = OpenSeadragon({
-        id: "openseadragon1",
-        tileSources: "http://lezioni.meneghetti.univr.it//imageapi/tests/test.JPG.ptif/full/full/0/default.jpg"
-    });
-</script>
+<section class="about  py-5 ">
+  <div class="row align-items-center container py-5 mx-auto">
+    <div class="text col-lg-6 col-md-12 col-12 w-50">
+      <h6>IL PROGETTO</h6>
+      <h1>Insieme per proteggere, digitalizzare e valorizzare</h1>
+      <p> In convenzione con la Fondazione Biblioteca Capitoalre il laboratorio LaMeDan
+        dell'Università di Verona ha iniziato una campagna di digitalizzazione e valorizzazione
+        dei beni culturali contenuti all'interno della Biblioteca Capitolare di Verona.
+        In questo sito ospita la digital-library del progetto.</p>
 
+
+    </div>
+    <div class="img col-lg-6 col-md-12 col-12 w-50">
+      <img class="img-fluid" src={{url_for('static',filename='imgs/logounivr.svg')}}>
+      
+    </div>
+  </div>
+
+</section>
+
+
+<section class="esplora  py-5 ">
+  <div class="row align-items-center container py-5 mx-auto">
+    <div class="img col-lg-6 col-md-12 col-12 w-50">
+      <img class="img-fluid" src={{url_for('static',filename='imgs/logounivr.svg')}}>
+      
+    </div>
+    <div class="text col-lg-6 col-md-12 col-12 w-50">
+      <h6>ESPLORA</h6>
+      <h1>Metodi innovativi per visualizzare ed esploare la collezzione</h1>
+      <p>Il prgetto prevede la collaborazione con il dipartimento di Informatica 
+        dell'Università di Verona per mettere a disposizione nuovi modi per studiare la collezzione.
+        Oltre ad una catalogazione approfondita dei beni contenuti.
+
+      </p>
+
+
+    </div>
+    
+  </div>
+
+</section>
+
+<section class="about  py-5 ">
+  <div class="row align-items-center container py-5 mx-auto">
+    <div class="text col-lg-6 col-md-12 col-12 w-50">
+      <h6>PER GLI STUDIOSI</h6>
+      <h1>Sai già cosa stai cercando?</h1>
+      <p>Se sai già la segnatura del codice che stai cercando inseriscila sul
+        campo segnatura e vai direttamente allo studio!
+      </p>
+
+
+    </div>
+    <div class="img col-lg-6 col-md-12 col-12 w-50">
+      <img class="img-fluid" src={{url_for('static',filename='imgs/logounivr.svg')}}>
+      
+    </div>
+  </div>
+
+</section>
 
 {% endblock body %}
