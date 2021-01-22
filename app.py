@@ -20,14 +20,13 @@ def index_page():
 def about():
 	return render_template("about.html")
 
+@app.route('/esplora')
+def esplora():
+	return render_template("explore.html")
 
 @app.route('/ricerca')
 def ricerca():
 	return render_template("search.html")
-
-
-
-
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():

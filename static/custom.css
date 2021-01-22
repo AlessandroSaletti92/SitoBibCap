@@ -10,12 +10,16 @@ body { background: #f3f1ef;
     color: #00BF85;
 }
 
-.about .text{
+/* .about .text{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     margin: auto;
+} */
+
+.esplora .row{
+    flex-direction: row-reverse;
 }
 
 @media screen and (max-width:988px){
