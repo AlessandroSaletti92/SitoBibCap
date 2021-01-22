@@ -26,7 +26,12 @@
 
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
             
+        <button class="accordion">Descrizione Esterna</button>
+        <div class="panel">
+          <div class="show">
+          <p>
             {% for index, field in descrizione.iterrows() %}
         <span style="font-family: verdana; font-size: 12px;">
         <table>
@@ -48,6 +53,186 @@
         </table>
         </span>
             {% endfor %}
+            </p>
+          </div>
+          </div>
+
+
+
+<button class="accordion">Descrizione Interna</button>
+        <div class="panel">
+          <div class="show">
+          <p>
+            {% for index, field in descrizione_int.iterrows() %}
+        <span style="font-family: verdana; font-size: 12px;">
+          <table>
+            <h3>Descrizione Interna {{field.id}}</h3>
+           <tr>
+            <tr><td><b>Autore: </b></td><td>{{field.autore}}</td></tr>
+            <tr><td><b>Titolo: </b></td><td>{{field.titolo}}</td></tr>
+            <tr><td><b>Id: </b></td><td>{{field.id}}</td></tr>
+            <tr><td><b>Incipit: </b></td><td>{{field.incipit}}</td></tr>
+            <tr><td><b>Explicit: </b></td><td>{{field.explicit}}</td></tr>
+            <tr><td><b>Carte: </b></td><td>{{field.carte}}</td></tr>
+            <tr><td><b>Rubrica: </b></td><td>{{field.rubrica}}</td></tr>
+            <tr><td><b>Testo di riferimento(segnatura): </b></td><td>{{field.Descrizione_Esterna_Segnatura}}</td></tr>
+            <tr><td><b>Descrizione interna di riferimento: </b></td><td>{{field.Descrizione_interna_id}}</td></tr>
+        </table><br>
+        </span>
+            {% endfor %}
+            </p>
+          </div>
+          </div>
+
+
+
+
+
+<button class="accordion">Copisti</button>
+        <div class="panel">
+          <div class="show">
+          <p>
+            {% for index, field in copisti.iterrows() %}
+        <span style="font-family: verdana; font-size: 12px;">
+
+<table>
+            <h3>Copista {{field.id}}</h3>
+           <tr>
+            <tr><td><b>Id: </b></td><td>{{field.id}}</td></tr>
+            <tr><td><b>Datazione: </b></td><td>{{field.datazione}}</td></tr>
+            <tr><td><b>Tipologia scrittura: </b></td><td>{{field.tipologia_scrittura}}</td></tr>
+            <tr><td><b>Testo di riferimento(segnatura): </b></td><td>{{field.Descrizione_Esterna_Segnatura}}</td></tr>
+        </table>
+   </span>
+            {% endfor %}
+            </p>
+          </div>
+          </div>
+
+
+
+
+
+
+<button class="accordion">Annotazioni marginali</button>
+        <div class="panel">
+          <div class="show">
+          <p>
+            {% for index, field in annotazioni_marginali.iterrows() %}
+        <span style="font-family: verdana; font-size: 12px;">
+
+        <table>
+            <h3>Annotazione {{field.Id_auto_inc}}</h3>
+           <tr>
+            <tr><td><b>Id: </b></td><td>{{field.Id_auto_inc}}</td></tr>
+            <tr><td><b>Mano: </b></td><td>{{field.Id}}</td></tr>
+            <tr><td><b>Datazione: </b></td><td>{{field.datazione}}</td></tr>
+            <tr><td><b>Contenuto: </b></td><td>{{field.Contenuto}}</td></tr>
+            <tr><td><b>Posizione: </b></td><td>{{field.Posizione}}</td></tr>
+            <tr><td><b>Tipologia scrittura: </b></td><td>{{field.Tipologia_scrittura}}</td></tr>
+            <tr><td><b>Testo di riferimento(segnatura): </b></td><td>{{field.Descrizione_Esterna_Segnatura}}</td></tr>
+        </table>
+   </span>
+            {% endfor %}
+            </p>
+          </div>
+          </div>
+
+
+
+<button class="accordion">Annotazioni sul testo</button>
+        <div class="panel">
+          <div class="show">
+          <p>
+            {% for index, field in annotazioni_testo.iterrows() %}
+        <span style="font-family: verdana; font-size: 12px;">
+        <table>
+            <h3>Annotazione {{field.Id_auto_inc}}</h3>
+           <tr>
+            <tr><td><b>Id: </b></td><td>{{field.Id_auto_inc}}</td></tr>
+            <tr><td><b>Datazione: </b></td><td>{{field.datazione}}</td></tr>
+            <tr><td><b>Contenuto: </b></td><td>{{field.Contenuto}}</td></tr>
+            <tr><td><b>Posizione: </b></td><td>{{field.Posizione}}</td></tr>
+            <tr><td><b>Tipologia scrittura: </b></td><td>{{field.Tipologia_scrittura}}</td></tr>
+            <tr><td><b>Testo di riferimento(segnatura): </b></td><td>{{field.Descrizione_Esterna_Segnatura}}</td></tr>
+        </table>
+        </span>
+            {% endfor %}
+            </p>
+          </div>
+          </div>
+
+
+<button class="accordion">Bibliografia Interna</button>
+        <div class="panel">
+          <div class="show">
+          <p><h2>Libri</h2>
+{% for index, field in biblio_int_libri.iterrows() %}
+        <span style="font-family: verdana; font-size: 12px;">
+
+        <table>
+          <h3>Libro {{field.id}}</h3>
+             <tr>
+              <tr><td><b>Id: </b></td><td>{{field.id}}</td></tr>
+              <tr><td><b>Titolo: </b></td><td>{{field.titolo}}</td></tr>
+              <tr><td><b>Anno: </b></td><td>{{field.anno}}</td></tr>
+              <tr><td><b>Numero pagine: </b></td><td>{{field.numero_pagine}}</td></tr>
+              <tr><td><b>Città: </b></td><td>{{field.citta}}</td></tr>
+              <tr><td><b>Casa editrice scrittura: </b></td><td>{{field.casa_editrice}}</td></tr>
+              <tr><td><b>Collana: </b></td><td>{{field.collana}}</td></tr>
+              <tr><td><b>Numero collana: </b></td><td>{{field.n_collana}}</td></tr>
+              <tr><td><b>Autore: </b></td><td>{{field.autore_nome_cognome}}</td></tr>
+              <tr><td><b>Descrizione interna di riferimento: </b></td><td>{{field.Descrizione_interna_id}}</td></tr>
+
+          </table>
+          {% endfor %}
+
+
+            {% for index, field in biblio_int_articolo_rivista.iterrows() %}
+            <h2>Articoli di rivista</h2>
+            <table>
+              <h3>Articolo {{field.id}}</h3>
+            <tr>
+              <tr><td><b>Id: </b></td><td>{{field.id}}</td></tr>
+              <tr><td><b>Titolo: </b></td><td>{{field.titolo}}</td></tr>
+              <tr><td><b>Anno: </b></td><td>{{field.anno}}</td></tr>
+              <tr><td><b>Numero pagine: </b></td><td>{{field.numero_pagine}}</td></tr>
+              <tr><td><b>Numero fascicolo: </b></td><td>{{field.numero_fascicolo}}</td></tr>
+              <tr><td><b>Nome rivista: </b></td><td>{{field.nome_rivista}}</td></tr>
+              <tr><td><b>Autore: </b></td><td>{{field.autore_nome_cognome}}</td></tr>
+              <tr><td><b>Descrizione interna di riferimento: </b></td><td>{{field.Descrizione_interna_id}}</td></tr>
+            </table>
+          
+
+          </span
+            {% endfor %}
+          </p>
+          </div>
+          </div>
+
+
+
+
+
+
+
+
+          <script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>
         
             </div>
         <div class="tab-pane fade" id="Fac-similes" role="tabpanel" aria-labelledby="profile-tab">
