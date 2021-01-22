@@ -18,9 +18,9 @@ body { background: #f3f1ef;
     margin: auto;
 } */
 
-/* .esplora .row{
+.esplora .row{
     flex-direction: row-reverse;
-} */
+}
 
 @media screen and (max-width:988px){
     .navbar{
