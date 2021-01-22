@@ -1,45 +1,6 @@
 {% extends 'layout.html' %}
 {% block  body%}
-
-<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
-    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
-    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active" data-bs-interval="5000">
-      <img src={{url_for('static',filename='imgs/1.jpeg')}} class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>La biblioteca Capitolare di Verona.</h5>
-        <p>La biblioteca ha un patrimonio di oltre un migliaio di manoscritti alcuni risalenti ai primi secoli dopo Cristo.</p>
-      </div>
-    </div>
-    <div class="carousel-item" data-bs-interval="5000">
-      <img src={{url_for('static',filename='imgs/2.jpeg')}} class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Digitalizzazione dei beni librari.</h5>
-        <p>Digitalizazioni con camere fino a 100 Mega Pixel, per preservare ogni minimo dettaglio.</p>
-      </div>
-    </div>
-    <div class="carousel-item" data-bs-interval="5000">
-      <img src={{url_for('static',filename='imgs/3.jpeg')}} class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Restituire il perduto.</h5>
-        <p>Tecniche di imaging avanzato per leggere i testi non più leggibili.</p>
-      </div>
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </a>
-</div>
-
+{% include 'includes/carousel.html' %}
 <section id="about" class="about py-5 ">
   <div class="row align-items-center container py-5 mx-auto">
     <div class="text col-lg-6 col-md-12 col-12">

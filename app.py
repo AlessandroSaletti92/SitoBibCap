@@ -32,9 +32,7 @@ def ricerca():
 def search():
 	if request.method == 'POST':
 		segnatura = request.form.get('search')
-		descrizione_esterna = pd.read_sql("Select * from descrizione_esterna where segnatura='%s';" %segnatura, cnx)
-		
-		
+		descrizione_esterna = pd.read_sql("Select * from descrizione_esterna where segnatura='%s';" %segnatura, cnx)	
 	return render_template("risultati2.html", descrizione=descrizione_esterna, segnatura=segnatura)
 
 
