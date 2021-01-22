@@ -14,7 +14,7 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 @app.route('/')
 def index_page():
    # return 'Hello, World!'
-	return render_template("index.html")
+	return render_template("index2.html")
 
 @app.route('/about')
 def about():

@@ -40,10 +40,9 @@
   </a>
 </div>
 
-<!-- Finito carolsello -->
+<div>
 
-<section id = "about">
-  <div class="container">
+  <div id="about" class="container about  py-5">
     <div class="row align-items-center py-5 mx-auto">
       <div class="col-md">
         <h6>IL PROGETTO</h6>
@@ -55,26 +54,46 @@
   
   
       </div>
-      <div class="img col-md ">
+      <div class="col-sm">
         <img class="img-fluid" src={{url_for('static',filename='imgs/unispiralecolori.svg')}}>
-      </div>
+    </div>
+  
+  </section>
+<section id="about" class="about  py-5 ">
+  <div class="container"></div>
+  <div class="row align-items-center py-5 mx-auto">
+    <div class="text col-lg-6 col-md-12 col-12 w-50">
+      <h6>IL PROGETTO</h6>
+      <h1>Insieme per proteggere, digitalizzare e valorizzare</h1>
+      <p> Il laboratorio LaMeDan dell'Università di Verona in convenzione con la Fondazione Biblioteca Capitoalre
+        ha iniziato una campagna di digitalizzazione e valorizzazione
+        dei beni culturali contenuti all'interno della Biblioteca Capitolare di Verona.
+        Questo sito ospita le risorse digitali del progetto.</p>
+
+
+    </div>
+    <div class="img col-lg-6 col-md-12 col-12 w-50">
+      <img class="img-fluid" src={{url_for('static',filename='imgs/unispiralecolori.svg')}}>
+      
+    </div>
+  </div>
+
 </section>
 
-<section id="esplora">
-  <div class="container">
-    <div class="row align-items-center py-5 mx-auto">
 
-      <div class="col-md">
-        <h6>VISUALIZZA I DATI SULLA COLLEZZIONE</h6>
-        <h1>Metodi innovativi per visualizzare ed esploare la collezzione</h1>
-        <p>Oltre ad una catalogazione approfondita dei beni contenuti, il prgetto prevede la collaborazione con il dipartimento di Informatica 
-          dell'Università di Verona per mettere a disposizione nuovi modi per studiare la collezzione.
-        </p>
-      </div>
-      
-      <div class="img col-md">
-        <script src={{url_for('static',filename="plotbib.js")}} id="6b9e92e7-4d69-4301-a924-c04fd2d341f7"></script>      
-      </div>
+<section id="esplora" class="esplora  py-5 ">
+  <div class="d-flex flex-rowalign-items-center container py-5 mx-auto ">
+
+    <div class="text col-lg-6 col-md-12 col-12 w-50">
+      <h6>VISUALIZZA I DATI SULLA COLLEZZIONE</h6>
+      <h1>Metodi innovativi per visualizzare ed esploare la collezzione</h1>
+      <p>Oltre ad una catalogazione approfondita dei beni contenuti, il prgetto prevede la collaborazione con il dipartimento di Informatica 
+        dell'Università di Verona per mettere a disposizione nuovi modi per studiare la collezzione.
+      </p>
+    </div>
+    
+        <div class="img col-lg-6 col-md-12 col-12 w-50">
+      <script src={{url_for('static',filename="plotbib.js")}} id="6b9e92e7-4d69-4301-a924-c04fd2d341f7"></script>      
     </div>
   </div>
 
@@ -82,7 +101,7 @@
 
 <section id="vai" class="vari  py-5 ">
   <div class="row align-items-center container py-5 mx-auto">
-    <div class="text col-lg-6 col-md-12 col-12">
+    <div class="text col-lg-6 col-md-12 col-12 w-50">
       <h6>PER GLI STUDIOSI</h6>
       <h1>Sai già cosa stai cercando?</h1>
       <p>Se sai già la segnatura del codice che stai cercando inseriscila sul
@@ -91,7 +110,7 @@
 
 
     </div>
-    <div class="img col-lg-6 col-md-12 col-12">
+    <div class="img col-lg-6 col-md-12 col-12 w-50">
       <img class="img-fluid" src={{url_for('static',filename='imgs/tutorial.gif')}}>
       
     </div>

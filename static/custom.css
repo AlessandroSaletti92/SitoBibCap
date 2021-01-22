@@ -10,9 +10,21 @@ body { background: #f3f1ef;
     color: #00BF85;
 }
 
+.about .text{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: auto;
+}
+
 @media screen and (max-width:988px){
     .navbar{
         padding: 0.2rem;
         
     }
+    .container {
+        padding:0;
+        margin:0;
+      }
 }
