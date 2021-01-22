@@ -11,21 +11,6 @@
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="/esplora" data-bs-target="#esplora" data-target="#esplora">Esplora</a>
-      <li class="nav-item dropdown">
-        <li class="nav-item active">
-            <a class="nav-link" href="/ricerca" data-bs-target="#ricerca" data-target="#ricerca">Ricerca</a>
-          </li>
-          
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
       </ul>
       <form class="d-flex"  data-target="#vai" data-bs-target="#vai" action="{{ url_for('search') }}" method="POST">
         <input class="form-control me-2" data-target="#vai" data-bs-target="#vai" name="search" type="search" placeholder="Segnatura e.g. XXVIII (26)" aria-label="Search">
