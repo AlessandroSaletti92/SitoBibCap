@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% block  body%}
+
+<div class="container withnavbar">
+    <br>
+    <div class="row">
+        <div class="sidenav">
+            <p><b>Indice:</b></p>
+            
+            <a href="#finanzi">Finanziamenti</a>
+            <a href="#acquisi">Acquisizioni</a>
+            <a href="#strsito">Strumenti usati nel sito</a>     
+        </div>
+        <div class="col-md-7 col-sm-6">
+        <h2> Ringraziamenti e credits</h2>
+        Ringraziamo tutti coloro che hanno partecipato all'allestimento del laboratorio
+        e delle infrastrutture connesse.
+        <section id="finanzi">
+                <h3>Finanziamenti</h3>
+                <p>Fondo ricerca di base dell'Università di Verona.
+                </p>
+        </section>
+
+        <section id="acquisi">
+        <h3>Acquisizioni</h3>
+        Le acquisizioni dei manoscritti.   
+        </section>
+
+        <section id="strsito">
+        <h3>Strumenti usati nel sito</h3>
+        Il sito utilizza per la maggior parte strumenti open-source. Ringraziamo 
+        Ruven Pillay per l'image server IIP (il logo IIP è Copyright © 2021 Ruven Pillay).
+        
+        Armin Ronacher e la comunity del framework Flask. 
+
+        Il sito è realizzato usando Bootstrap v.5 il template del footer è dell'utente sargbah84.
+        </section>
+        
+
+
+
+        <div>
+    </div>
+</div>
+{% endblock body %}

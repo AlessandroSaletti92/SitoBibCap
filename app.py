@@ -28,9 +28,30 @@ def esplora():
 def ricerca():
 	return render_template("search.html")
 
+@app.route('/comefunziona')
+def comefunziona():
+	return render_template("comefunziona.html")
+
 @app.route('/progetti')
 def progetti():
 	return render_template("progetti.html")
+
+@app.route('/lineeguida')
+def lineeguida():
+	return render_template("lineguida.html")
+
+@app.route('/strumenti')
+def strumenti():
+	return render_template("strumenti.html")
+
+
+@app.route('/opendata')
+def opendata():
+	return render_template("opendata.html")
+
+@app.route('/credits')
+def credits():
+	return render_template("credits.html")
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():

@@ -1,32 +1,71 @@
 {% extends 'layout.html' %}
 {% block  body%}
-<section class="container">
-<br>
-<h3>Scopo</h3>
-<p>Questo sito contiene i contenuti digitali riguardanti la Biblioteca capitolare 
-di Verona raccolti e curati dall'Università di Verona. In questo portale è possibile accedere a dati relativi alla catalogazione dei beni librari ed alle digitalizzazioni dei manoscritti.
-</p>
-Per avere informazioni più dettagliate per la visita della Biblioteca Capitolare,
-vi invitiamo a consultare <a href="http://bibliotecacapitolare.org/">il sito ufficiale della biblioteca Capitolare di Verona.</a>. 
 
-<h3>Storia del progetto</h3>
-<p class="bd-lead">Il portale Capitolar-<b>e</b> è curato e mantenuto dall laboratorio <a href=https://sites.hss.univr.it/laboratori_integrati/laboratorio-lamedan/>LaMeDan</a> facente parte
- dei <a href=https://sites.hss.univr.it/laboratori_integrati/>laboratori integrati</a> dell'Università di Verona.
-Questo portale è nato durante il  progetto DascabiDa per raccogliere e rendere accessibili il materiale digitalizzato
-durante il progetto e formare la base per i progetti futuri. Il 19 Marzo 2019 l'Università di Verona ha firmato una convenzione 
-con la biblioteca Capitolare di Verona per affiancarla nella gestione e valorizzazione dei beni culturali contenuti al suo intero. 
-
-   </p>
-</section>
-<section class="container">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/q8U-DiZHVUg?start=44" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<div class="bd-example">
-    <p class="text-justify"> Il progetto DascabiDa ha dato vità al laboratorio LaMeDan ed alla convenzione tra la Fondazione Biblioteca Capitolare di Veorna
-        e l'Università di Verona. In coincidenza con gli anniversari danteschi (2015 e 2021) della nascita e della morte del poeta, il progetto si prefigge di studiare e digitalizzare
-        diversi codici contenuti all'interno della biblioteca.  Dante, che soggiornò a Verona tra il 1303-1304 ed il 1312-1320, potrebbe avere lasciato alcune annotazioni
-        nei margini di alcuni manoscritti della biblioteca capitolare.
-    </p>
+<div class="container withnavbar">
+    <br>
+    <div class="row">
+        <div class="sidenav">
+            <p><b>Indice:</b></p>
+            <a href="#scopo">Scopo</a>
+            <a href="#storia">Storia del progetto</a>
+            <a href="#illaboratorio">Il laboraotorio</a>
+            <a href="#lasalacons">La sala consultazione</a>
+     
+        </div>
+        <div class="col-md-7 col-sm-6">
+        <section id="scopo">
+            <h3>Scopo</h3>
+            <p>Questo sito contiene i contenuti digitali riguardanti la Biblioteca capitolare 
+            di Verona raccolti e curati dall'Università di Verona. In questo portale è possibile accedere a dati relativi alla catalogazione dei beni librari ed alle digitalizzazioni dei manoscritti.
+            </p>
+            <p>
+            Per avere informazioni più dettagliate per la visita della Biblioteca Capitolare e del museo diocesano,
+            vi invitiamo a consultare <a href="http://bibliotecacapitolare.org/">il sito ufficiale della biblioteca Capitolare di Verona</a>. 
+            </p>
+        </section>
+            <section id="storia">
+            <h3>Storia del progetto</h3>
+            <p class="bd-lead">Il portale Capitolar-<b>e</b> è curato e mantenuto dall laboratorio <a href=https://sites.hss.univr.it/laboratori_integrati/laboratorio-lamedan/>LaMeDan</a>, parte
+            dei <a href=https://sites.hss.univr.it/laboratori_integrati/>laboratori integrati</a> dell'Università di Verona.
+            Questo portale è nato durante il  progetto DascabiDa per raccogliere e rendere accessibile il materiale digitalizzato
+            durante il progetto e formare la base per i progetti futuri. Il 19 Marzo 2019 l'Università di Verona ha firmato una convenzione 
+            con la biblioteca Capitolare di Verona per affiancarla nella gestione e valorizzazione dei beni culturali contenuti al suo intero.
+            </p>
+            </section>
+        <section class="container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/q8U-DiZHVUg?start=44" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="bd-example">
+            </div>
+        </section>
+        <section id="illaboratorio">
+            <h3>Il laboratorio.</h3>
+            <p>
+            L'Università dispone non solo di spazi virtuali ma anche di spazi fisici all'interno della biblioteca. La Biblioteca Capitolare
+            ospita, diversi locali gestiti dal laboratorio LaMeDan per la riproduzione,
+            analisi e consultazione dei beni.
+            </p>
+            <p>
+            Il laboratorio di analisi dei beni librari contiene strumentazione all'avanguardia per l'analisi
+            e la digitalizzazione dei beni culturali. Gli strumenti consentono non solo di digitalizzare ad
+            altissima risoluzione i beni della collezione, ma anche di indagarne lo stato conservativo e 
+            la tecnica esecutiva.
+            Di fondamentale importanza anche le analisi multispettrali che consentono spesso di rivelare
+            testo ormai illegibile. Maggiori informazioni sugli strumenti possono essere trovate nella <a href='./strumenti.html'>pagina dedicata</a>.
+            </p>
+        </section>
+        <section id="lasalacons">
+            <h3>La sala consultazione.</h3>
+            <p>
+            Un'altro spazio fondamentale concesso all'Università di Verona è la sala consultazione.
+            Dove gli studiosi hanno la possibilità di consultare i materiali in sicurezza.
+            Accedendo ai servizi del sistema bibliotecario di ateneo e ad una connessione veloce
+            con i server che ospitano la ditial-library del progetto.
+            </p>
+            <p>
+ 
+            </p>
+         </section>
+        <div>
+    </div>
 </div>
-</section>
-
 {% endblock body %}

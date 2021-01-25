@@ -25,7 +25,7 @@ body { background: #f3f1ef;
     flex-direction: row-reverse;
 }
 
-@media screen and (max-width:988px){
+@media screen and (max-width:918px){
     .navbar{
         padding: 0.2rem;
         
@@ -131,7 +131,7 @@ button.accordion.active:after {
 
 section.progetti.container {
     margin-top: 30pt;
-    margin-left: 10pt;
+    margin-left: 5pt;
 }
 
 .progetti.head h3{
@@ -148,4 +148,44 @@ section.progetti.container {
     margin: auto;
     display: block;
     border-style:none;
+}
+
+/* Sidenav */
+
+.sidenav {
+    width: 160px;
+    z-index: 1000;
+    top: 20px;
+    left: 10px;
+    margin-top: 0px;
+    background: #eee;
+    padding: 15px 0;
+
+    }
+  
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #26313a;
+    display: block;
+  }
+
+.sidenav a:hover {
+    color: #47d240;
+  }
+
+.sidenav p {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #26313a;
+    display: block;
+  }
+
+.sidenav.strumenti{
+    width: 260px;
+}
+.container.withnavbar {
+    max-width: 1000px;
 }
