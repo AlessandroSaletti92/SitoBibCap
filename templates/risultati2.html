@@ -187,9 +187,8 @@
           </table>
           {% endfor %}
 
-
+            <h2>Articoli in rivista</h2>
             {% for index, field in biblio_int_articolo_rivista.iterrows() %}
-            <h2>Articoli di rivista</h2>
             <table>
               <h3>Articolo {{field.id}}</h3>
             <tr>
@@ -202,16 +201,135 @@
               <tr><td><b>Autore: </b></td><td>{{field.autore_nome_cognome}}</td></tr>
               <tr><td><b>Descrizione interna di riferimento: </b></td><td>{{field.Descrizione_interna_id}}</td></tr>
             </table>
-          
+          {% endfor %}
 
-          </span
+
+          <h2>Articoli in miscellanea</h2>
+          {% for index, field in biblio_int_articolo_miscellanea.iterrows() %}
+          <table>
+            
+             <tr>
+              <tr><td><b>Id: </b></td><td>{{field.id}}</td></tr>
+              <tr><td><b>Titolo: </b></td><td>{{field.titolo}}</td></tr>
+              <tr><td><b>Anno: </b></td><td>{{field.anno}}</td></tr>
+              <tr><td><b>Numero pagine: </b></td><td>{{field.numero_pagine}}</td></tr>
+              <tr><td><b>Curatore: </b></td><td>{{field.curatore_nome_cognome}}</td></tr>
+              <tr><td><b>Autore: </b></td><td>{{field.autore_nome_cognome}}</td></tr>
+              <tr><td><b>Descrizione interna di riferimento: </b></td><td>{{field.desc_int}}</td></tr>
+
+          </table>
+          {% endfor %}
+
+          <h2>Libri miscellanea</h2>
+          {% for index, field in biblio_int_articolo_miscellanea_libro.iterrows() %}
+          <table>
+              <tr>
+              <tr><td><b>Id: </b></td><td>{{field.id}}</td></tr>
+              <tr><td><b>Titolo: </b></td><td>{{field.titolo}}</td></tr>
+              <tr><td><b>Anno: </b></td><td>{{field.anno}}</td></tr>
+              <tr><td><b>Numero pagine: </b></td><td>{{field.numero_pagine}}</td></tr>
+              <tr><td><b>Città: </b></td><td>{{field.citta}}</td></tr>
+              <tr><td><b>Casa editrice scrittura: </b></td><td>{{field.casa_editrice}}</td></tr>
+              <tr><td><b>Collana: </b></td><td>{{field.collana}}</td></tr>
+              <tr><td><b>Numero collana: </b></td><td>{{field.n_collana}}</td></tr>
+              <tr><td><b>Curatore: </b></td><td>{{field.curatore_nome_cognome}}</td></tr>
+              <tr><td><b>Descrizione interna di riferimento: </b></td><td>{{field.desc_int}}</td></tr>
+
+          </table>
+
+
+         </span>
             {% endfor %}
           </p>
           </div>
           </div>
 
 
+<button class="accordion">Bibliografia Esterna</button>
+        <div class="panel">
+          <div class="show">
+          <p><h2>Libri</h2>
+        <span style="font-family: verdana; font-size: 12px;">
 
+        {% for index, field in biblio_est_libri.iterrows() %}
+        <table>
+          <h3>Libro {{field.id}}</h3>
+             <tr>
+              <tr><td><b>Id: </b></td><td>{{field.id}}</td></tr>
+              <tr><td><b>Titolo: </b></td><td>{{field.titolo}}</td></tr>
+              <tr><td><b>Anno: </b></td><td>{{field.anno}}</td></tr>
+              <tr><td><b>Numero pagine: </b></td><td>{{field.numero_pagine}}</td></tr>
+              <tr><td><b>Città: </b></td><td>{{field.citta}}</td></tr>
+              <tr><td><b>Casa editrice scrittura: </b></td><td>{{field.casa_editrice}}</td></tr>
+              <tr><td><b>Collana: </b></td><td>{{field.collana}}</td></tr>
+              <tr><td><b>Numero collana: </b></td><td>{{field.n_collana}}</td></tr>
+              <tr><td><b>Autore: </b></td><td>{{field.autore_nome_cognome}}</td></tr>
+              <tr><td><b>Descrizione interna di riferimento: </b></td><td>{{field.Descrizione_interna_id}}</td></tr>
+
+          </table>
+        {% endfor %}
+
+
+          <h2>Articoli in rivista</h2>
+            {% for index, field in biblio_est_articolo_rivista.iterrows() %}
+            <table>
+            
+             <tr>
+              <tr><td><b>Id: </b></td><td>{{field.id}}</td></tr>
+              <tr><td><b>Titolo: </b></td><td>{{field.titolo}}</td></tr>
+              <tr><td><b>Anno: </b></td><td>{{field.anno}}</td></tr>
+              <tr><td><b>Numero pagine: </b></td><td>{{field.numero_pagine}}</td></tr>
+              <tr><td><b>Numero fascicolo: </b></td><td>{{field.numero_fascicolo}}</td></tr>
+              <tr><td><b>Nome rivista: </b></td><td>{{field.nome_rivista}}</td></tr>
+              <tr><td><b>Autore: </b></td><td>{{field.autore_nome_cognome}}</td></tr>
+              <tr><td><b>Manoscritto di riferimento: </b></td><td>{{field.desc_est}}</td></tr>
+
+          </table>
+          {% endfor %}
+
+
+<h2>Articoli in miscellanea</h2>
+          {% for index, field in biblio_est_articolo_miscellanea.iterrows() %}
+          <table>
+            
+             <tr>
+              <tr><td><b>Id: </b></td><td>{{field.id}}</td></tr>
+              <tr><td><b>Titolo: </b></td><td>{{field.titolo}}</td></tr>
+              <tr><td><b>Anno: </b></td><td>{{field.anno}}</td></tr>
+              <tr><td><b>Numero pagine: </b></td><td>{{field.numero_pagine}}</td></tr>
+              <tr><td><b>Curatore: </b></td><td>{{field.curatore_nome_cognome}}</td></tr>
+              <tr><td><b>Autore: </b></td><td>{{field.autore_nome_cognome}}</td></tr>
+              <tr><td><b>Manoscritto di riferimento: </b></td><td>{{field.desc_est}}</td></tr>
+
+          </table>
+          {% endfor %}
+
+
+          <h2>Libro Miscellanea</h2>
+         {% for index, field in biblio_est_articolo_miscellanea_libro.iterrows() %}
+          <table>
+              <tr>
+              <tr><td><b>Id: </b></td><td>{{field.id}}</td></tr>
+              <tr><td><b>Titolo: </b></td><td>{{field.titolo}}</td></tr>
+              <tr><td><b>Anno: </b></td><td>{{field.anno}}</td></tr>
+              <tr><td><b>Numero pagine: </b></td><td>{{field.numero_pagine}}</td></tr>
+              <tr><td><b>Città: </b></td><td>{{field.citta}}</td></tr>
+              <tr><td><b>Casa editrice scrittura: </b></td><td>{{field.casa_editrice}}</td></tr>
+              <tr><td><b>Collana: </b></td><td>{{field.collana}}</td></tr>
+              <tr><td><b>Numero collana: </b></td><td>{{field.n_collana}}</td></tr>
+              <tr><td><b>Curatore: </b></td><td>{{field.curatore_nome_cognome}}</td></tr>
+              <tr><td><b>Manoscritto di riferimento: </b></td><td>{{field.desc_est}}</td></tr>
+
+          </table>
+
+          {% endfor %}
+
+
+   </span>
+            
+          </p>
+          </div>
+          </div>
 
 
 
