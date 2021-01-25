@@ -28,6 +28,10 @@ def esplora():
 def ricerca():
 	return render_template("search.html")
 
+@app.route('/progetti')
+def progetti():
+	return render_template("progetti.html")
+
 @app.route('/search', methods=['GET', 'POST'])
 def search():
 	if request.method == 'POST':

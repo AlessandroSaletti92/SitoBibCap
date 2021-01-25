@@ -127,3 +127,25 @@ button.accordion.active:after {
 {
    display: block;
 }
+
+
+section.progetti.container {
+    margin-top: 30pt;
+    margin-left: 10pt;
+}
+
+.progetti.head h3{
+    text-align: center;
+}
+.progetti.head h6{
+    text-align: center;
+}
+.progetti.head{
+    background-color: #ffffff;
+}
+
+.progetti.container iframe {
+    margin: auto;
+    display: block;
+    border-style:none;
+}
