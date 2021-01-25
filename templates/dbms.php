@@ -829,7 +829,7 @@ return $data;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// QUERY PER IL RECUPERO DEGLI ARTICOLI DI MISCELLANEA DELLA BIBLIOGRAFIA INTERNA
+// QUERY PER IL RECUPERO DEGLI ARTICOLI DI MISCELLANEA DELLA BIBLIOGRAFIA ESTERNA
 
 
 function biblio_est_articolo_miscellanea($search, $con){
