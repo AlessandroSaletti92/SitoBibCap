@@ -189,3 +189,12 @@ section.progetti.container {
 .container.withnavbar {
     max-width: 1000px;
 }
+
+.tab-pane{
+    font-size: 11pt;
+    font-weight: 300;
+
+}
+.tab-pane h6{
+    text-align: center;
+}

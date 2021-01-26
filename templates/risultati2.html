@@ -3,7 +3,7 @@
 
 <br>
 <div class="container">
-  <h3  class='text-center'>{{segnatura.split(' ')[0]}} <small class="text-muted">{{" ".join(segnatura.split(' ')[1:])}}</small></h3>
+  <h6  class='text-center'>{{segnatura.split(' ')[0]}} <small class="text-muted">{{" ".join(segnatura.split(' ')[1:])}}</small></h6>
   <img src="http://lezioni.meneghetti.univr.it//imageapi/LXI/m0061_0visn20_0009a2.jp2/pct:2,18,80,7/800,/0/default.jpg" class="img-fluid rounded mb5">
     <table class="table">
       <tr>
@@ -33,7 +33,7 @@
           <div class="show">
           <p>
             {% for index, field in descrizione.iterrows() %}
-        <span style="font-family: verdana; font-size: 12px;">
+        <span >
         <table>
            <tr>
             <tr><td><b>Segnatura: </b></td><td>{{field.Segnatura}}</td></tr>
@@ -64,9 +64,9 @@
           <div class="show">
           <p>
             {% for index, field in descrizione_int.iterrows() %}
-        <span style="font-family: verdana; font-size: 12px;">
+        <span >
           <table>
-            <h3>Descrizione Interna {{field.id}}</h3>
+            <h6>Descrizione Interna {{field.id}}</h6>
            <tr>
             <tr><td><b>Autore: </b></td><td>{{field.autore}}</td></tr>
             <tr><td><b>Titolo: </b></td><td>{{field.titolo}}</td></tr>
@@ -77,7 +77,7 @@
             <tr><td><b>Rubrica: </b></td><td>{{field.rubrica}}</td></tr>
             <tr><td><b>Testo di riferimento(segnatura): </b></td><td>{{field.Descrizione_Esterna_Segnatura}}</td></tr>
             <tr><td><b>Descrizione interna di riferimento: </b></td><td>{{field.Descrizione_interna_id}}</td></tr>
-        </table><br>
+        </table><hr><br>
         </span>
             {% endfor %}
             </p>
@@ -93,16 +93,16 @@
           <div class="show">
           <p>
             {% for index, field in copisti.iterrows() %}
-        <span style="font-family: verdana; font-size: 12px;">
+        <span >
 
 <table>
-            <h3>Copista {{field.id}}</h3>
+            <h6>Copista {{field.id}}</h6>
            <tr>
             <tr><td><b>Id: </b></td><td>{{field.id}}</td></tr>
             <tr><td><b>Datazione: </b></td><td>{{field.datazione}}</td></tr>
             <tr><td><b>Tipologia scrittura: </b></td><td>{{field.tipologia_scrittura}}</td></tr>
             <tr><td><b>Testo di riferimento(segnatura): </b></td><td>{{field.Descrizione_Esterna_Segnatura}}</td></tr>
-        </table>
+        </table><hr><br>
    </span>
             {% endfor %}
             </p>
@@ -119,10 +119,10 @@
           <div class="show">
           <p>
             {% for index, field in annotazioni_marginali.iterrows() %}
-        <span style="font-family: verdana; font-size: 12px;">
+        <span >
 
         <table>
-            <h3>Annotazione {{field.Id_auto_inc}}</h3>
+            <h6>Annotazione {{field.Id_auto_inc}}</h6>
            <tr>
             <tr><td><b>Id: </b></td><td>{{field.Id_auto_inc}}</td></tr>
             <tr><td><b>Mano: </b></td><td>{{field.Id}}</td></tr>
@@ -131,7 +131,7 @@
             <tr><td><b>Posizione: </b></td><td>{{field.Posizione}}</td></tr>
             <tr><td><b>Tipologia scrittura: </b></td><td>{{field.Tipologia_scrittura}}</td></tr>
             <tr><td><b>Testo di riferimento(segnatura): </b></td><td>{{field.Descrizione_Esterna_Segnatura}}</td></tr>
-        </table>
+        </table><hr><br>
    </span>
             {% endfor %}
             </p>
@@ -145,9 +145,10 @@
           <div class="show">
           <p>
             {% for index, field in annotazioni_testo.iterrows() %}
-        <span style="font-family: verdana; font-size: 12px;">
+        <span >
         <table>
-            <h3>Annotazione {{field.Id_auto_inc}}</h3>
+            
+            <h6>Annotazione {{field.Id_auto_inc}}</h6>
            <tr>
             <tr><td><b>Id: </b></td><td>{{field.Id_auto_inc}}</td></tr>
             <tr><td><b>Datazione: </b></td><td>{{field.datazione}}</td></tr>
@@ -155,7 +156,7 @@
             <tr><td><b>Posizione: </b></td><td>{{field.Posizione}}</td></tr>
             <tr><td><b>Tipologia scrittura: </b></td><td>{{field.Tipologia_scrittura}}</td></tr>
             <tr><td><b>Testo di riferimento(segnatura): </b></td><td>{{field.Descrizione_Esterna_Segnatura}}</td></tr>
-        </table>
+        </table><hr><br>
         </span>
             {% endfor %}
             </p>
@@ -166,12 +167,12 @@
 <button class="accordion">Bibliografia Interna</button>
         <div class="panel">
           <div class="show">
-          <p><h2>Libri</h2>
+          <p><h6>Libri</h6>
 {% for index, field in biblio_int_libri.iterrows() %}
-        <span style="font-family: verdana; font-size: 12px;">
+        <span >
 
         <table>
-          <h3>Libro {{field.id}}</h3>
+          <h6>Libro {{field.id}}</h6>
              <tr>
               <tr><td><b>Id: </b></td><td>{{field.id}}</td></tr>
               <tr><td><b>Titolo: </b></td><td>{{field.titolo}}</td></tr>
@@ -184,13 +185,13 @@
               <tr><td><b>Autore: </b></td><td>{{field.autore_nome_cognome}}</td></tr>
               <tr><td><b>Descrizione interna di riferimento: </b></td><td>{{field.Descrizione_interna_id}}</td></tr>
 
-          </table>
+          </table><hr><br>
           {% endfor %}
-
-            <h2>Articoli in rivista</h2>
+            
+            <h5>Articoli in rivista</h5>
             {% for index, field in biblio_int_articolo_rivista.iterrows() %}
             <table>
-              <h3>Articolo {{field.id}}</h3>
+              <h6>Articolo {{field.id}}</h6>
             <tr>
               <tr><td><b>Id: </b></td><td>{{field.id}}</td></tr>
               <tr><td><b>Titolo: </b></td><td>{{field.titolo}}</td></tr>
@@ -200,11 +201,11 @@
               <tr><td><b>Nome rivista: </b></td><td>{{field.nome_rivista}}</td></tr>
               <tr><td><b>Autore: </b></td><td>{{field.autore_nome_cognome}}</td></tr>
               <tr><td><b>Descrizione interna di riferimento: </b></td><td>{{field.Descrizione_interna_id}}</td></tr>
-            </table>
+            </table><hr><br>
           {% endfor %}
 
 
-          <h2>Articoli in miscellanea</h2>
+          <h5>Articoli in miscellanea</h5>
           {% for index, field in biblio_int_articolo_miscellanea.iterrows() %}
           <table>
             
@@ -217,10 +218,10 @@
               <tr><td><b>Autore: </b></td><td>{{field.autore_nome_cognome}}</td></tr>
               <tr><td><b>Descrizione interna di riferimento: </b></td><td>{{field.desc_int}}</td></tr>
 
-          </table>
+          </table><hr><br>
           {% endfor %}
 
-          <h2>Libri miscellanea</h2>
+          <h5>Libri miscellanea</h5>
           {% for index, field in biblio_int_articolo_miscellanea_libro.iterrows() %}
           <table>
               <tr>
@@ -235,7 +236,7 @@
               <tr><td><b>Curatore: </b></td><td>{{field.curatore_nome_cognome}}</td></tr>
               <tr><td><b>Descrizione interna di riferimento: </b></td><td>{{field.desc_int}}</td></tr>
 
-          </table>
+          </table><hr><br>
 
 
          </span>
@@ -248,12 +249,12 @@
 <button class="accordion">Bibliografia Esterna</button>
         <div class="panel">
           <div class="show">
-          <p><h2>Libri</h2>
-        <span style="font-family: verdana; font-size: 12px;">
+          <p><h6>Libri</h6>
+        <span >
 
         {% for index, field in biblio_est_libri.iterrows() %}
         <table>
-          <h3>Libro {{field.id}}</h3>
+          <h6>Libro {{field.id}}</h6>
              <tr>
               <tr><td><b>Id: </b></td><td>{{field.id}}</td></tr>
               <tr><td><b>Titolo: </b></td><td>{{field.titolo}}</td></tr>
@@ -266,11 +267,11 @@
               <tr><td><b>Autore: </b></td><td>{{field.autore_nome_cognome}}</td></tr>
               <tr><td><b>Descrizione interna di riferimento: </b></td><td>{{field.Descrizione_interna_id}}</td></tr>
 
-          </table>
+          </table><hr><br>
         {% endfor %}
 
 
-          <h2>Articoli in rivista</h2>
+          <h6>Articoli in rivista</h6>
             {% for index, field in biblio_est_articolo_rivista.iterrows() %}
             <table>
             
@@ -284,11 +285,11 @@
               <tr><td><b>Autore: </b></td><td>{{field.autore_nome_cognome}}</td></tr>
               <tr><td><b>Manoscritto di riferimento: </b></td><td>{{field.desc_est}}</td></tr>
 
-          </table>
+          </table><hr><br>
           {% endfor %}
 
 
-<h2>Articoli in miscellanea</h2>
+<h6>Articoli in miscellanea</h6>
           {% for index, field in biblio_est_articolo_miscellanea.iterrows() %}
           <table>
             
@@ -301,11 +302,11 @@
               <tr><td><b>Autore: </b></td><td>{{field.autore_nome_cognome}}</td></tr>
               <tr><td><b>Manoscritto di riferimento: </b></td><td>{{field.desc_est}}</td></tr>
 
-          </table>
+          </table><hr><br>
           {% endfor %}
 
 
-          <h2>Libro Miscellanea</h2>
+          <h6>Libro Miscellanea</h6>
          {% for index, field in biblio_est_articolo_miscellanea_libro.iterrows() %}
           <table>
               <tr>
@@ -320,7 +321,7 @@
               <tr><td><b>Curatore: </b></td><td>{{field.curatore_nome_cognome}}</td></tr>
               <tr><td><b>Manoscritto di riferimento: </b></td><td>{{field.desc_est}}</td></tr>
 
-          </table>
+          </table><hr><br>
 
           {% endfor %}
 
@@ -335,7 +336,7 @@
 
 
 
-          <script>
+<script>
 var acc = document.getElementsByClassName("accordion");
 var i;
 
