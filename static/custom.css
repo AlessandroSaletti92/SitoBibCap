@@ -198,3 +198,7 @@ section.progetti.container {
 .tab-pane h6{
     text-align: center;
 }
+
+a.manifesturl {
+    font-size: small;
+}
