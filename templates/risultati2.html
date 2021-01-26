@@ -32,6 +32,7 @@
         <div class="panel">
           <div class="show">
           <p>
+            {% if not descrizione.empty %}
             {% for index, field in descrizione.iterrows() %}
         <span >
         <table>
@@ -53,6 +54,9 @@
         </table>
         </span>
             {% endfor %}
+{% else %}
+ <p> Nessun record inserito.</p>
+{% endif %}
             </p>
           </div>
           </div>
@@ -63,6 +67,7 @@
         <div class="panel">
           <div class="show">
           <p>
+            {% if not descrizione_int.empty %}
             {% for index, field in descrizione_int.iterrows() %}
         <span >
           <table>
@@ -80,6 +85,9 @@
         </table><hr><br>
         </span>
             {% endfor %}
+            {% else %}
+            <p> Nessun record inserito.</p>
+            {% endif %}
             </p>
           </div>
           </div>
@@ -92,6 +100,7 @@
         <div class="panel">
           <div class="show">
           <p>
+            {% if not copisti.empty %}
             {% for index, field in copisti.iterrows() %}
         <span >
 
@@ -105,6 +114,9 @@
         </table><hr><br>
    </span>
             {% endfor %}
+            {% else %}
+            <p> Nessun record inserito.</p>
+            {% endif %}
             </p>
           </div>
           </div>
@@ -118,6 +130,7 @@
         <div class="panel">
           <div class="show">
           <p>
+            {% if not annotazioni_marginali.empty %}
             {% for index, field in annotazioni_marginali.iterrows() %}
         <span >
 
@@ -134,6 +147,9 @@
         </table><hr><br>
    </span>
             {% endfor %}
+            {% else %}
+            <p> Nessun record inserito.</p>
+            {% endif %}
             </p>
           </div>
           </div>
@@ -144,6 +160,7 @@
         <div class="panel">
           <div class="show">
           <p>
+            {% if not annotazioni_testo.empty %}
             {% for index, field in annotazioni_testo.iterrows() %}
         <span >
         <table>
@@ -159,6 +176,9 @@
         </table><hr><br>
         </span>
             {% endfor %}
+            {% else %}
+            <p> Nessun record inserito.</p>
+            {% endif %}
             </p>
           </div>
           </div>
@@ -168,10 +188,11 @@
         <div class="panel">
           <div class="show">
           <p><h6>Libri</h6>
-{% for index, field in biblio_int_libri.iterrows() %}
+        {% if not biblio_int_articolo_miscellanea.empty %}
+        {% for index, field in biblio_int_articolo_miscellanea.iterrows() %}
         <span >
 
-        <table>
+          <table>
           <h6>Libro {{field.id}}</h6>
              <tr>
               <tr><td><b>Id: </b></td><td>{{field.id}}</td></tr>
@@ -187,8 +208,12 @@
 
           </table><hr><br>
           {% endfor %}
+          {% else %}
+          <p> Nessun record inserito.</p>
+          {% endif %}
             
             <h5>Articoli in rivista</h5>
+            {% if not biblio_int_articolo_rivista.empty %}
             {% for index, field in biblio_int_articolo_rivista.iterrows() %}
             <table>
               <h6>Articolo {{field.id}}</h6>
@@ -203,9 +228,13 @@
               <tr><td><b>Descrizione interna di riferimento: </b></td><td>{{field.Descrizione_interna_id}}</td></tr>
             </table><hr><br>
           {% endfor %}
+          {% else %}
+          <p> Nessun record inserito.</p>
+          {% endif %}
 
 
           <h5>Articoli in miscellanea</h5>
+          {% if not biblio_int_articolo_miscellanea.empty %}
           {% for index, field in biblio_int_articolo_miscellanea.iterrows() %}
           <table>
             
@@ -220,8 +249,12 @@
 
           </table><hr><br>
           {% endfor %}
+          {% else %}
+          <p> Nessun record inserito.</p>
+          {% endif %}
 
           <h5>Libri miscellanea</h5>
+          {% if not biblio_int_articolo_miscellanea_libro.empty %}
           {% for index, field in biblio_int_articolo_miscellanea_libro.iterrows() %}
           <table>
               <tr>
@@ -240,7 +273,10 @@
 
 
          </span>
-            {% endfor %}
+          {% endfor %}
+          {% else %}
+          <p> Nessun record inserito.</p>
+          {% endif %}
           </p>
           </div>
           </div>
@@ -251,7 +287,7 @@
           <div class="show">
           <p><h6>Libri</h6>
         <span >
-
+        {% if not biblio_est_libri.empty %}
         {% for index, field in biblio_est_libri.iterrows() %}
         <table>
           <h6>Libro {{field.id}}</h6>
@@ -269,9 +305,13 @@
 
           </table><hr><br>
         {% endfor %}
+        {% else %}
+        <p> Nessun record inserito.</p>
+        {% endif %}
 
 
           <h6>Articoli in rivista</h6>
+            {% if not biblio_est_articolo_rivista.empty %}
             {% for index, field in biblio_est_articolo_rivista.iterrows() %}
             <table>
             
@@ -287,9 +327,13 @@
 
           </table><hr><br>
           {% endfor %}
+          {% else %}
+          <p> Nessun record inserito.</p>
+          {% endif %}
 
 
 <h6>Articoli in miscellanea</h6>
+          {% if not biblio_est_articolo_miscellanea.empty %}
           {% for index, field in biblio_est_articolo_miscellanea.iterrows() %}
           <table>
             
@@ -304,9 +348,13 @@
 
           </table><hr><br>
           {% endfor %}
+          {% else %}
+          <p> Nessun record inserito.</p>
+          {% endif %}
 
 
-          <h6>Libro Miscellanea</h6>
+         <h6>Libro Miscellanea</h6>
+         {% if not biblio_est_articolo_miscellanea_libro.empty %}
          {% for index, field in biblio_est_articolo_miscellanea_libro.iterrows() %}
           <table>
               <tr>
@@ -324,6 +372,9 @@
           </table><hr><br>
 
           {% endfor %}
+          {% else %}
+          <p> Nessun record inserito.</p>
+          {% endif %}
 
 
    </span>
