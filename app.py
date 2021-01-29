@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for,send_file
 import pandas as pd
 import pymysql
 from sqlalchemy import create_engine
@@ -77,6 +77,49 @@ def search():
 							biblio_int_articolo_miscellanea=biblio_int_articolo_miscellanea, biblio_int_articolo_miscellanea_libro=biblio_int_articolo_miscellanea_libro,
 							biblio_est_libri=biblio_est_libri, biblio_est_articolo_rivista=biblio_est_articolo_rivista,	biblio_est_articolo_miscellanea=biblio_est_articolo_miscellanea,
 							biblio_est_articolo_miscellanea_libro=biblio_est_articolo_miscellanea_libro, segnatura=segnatura);
+
+
+
+@app.route('/xmltext')
+def get_TEI():
+	import xml.etree.ElementTree as ET
+	from xml.etree.ElementTree import Element, SubElement, Comment, tostring
+
+	root = ET.Element('TEItest')
+
+	child = ET.SubElement(root, 'child')
+	child.text = 'This child contains text.'
+
+	child_with_tail = ET.SubElement(root, 'child_with_tail')
+	child_with_tail.text = 'This child has regular text.'
+
+	child_with_entity_ref = ET.SubElement(root, 'child_with_entity_ref')
+	child_with_entity_ref.text = 'This  that'
+	# add your data to the root node in the format you want
+	return app.response_class(b"""<?xml version="1.0" encoding="UTF-8"?>"""+ET.tostring(root), mimetype='application/xml')
+
+
+@app.route('/downxml')
+def down_TEI():
+	import io
+	import xml.etree.ElementTree as ET
+	from xml.etree.ElementTree import Element, SubElement, Comment, tostring
+
+	root = ET.Element('TEItest')
+
+	child = ET.SubElement(root, 'child')
+	child.text = 'This child contains text.'
+
+	child_with_tail = ET.SubElement(root, 'child_with_tail')
+	child_with_tail.text = 'This child has regular text.'
+
+	child_with_entity_ref = ET.SubElement(root, 'child_with_entity_ref')
+	child_with_entity_ref.text = 'This  that'
+	# add your data to the root node in the format you want
+	return send_file(io.BytesIO(b"""<?xml version="1.0" encoding="UTF-8"?>"""+ET.tostring(root)),
+						mimetype='application/xml',
+            			attachment_filename= 'teitest.xml',
+            			as_attachment = True)
 
 
 
