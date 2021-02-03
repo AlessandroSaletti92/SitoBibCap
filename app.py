@@ -3,6 +3,17 @@ from confidenziale import databaseaddress_capitolare_mongo
 import pymongo
 
 
+def get_all_values(nested_dictionary):
+    for key, value in nested_dictionary.items():
+        if isinstance(value,dict):
+            get_all_values(value)
+        if isinstance(value,list):
+            for i in value:
+                get_all_values(i)
+        else:
+            if (value == "") or (value is None):
+                nested_dictionary[key] = "Non disponibile"
+
 client = pymongo.MongoClient(databaseaddress_capitolare_mongo)
 
 app = Flask(__name__)
@@ -56,6 +67,7 @@ def search():
 	if request.method == 'POST':
 		segnatura = request.form.get('search')
 		var = client.capitolare.codici.find_one({'segnatura_id': segnatura})
+		get_all_values(var)
 	return render_template("risultati2.html", codice=var)
 
 

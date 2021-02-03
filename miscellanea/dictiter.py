@@ -9,6 +9,9 @@ def get_all_values(nested_dictionary):
             if (value == "") or (value is None):
                 nested_dictionary[key] = "Non disponibile"
 
+
+                
+
 def replaceindict(dict):
     dict['_id'] = 'n.a.'
     res = str(dict).replace("''","'Non disponibile'").replace('None',"'Non disponibile'")
