@@ -269,7 +269,14 @@
            x="2287.5227"
            y="1799.0864"
            id="tspan5050"
-           style="font-size:101.59999847px;fill:#42429d;fill-opacity:1">di Culture e Civiltà</tspan></text>
+           style="font-size:101.59999847px;fill:#42429d;fill-opacity:1">di Culture e Civiltà</tspan>
+           <tspan
+           sodipodi:role="line"
+           x="2287.5227"
+           y="1899.0864"
+           id="tspan5050"
+           style="font-size:50px;fill:#42429d;fill-opacity:1">Laboratori integrati</tspan>
+           </text>
 <text
          xml:space="preserve"
          style="font-size:67.73332977px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sathu;-inkscape-font-specification:Sathu"
