@@ -2,6 +2,9 @@ from flask import Flask, render_template, request, url_for,send_file
 from confidenziale import databaseaddress_capitolare_mongo
 import pymongo
 
+
+client = pymongo.MongoClient(databaseaddress_capitolare_mongo)
+
 app = Flask(__name__)
 # questo è per lo sviluppo (ricarica i file statici non caching) commentarlo in production!!
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -51,9 +54,9 @@ def credits():
 @app.route('/search', methods=['GET', 'POST'])
 def search():
 	if request.method == 'POST':
-		client = pymongo.MongoClient(databaseaddress_capitolare_mongo)
-
-	return render_template("risultati2.html")
+		segnatura = request.form.get('search')
+		var = client.capitolare.codici.find_one({'segnatura_id': segnatura})
+	return render_template("risultati2.html", codice=var)
 
 
 @app.route('/xmltext')
