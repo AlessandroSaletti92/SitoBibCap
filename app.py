@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for,send_file
+from flask import Flask, render_template, request, url_for,send_file,jsonify
 from confidenziale import databaseaddress_capitolare_mongo
 import pymongo
 
@@ -65,11 +65,24 @@ def credits():
 @app.route('/search', methods=['GET', 'POST'])
 def search():
 	if request.method == 'POST':
-		segnatura = request.form.get('search')
+		segnatura = request.form.get('autocomplete')
 		var = client.capitolare.codici.find_one({'segnatura_id': segnatura})
 		get_all_values(var)
 	return render_template("risultati2.html", codice=var)
 
+testx = ['XXX','XXXXX','IXXX','XIV']
+
+@app.route('/autocomplete', methods=['GET'])
+def autocomplete():
+	search = request.args.get('q')
+	#query = db_session.query(Movie.title).filter(Movie.title.like('%' + str(search) + '%'))
+	#results = [mv[0] for mv in query.all()]
+	results = testx
+	return jsonify(matching_results=results)
+
+@app.route('/testautoc', methods=['GET'])
+def test():
+	return render_template("testautoc.html")
 
 @app.route('/xmltext')
 def get_TEI():

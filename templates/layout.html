@@ -7,7 +7,31 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link href={{ url_for("static",filename="custom.css") }} rel="stylesheet" type="text/css" >
-  <title>Biblioteca Capitolare</title>
+
+  <title>Capitolar-e</title>
+  <!--- Hints search-->
+  <link href="//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
+  <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script src="//code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+  
+  <script type="text/javascript">
+  $(function() {
+      $("#autocomplete").autocomplete({
+          source:function(request, response) {
+              $.getJSON("{{url_for('autocomplete')}}",{
+                  q: request.term, // in flask, "q" will be the argument to look for using request.args
+              }, function(data) {
+                  response(data.matching_results); // matching_results from jsonify
+              });
+          },
+          minLength: 2,
+          select: function(event, ui) {
+              console.log(ui.item.value); // not in your question, but might help later
+          }
+      });
+  })
+  
+  </script>
   </head>
 <!--         NAVBAR        -->
 {% include 'includes/navbar2.html' %}

@@ -16,10 +16,11 @@
           </li>
       </ul>
       <form class="d-flex"  data-target="#vai" data-bs-target="#vai" action="{{ url_for('search') }}" method="POST">
-        <input class="form-control me-2" data-target="#vai" data-bs-target="#vai" name="search" type="search" placeholder="Segnatura e.g. XXVIII (26)" aria-label="Search">
+        <input class="form-control me-2 form-control input-lg" id="autocomplete" data-target="#vai" data-bs-target="#vai"   name="autocomplete" type="search" placeholder="Segnatura e.g. XXVIII (26)" aria-label="Search">
         <button class="btn btn-outline-success"  data-target="#vai" data-bs-target="#vai" type="submit">Vai</button>
       </form>
     </div>
   </div>
+ 
   
 </nav>
