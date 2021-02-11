@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-{% block  body%}
+{% block body%}
 
 <div class="container withnavbar">
     <br>
@@ -7,25 +7,77 @@
         <div class="sidenav strumenti">
             <a href="#intro"> - Introduzione</a>
             <p><b>Hardware:</b></p>
-            <a href="#catalog">Sistema digitalizzazione Nikon D810</a>
-            <a href="#conserv">Sistema multispettrale PhaseOne RAINBOW</a>
-            <a href="#digital">Spettrometri Zeiss</a>
-            <a href="#digital">Sistema profilazione i1Publish Pro 3</a>
-            <a href="#access">Targets per controllo e profilazione immagini</a>
+            <a href="#nikon">Sistema digitalizzazione Nikon D810</a>
+            <a href="#rainbow">Sistema multispettrale PhaseOne RAINBOW</a>
+            <a href="#zeiss">Spettrometri Zeiss</a>
+            <a href="#i1Pub">Sistema profilazione i1Publish Pro 3</a>
+            <a href="#targets">Targets per controllo e profilazione immagini</a>
             <br>
             <p><b>Software:</b></p>
-            <a href="#digital">Controllo stato di avanzamento acquisizione.</a>
-            <a href="#digital">Interazioni mouseover per analisi multispettrali.</a>
-            <a href="#digital">Digitalizzazione serie microclimatiche.</a>
-     
+            <a href="#check">Controllo stato di avanzamento acquisizione.</a>
+            <a href="#yad">Interazioni mouseover per analisi multispettrali.</a>
+            <a href="#micro">Digitalizzazione serie microclimatiche.</a>
+
         </div>
         <div class="col-md-7 col-sm-6">
-        <section id="intro">
-        <h3>Introduzione</h3>
-        <p>
-            
-        </p>
-        </section>
+            <section id="intro">
+                <h3>Introduzione</h3>
+                <p>
+                    Una fase molto importante del progetto è stata la scelta degli strumenti. Ad ogni
+                    acquisto è preceduta una fase di analisi del mercato.
+                    Per quanto riguarda gli strumenti di imaging abbiamo
+                    fatto sulle varie tecnologie disponibili come indicato da MINERVA [6, sez. 3.5].
+                    Durante il progetto abbiamo intolre sviluppato e reso disponibile software open-soruce
+                    come auspicato nelle stesse linee guida.
+                    Per fare una scelta fattuale su gli strumenti abbiamo innanzitutto
+                    acquistato degli standard che ci permettessero di valutare con metriche
+                    oggettive le performance come suggerito da MINERVA[6,sez. 3.5] e NARA[12, pag. 25]
+                    invece che basarci sulle dichiarazioni dei rivenditori.
+                    L’immagine è stata analizzata attraverso software specialistici come OpenDICE
+                    per la validazio-ne secondo le direttive FADGI e deltae.picturae.com per quanto
+                    riguarda la validazione secondo le direttive FADGI e Metamorphoze.
+                    Sono stati presi in considerazione i seguenti fattori in ordine di importanza:
+                <ol>
+
+
+                    <li> Sicurezza del bene durante l’acquisizione.</li><li> Massima grandezza del bene alloggiabile nel sistema di
+                    digitalizzazione.</li><li> Qualità della digitalizzazione.</li><li> Flessibilità del sistema.</li><li> Supporto tecnico e
+                    durabilità del sistema.</li><li> Velocità di acquisizione.</li><li> Novità e interesse di ricerca nel sistema.</li><li>
+                    Possibilità di future implementazioni.</li><li> Spazio richiesto</li>
+                </ol>
+                </p>
+                <p>
+                    Per tentare di rileggere il testo perduto a causa dell'invecchiamento
+                    dei materiali e delle vicissitudini che hanno afflitto la collezione, come 
+                    l'<a href=https://it.wikipedia.org/wiki/Inondazione_di_Verona_del_1882>inondazione dell'Adige del 1882</a>
+                    abbiamo scelto diversi strumenti che ci permettessero di indagare la risposta
+                    dei materiali in regioni dello spettro non visibili ad occhio nudo.
+                </p>
+            </section>
+            <section id=nikon>
+                <h3>Sistema Nikon</h3>
+                Il sistema di acquisizione basato su camera Nikon D810 e lente Sigma 50mm f/1.4 
+                comprende due flash Bowens ed un box per isolare l'acquisizione da 
+                interferenza ambientali. La camera ha un sensore di 36 MegaPixel, ed abbinata ai 
+                flash Bowens Gemini 500R permette di ottenere acquisizioni con un alta 
+                resa cromatica e un ottima risoluzione per piccoli formati.
+            </section>
+            <section id=rainbow>
+                <br>
+                <h3>Sistema multi-spettrale PhaseOne RAINBOW</h3>
+                Il sistema di acquisizione PhaseOne RAINBOW è un sistema versatile che permette di acquisire
+                immagini fino a 100 MegaPixel sia in nella regione visibile che nel vicino ultravioletto ed infrarosso.
+                Il sistema è accoppiato con illuminazione LED. Le sorgenti LED Eureka Lights a banda spettrale ristretta 
+                permettono di illuminare l'oggetto in 16  bande spettrali mentre le sorgenti Dedo lights a 
+                banda spettrale ampia permettono di acquisire aree più grandi illuminando l'oggetto nel vicino ultravioletto (365 nm),
+                nel visible e nell'infrarosso (860 nm). Sorgenti LED Keiser sono invece usate per digitalizzazioni 
+                convenzionali. 
+                <p>
+                    Il sistema è racchiuso in un box in alluminio annodizatto nero,con teli ad alta
+                    assorbanza nel UV e nell'infrarosso, per evitare interferenze ambientali esterne. 
+                </p>
+                
+            </section>
+        </div>
     </div>
-</div>
-{% endblock body %}
+    {% endblock body %}
