@@ -3,7 +3,7 @@
 
 <br>
 <div class="container">
-  <h6  class='text-center'>{{codice['descrizione_esterna']['Segnatura']}} <small class="text-muted">{{codice['descrizione_esterna']['Segnatura']}}</small></h6>
+  <h6  class='text-center'>{{codice['descrizione_esterna'][0]['Segnatura']}} <small class="text-muted">{{" ".join(codice['descrizione_esterna'][0]['Segnatura'].split(' ')[1:])}}</small></h6>
   <img src="http://lezioni.meneghetti.univr.it//imageapi/LXI/m0061_0visn20_0009a2.jp2/pct:2,18,80,7/800,/0/default.jpg" class="img-fluid rounded mb5">
     <table class="table">
       <tr>
@@ -418,7 +418,7 @@ for (i = 0; i < acc.length; i++) {
             <tr><td><b>Manifest:</b></td><td><a href="default_target?manifest=http://lezioni.meneghetti.univr.it//manifests/e818fc3783fb461f156dae89b25140e0.json" target="_blank">
               <img src={{url_for('static', filename="imgs/iiificon.png")}} alt="IIIF Drag-n-drop"/>
             </a> <a href=http://lezioni.meneghetti.univr.it//manifests/e818fc3783fb461f156dae89b25140e0.json class="manifesturl">http://lezioni.meneghetti.univr.it//manifests/e818fc3783fb461f156dae89b25140e0.json</a></td></tr>
-            <tr><td><b>Visualizzazione:</b></td><td> <a href=http://lezioni.meneghetti.univr.it:8085/?manifest=http://lezioni.meneghetti.univr.it//manifests/e818fc3783fb461f156dae89b25140e0.json target="_blank">Universal viewer</a> </td></tr>
+            <tr><td><b>Visualizzabile con:</b></td><td> <a href=http://lezioni.meneghetti.univr.it:8085/?manifest=http://lezioni.meneghetti.univr.it//manifests/e818fc3783fb461f156dae89b25140e0.json target="_blank">Universal viewer</a> <a href=http://lezioni.meneghetti.univr.it/m3/?manifest=http://lezioni.meneghetti.univr.it//manifests/e818fc3783fb461f156dae89b25140e0.json target="_blank">Mirador</a>  </td></tr>
         </table>
         </div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
