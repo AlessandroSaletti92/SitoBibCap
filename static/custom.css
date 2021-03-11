@@ -202,3 +202,7 @@ section.progetti.container {
 a.manifesturl {
     font-size: small;
 }
+
+#slider-range{
+  width: 400px;
+}
