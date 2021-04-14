@@ -61,6 +61,8 @@ def ricerca():
 	if form.validate_on_submit():
 
 		import pdb; pdb.set_trace()
+		#TODO: cambiare
+		segnatura = 'XXB'
 		#data = request.form['slider-range']
 		anno = request.form['anno']
 		var = client.capitolare.codici.find_one({'segnatura_id': segnatura})
