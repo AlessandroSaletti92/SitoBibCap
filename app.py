@@ -1,3 +1,4 @@
+# coding=utf-8
 from flask import Flask, render_template, request, url_for,send_file,jsonify
 from confidenziale import databaseaddress_capitolare_mongo
 from flask_wtf import FlaskForm
