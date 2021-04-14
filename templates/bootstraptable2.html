@@ -1,0 +1,156 @@
+{% extends 'layoutBT2.html' %}
+
+{% block script_section%}
+  <script>
+  $( function() {
+    $( "#slider-range" ).slider({
+      range: true,
+      min: 200,
+      max: 1950,
+      values: [ 350, 1800  ],
+      slide: function( event, ui ) {
+        $( "#anno" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] + " d.C.");
+      }
+    });
+    $( "#anno" ).val($( "#slider-range" ).slider( "values", 0 ) +
+      " - " + $( "#slider-range" ).slider( "values", 1 ) + " d.C."  );
+  } );
+  </script>
+{% endblock script_section %}
+
+{% block  body%}
+
+
+
+<div class="container">
+<div class="row">
+   
+<div class="col-md-4">
+<!-- 
+<form method="POST" >
+    <p><b>Ricerca per segnatura: </b><input type="text" name="search" required/></p>
+    <p><input type="submit" name="submit" value="Cerca"/></p>
+ </form>
+ -->
+ <br>
+ <h3>Ricerca avanzata</h3>
+ <div class="alert alert-primary" role="alert">
+  La ricerca avanzata è basata sulla catalogazione dei beni secondo lo <a href="example.com">schema
+  proposto dal progetto Dascabida</a>.
+</div>
+<form  method="POST" action="">
+	{{ form.csrf_token }}
+	<p>
+  	
+  	<label for="anno">Data: </label>
+  	
+  	<input type="text" name='anno' id="anno" style="border:0; color:#000000; font-weight:bold;">
+	</p>
+
+	<div id="slider-range" class="container-md"></div>
+
+	<br>
+
+    <div class="form-group">
+    {{ form.fulltext.label }} {{ form.fulltext }}
+   	</div>	
+
+   	<div class="form-group">
+    {{ form.materiale.label }} {{ form.materiale }}
+	</div>
+
+    <div class="form-group">
+    {{ form.autore.label }} {{ form.autore }}
+    </div>
+
+    <div class="form-group">
+    {{ form.titolo.label }} {{ form.titolo }}
+   	</div>
+   	
+  <br>
+    <input type="submit" value="Interroga" class="btn btn-primary">
+</form>
+</div>
+
+<!-- 
+*****
+
+RESULTS TABLE 
+
+*****
+ -->
+
+<div class="col-md-8">
+  <br>
+  <h3>Risultati</h3>
+  <div class="alert alert-warning" role="alert">
+    I risultati sono sulla base di 3 beni catalogati.
+  </div>
+
+  <div class="container">
+    <table id="table"
+        data-toggle="table"
+        data-filter-control="true"
+        data-show-search-clear-button="true"
+        data-sortable="true"
+        classes="table-sm"
+        data-pagination="true"
+        data-show-columns="true"
+        data-show-columns-toggle-all="true"
+        class="table-responsive"
+        
+        data-toolbar="#toolbar"
+        data-search="true"
+        data-show-refresh="true"
+        data-show-toggle="true"
+        data-show-fullscreen="true"
+        data-show-columns="true"
+        data-show-columns-toggle-all="true"
+        data-detail-view="true"
+        data-show-export="true"
+        data-click-to-select="true"
+        data-detail-formatter="detailFormatter"
+        data-minimum-count-columns="2"
+        data-show-pagination-switch="true"
+        data-pagination="true"
+        data-id-field="id"
+        data-page-list="[10, 25, 50, 100, all]"
+        data-show-footer="true"
+        >
+        <thead>
+            <tr>
+                <!--special characters and spaces not allowed in data-field name-->
+                <th data-field="Titolo" data-filter-control="input" data-sortable="true">Titolo</th>
+                <th data-field="Materiale" data-filter-control="select" data-sortable="true">Materiale </th>
+                <th data-field="Segnatura" data-filter-control="input" data-sortable="true">Segnatura</th>
+                <th data-field="Descrizione" data-filter-control="input" data-sortable="true" data-visible="false">Descrizione</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for row in tableA %}
+          <tr>
+              <!--special characters and spaces not allowed in data-field name-->
+              <td>{{ row['Segnatura'] }}</td>
+              <td>{{ row['tipo_di_supporto_e_qualita'] }}</td>
+              <td>{{ row['Segnatura'] }}</td>
+              <td>{{ row['Segnatura'] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+
+
+<br>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    
+{% endblock body %}

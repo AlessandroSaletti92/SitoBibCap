@@ -5,16 +5,19 @@ from wtforms import StringField, SelectField
 from wtforms.validators import DataRequired
 import pymongo
 from static_objects import segnaturecodici
+import re
 
 GlobalVar = []
 
 class MyForm(FlaskForm):
  #   name = StringField('Materiale', validators=[DataRequired()])
- 	materiale = SelectField(u'Materiale: ', choices=['qualsiasi','papiro', 'pergamena', 'carta'])
- 	autore = StringField('Autore')
- 	titolo = StringField('Titolo')
- 	segnatura = StringField('Segnatura')
- 	anno = StringField('Datazione')
+ 	materiale = SelectField(u'Materiale: ',
+	 			choices=['qualsiasi','papiro', 'pergamena', 'carta'],
+				render_kw={'class':"form-control",})
+ 	autore = StringField('Autore',render_kw={'class':"form-control",})
+ 	titolo = StringField('Titolo',render_kw={'class':"form-control",})
+ 	fulltext = StringField('Ricerca su tutti i campi',render_kw={'class':"form-control",})
+ 	anno = StringField('Datazione',render_kw={'class':"form-control",})
 
 def get_all_values(nested_dictionary):
     for key, value in nested_dictionary.items():
@@ -56,7 +59,7 @@ def ricerca():
 	form = MyForm()
 	if form.validate_on_submit():
 
-		#import pdb; pdb.set_trace()
+		import pdb; pdb.set_trace()
 		#data = request.form['slider-range']
 		anno = request.form['anno']
 		var = client.capitolare.codici.find_one({'segnatura_id': segnatura})
@@ -97,6 +100,12 @@ def opendata():
 def credits():
 	return render_template("credits.html")
 
+@app.route('/bootstraptable')
+#TODO:remove
+def bootstraptable():
+	table = [['1','b','d'],['3','r','d'],['2','a','f']]
+	return render_template("bootstraptable.html",tableA = table)
+
 @app.route('/search', methods=['GET', 'POST'])
 def search():
 	if request.method == 'POST':
@@ -119,6 +128,50 @@ def autocomplete():
 @app.route('/testautoc', methods=['GET'])
 def test():
 	return render_template("testautoc.html")
+
+
+
+
+@app.route('/BT2', methods=['GET', 'POST'])
+#TODO: remove
+def BT2():
+	form = MyForm()
+	table = [['1','b','d'],['3','r','d'],['2','a','f']]
+	cursor = client.capitolare.codici.find({"tipo_di_supporto_e_qualita":
+			"membranaceo"})
+	if form.validate_on_submit():
+
+		import pdb; pdb.set_trace()
+		#data = request.form['slider-range']
+		anno = request.form['anno']
+		query = {"$and":[]}
+		if form.autore.data != "":
+			query_autore_re2 = {"descrizione_interna" :
+									{"$elemMatch": 
+									{"autore":re.compile(form.autore.data,
+									re.IGNORECASE)}}}
+			query["$and"].append(query_autore_re2)
+		if form.materiale.data != "qualsiasi":
+			query_materiale_re = {"descrizione_esterna.tipo_di_supporto_e_qualita" : 
+									re.compile(form.materiale.data, re.IGNORECASE)}
+
+			query["$and"].append(query_materiale_re)
+		if form.titolo.data != "":
+			query_titolo_re2 = {"descrizione_interna" :
+									{"$elemMatch": 
+									{"titolo":re.compile(form.titolo.data, re.IGNORECASE)}}}
+			query["$and"].append(query_titolo_re2)
+		if form.fulltext.data != "":
+			query_text = {"$text": { "$search": form.fulltext.data }}
+			query["$and"].append(query_text)
+
+
+		cursor = client.capitolare.codici.find(query)
+		print("Funziona!")
+		print(form.data)
+		#print(form.materiale)
+
+	return render_template("bootstraptable2.html",tableA = cursor, form=form)
 
 @app.route('/xmltext')
 def get_TEI():

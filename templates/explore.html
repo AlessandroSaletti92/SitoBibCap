@@ -24,18 +24,18 @@ Il colore grigio indica invece, che il campo non è disponibile.
     catalogo descrittivo redatto da Antonio Spagnolo a cura di Silvia Marchi".</i>
 </p>
 <script id="1000">
-    var xhr = new XMLHttpRequest()
-    xhr.responseType = 'blob';
-    xhr.open('GET', "http://localhost:5006/bokehbiblioteca/autoload.js?bokeh-autoload-element=1000&bokeh-app-path=/bokehbiblioteca&bokeh-absolute-url=http://localhost:5006/bokehbiblioteca", true);
-    
-    xhr.onload = function (event) {
-      var script = document.createElement('script'),
-      src = URL.createObjectURL(event.target.response);
-      script.src = src;
-      document.body.appendChild(script);
-    };
-  xhr.send();
-  </script>
+  var xhr = new XMLHttpRequest()
+  xhr.responseType = 'blob';
+  xhr.open('GET', "http://localhost:5006/bibliotecaBokeh/autoload.js?bokeh-autoload-element=1000&bokeh-app-path=/bibliotecaBokeh&bokeh-absolute-url=http://localhost:5006/bibliotecaBokeh", true);
+  
+  xhr.onload = function (event) {
+    var script = document.createElement('script'),
+    src = URL.createObjectURL(event.target.response);
+    script.src = src;
+    document.body.appendChild(script);
+  };
+xhr.send();
+</script>
 </div>
 {% endblock  %}
 
