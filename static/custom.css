@@ -171,8 +171,18 @@ section.progetti.container {
     display: block;
   }
 
+label.nvb {
+    color: #ffffff;
+} 
+a.bka {
+    color: #ffffff; 
+}
 .sidenav a:hover {
     color: #47d240;
+  }
+
+.bka a:link {
+    color: #ffffff;
   }
 
 .sidenav p {

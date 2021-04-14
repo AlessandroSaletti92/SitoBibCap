@@ -1,5 +1,5 @@
 # coding=utf-8
-from flask import Flask, render_template, request, url_for,send_file,jsonify
+from flask import Flask, render_template, request, url_for,send_file,jsonify,send_from_directory
 from confidenziale import databaseaddress_capitolare_mongo
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField
@@ -7,6 +7,8 @@ from wtforms.validators import DataRequired
 import pymongo
 from static_objects import segnaturecodici
 import re
+from collections import defaultdict
+import os
 
 GlobalVar = []
 
@@ -38,10 +40,13 @@ app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config['SECRET_KEY'] = "Alessandro"
 
+
+
 @app.route('/')
 def index_page():
    # return 'Hello, World!'
 	return render_template("index2.html")
+
 
 @app.route('/about')
 def about():
@@ -55,7 +60,7 @@ def esplora():
 
 
 
-@app.route('/ricerca', methods=['GET', 'POST'])
+@app.route('/ricerca_old', methods=['GET', 'POST'])
 def ricerca():
 	form = MyForm()
 	if form.validate_on_submit():
@@ -135,7 +140,7 @@ def test():
 
 
 
-@app.route('/BT2', methods=['GET', 'POST'])
+@app.route('/ricerca', methods=['GET', 'POST'])
 #TODO: remove
 def BT2():
 	form = MyForm()
@@ -147,7 +152,7 @@ def BT2():
 		import pdb; pdb.set_trace()
 		#data = request.form['slider-range']
 		anno = request.form['anno']
-		query = {"$and":[]}
+		query = defaultdict(list)
 		if form.autore.data != "":
 			query_autore_re2 = {"descrizione_interna" :
 									{"$elemMatch": 
