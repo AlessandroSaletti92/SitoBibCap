@@ -130,10 +130,10 @@ RESULTS TABLE
           {% for row in tableA %}
           <tr>
               <!--special characters and spaces not allowed in data-field name-->
-              <td>{{ row['Segnatura'] }}</td>
-              <td>{{ row['tipo_di_supporto_e_qualita'] }}</td>
-              <td>{{ row['Segnatura'] }}</td>
-              <td>{{ row['Segnatura'] }}</td>
+              <td>{{ row['descrizione_interna'][0]['titolo'] }}</td>
+              <td>{{ row['descrizione_esterna'][0]['tipo_di_supporto_e_qualita'] }}</td>
+              <td>{{ row['descrizione_esterna'][0]['Segnatura'] }}</td>
+              <td>{{ row['descrizione_esterna'][0]['Segnatura'] }}</td>
           </tr>
           {% endfor %}
         </tbody>

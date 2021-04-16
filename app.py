@@ -145,14 +145,13 @@ def test():
 def BT2():
 	form = MyForm()
 	table = [['1','b','d'],['3','r','d'],['2','a','f']]
-	cursor = client.capitolare.codici.find({"tipo_di_supporto_e_qualita":
-			"membranaceo"})
+	cursor = client.capitolare.codici.find({"version" : 1 })
+	#import pdb; pdb.set_trace()
 	if form.validate_on_submit():
-
-		import pdb; pdb.set_trace()
 		#data = request.form['slider-range']
 		anno = request.form['anno']
-		query = defaultdict(list)
+		#query = defaultdict(list)
+		query = {"$and":[{"version" : 1 }]}
 		if form.autore.data != "":
 			query_autore_re2 = {"descrizione_interna" :
 									{"$elemMatch": 
