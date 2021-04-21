@@ -150,6 +150,17 @@ section.progetti.container {
     border-style:none;
 }
 
+
+/* Carousel color contrast problme */
+.carousel-control {
+    filter: none;
+    opacity: 1;
+  }
+  .carousel-control:hover,
+  .carousel-control:focus {
+    filter: none;
+    opacity: 1;
+  }
 /* Sidenav */
 
 .sidenav {
