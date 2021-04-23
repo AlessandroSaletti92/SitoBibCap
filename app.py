@@ -124,7 +124,7 @@ def search():
 	return render_template("risultati2.html", codice=var)
 
 @app.route('/segnatura/<segnatura_id>')
-def search(segnatura_id):
+def segnatura(segnatura_id):
 	var = client.capitolare.codici.find_one({'segnatura_idx': segnatura_id})
 	get_all_values(var)
 	return render_template("risultati2.html", codice=var)
