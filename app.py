@@ -5,7 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField
 from wtforms.validators import DataRequired
 import pymongo
-from static_objects import segnaturecodici
+from static_objects import segnaturecodici,segnaturecodici_dict
 import re
 from collections import defaultdict
 import os
@@ -118,7 +118,8 @@ def bootstraptable():
 def search():
 	if request.method == 'POST':
 		segnatura = request.form.get('autocomplete')
-		var = client.capitolare.codici.find_one({'segnatura_id': segnatura})
+		segnatura_id = segnaturecodici_dict[segnatura]
+		var = client.capitolare.codici.find_one({'segnatura_idx': segnatura_id})
 		get_all_values(var)
 	return render_template("risultati2.html", codice=var)
 
@@ -126,7 +127,7 @@ def search():
 def autocomplete():
 	search = request.args.get('q').upper()
 	print(search)
-	results = [i for i in segnaturecodici if i.startswith(search)]
+	results = [i for i in segnaturecodici_dict.keys() if i.startswith(search)]
 	#query = db_session.query(Movie.title).filter(Movie.title.like('%' + str(search) + '%'))
 	#results = [mv[0] for mv in query.all()]
 	#results = testx
