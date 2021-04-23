@@ -123,6 +123,12 @@ def search():
 		get_all_values(var)
 	return render_template("risultati2.html", codice=var)
 
+@app.route('/segnatura/<segnatura_id>')
+def search(segnatura_id):
+	var = client.capitolare.codici.find_one({'segnatura_idx': segnatura_id})
+	get_all_values(var)
+	return render_template("risultati2.html", codice=var)
+
 @app.route('/autocomplete', methods=['GET'])
 def autocomplete():
 	search = request.args.get('q').upper()
