@@ -33,6 +33,9 @@ def get_all_values(nested_dictionary):
             if (value == "") or (value is None):
                 nested_dictionary[key] = "Non disponibile"
 
+def sort_dec_int(var):
+	var['descrizione_interna'] = sorted(var['descrizione_interna'], key= lambda s: list(map(int, s['Descrizione_interna_id'].split('.'))))
+
 client = pymongo.MongoClient(databaseaddress_capitolare_mongo)
 
 app = Flask(__name__)
@@ -108,6 +111,18 @@ def opendata():
 def credits():
 	return render_template("credits.html")
 
+@app.route('/media')
+def media():
+	return render_template("media.html")
+
+@app.route('/altaformazione')
+def altaformazione():
+	return render_template("altaformazione.html")
+
+@app.route('/prodottidellaricerca')
+def prodottidellaricerca():
+	return render_template("prodottidellaricerca.html")
+
 @app.route('/bootstraptable')
 #TODO:remove
 def bootstraptable():
@@ -121,12 +136,16 @@ def search():
 		segnatura_id = segnaturecodici_dict[segnatura]
 		var = client.capitolare.codici.find_one({'segnatura_idx': segnatura_id})
 		get_all_values(var)
+		sort_dec_int(var)
+		#import pdb; pdb.set_trace()
 	return render_template("risultati2.html", codice=var)
 
 @app.route('/segnatura/<segnatura_id>')
 def segnatura(segnatura_id):
 	var = client.capitolare.codici.find_one({'segnatura_idx': segnatura_id})
+	
 	get_all_values(var)
+	sort_dec_int(var)
 	return render_template("risultati2.html", codice=var)
 
 @app.route('/autocomplete', methods=['GET'])

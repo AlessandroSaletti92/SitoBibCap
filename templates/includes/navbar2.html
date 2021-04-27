@@ -7,13 +7,23 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/about" data-bs-target="#about">Il progetto</a>
+          <a class="nav-link active" aria-current="page" href="/about" data-bs-target="#about">IL PROGETTO</a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/altaformazione" data-bs-target="#altaformazione">ALTA FORMAZIONE</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/prodottidellaricerca" data-bs-target="#prodottidellaricerca">PRODOTTI DELLA RICERCA</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/media" data-bs-target="#media">MEDIA</a>
+        </li>
+
+<!--         <li class="nav-item active">
           <a class="nav-link" href="/esplora" data-bs-target="#esplora" data-target="#esplora">Esplora</a>
           <li class="nav-item active">
             <a class="nav-link" href="/ricerca" data-bs-target="#ricerca" data-target="#ricerca">Ricerca</a>
-          </li>
+          </li> -->
       </ul>
       <form class="d-flex"  data-target="#vai" data-bs-target="#vai" action="{{ url_for('search') }}" method="POST">
         <input class="form-control me-2 form-control input-lg" id="autocomplete" data-target="#vai" data-bs-target="#vai"   name="autocomplete" type="search" aria-label="Search">
