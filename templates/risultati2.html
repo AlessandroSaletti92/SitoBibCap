@@ -73,17 +73,15 @@
             {% for field in codice['descrizione_interna'] %}
         <span >
           <table>
-            <h6>Descrizione Interna {{field['id']}}</h6>
+            <h6>{{field['Descrizione_interna_id']}}</h6>
            <tr>
             <tr><td><b>Autore: </b></td><td>{{field['autore']}}</td></tr>
             <tr><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
-            <tr><td><b>Id: </b></td><td>{{field['id']}}</td></tr>
-            <tr><td><b>Incipit: </b></td><td>{{field['incipit']}}  <a href={{field['incipit_url']}} class="falsebutton" target="_blank">Visualizza</a></td></tr>
+            <tr><td><b>Rubrica: </b></td><td>{{field['rubrica']}}</td></tr>
+            <tr><td><b>Incipit: </b></td><td>{{field['incipit']}}  <a href={{field['incipit_url']}} target="_blank">&#128270;</a> </td></tr>
             <tr><td><b>Explicit: </b></td><td>{{field['explicit']}}</td></tr>
             <tr><td><b>Carte: </b></td><td>{{field['carte']}}</td></tr>
-            <tr><td><b>Rubrica: </b></td><td>{{field['rubrica']}}</td></tr>
             <tr><td><b>Testo di riferimento(segnatura): </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
-            <tr><td><b>Descrizione interna di riferimento: </b></td><td>{{field['Descrizione_interna_id']}}</td></tr>
         </table><hr><br>
         </span>
             {% endfor %}
