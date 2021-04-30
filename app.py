@@ -1,6 +1,6 @@
 # coding=utf-8
 from flask import Flask, render_template, request, url_for,send_file,jsonify,send_from_directory
-from confidenziale import databaseaddress_capitolare_mongo
+from confidenziale import databaseaddress_capitolare_mongo,secret_key
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField
 from wtforms.validators import DataRequired
@@ -41,7 +41,7 @@ client = pymongo.MongoClient(databaseaddress_capitolare_mongo)
 app = Flask(__name__)
 # questo è per lo sviluppo (ricarica i file statici non caching) commentarlo in production!!
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
-app.config['SECRET_KEY'] = "Alessandro"
+app.config['SECRET_KEY'] = secret_key
 
 
 
@@ -102,6 +102,10 @@ def lineeguida():
 def privacypolicy():
 	return render_template("privacypolicy.html")
 
+@app.route('/nontrovato')
+def nontrovato():
+	return render_template("nontrovato.html")
+
 @app.route('/strumenti')
 def strumenti():
 	return render_template("strumenti.html")
@@ -137,17 +141,22 @@ def bootstraptable():
 def search():
 	if request.method == 'POST':
 		segnatura = request.form.get('autocomplete')
+		if segnatura not in segnaturecodici_dict.keys():
+			return render_template("nontrovato.html",segnatura=segnatura)
 		segnatura_id = segnaturecodici_dict[segnatura]
 		var = client.capitolare.codici.find_one({'segnatura_idx': segnatura_id})
+		if var is None:
+			return render_template("noncreato.html",segnatura=segnatura)
 		get_all_values(var)
 		sort_dec_int(var)
-		#import pdb; pdb.set_trace()
+		
 	return render_template("risultati2.html", codice=var)
 
 @app.route('/segnatura/<segnatura_id>')
 def segnatura(segnatura_id):
 	var = client.capitolare.codici.find_one({'segnatura_idx': segnatura_id})
-	
+	if var is None:
+		return render_template("nontrovato.html",segnatura=segnatura)
 	get_all_values(var)
 	sort_dec_int(var)
 	return render_template("risultati2.html", codice=var)

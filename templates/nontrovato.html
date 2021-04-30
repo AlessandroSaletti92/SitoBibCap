@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block  body%}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1>
+                    Ops.. Segnatura non valida...</h1>
+                <h2>
+                    404 Not Found</h2>
+                <div class="error-details">
+                    Sembra che la segnatura "{{segnatura}}" non sia presente nei nostri database.
+                    Prova a digitare le prime due lettere ed usare la funzione di auto completamento.
+                </div>
+                <div class="error-actions">
+                    <a href="http://www.jquery2dotnet.com" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                        Take Me Home </a><a href="http://www.jquery2dotnet.com" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
