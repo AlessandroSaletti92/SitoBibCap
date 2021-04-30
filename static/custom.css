@@ -288,3 +288,33 @@ footer {
     font-size: 10px;
   }
 
+tr:nth-of-type(odd) {
+    background-color:#F3F1EF;
+  }
+
+  table {
+    border: 1px solid rgb(211, 204, 204);
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .manbanner {
+    position: relative;
+  }
+  
+  .mantext {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 4vw;
+    color: whitesmoke;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+  }
+
+  #imgmanu { 
+    width: 100%;
+    height: auto;
+  }
+  

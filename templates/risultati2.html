@@ -4,8 +4,11 @@
 <br>
 <div class="container">
   <h6  class='text-center'>{{codice['descrizione_esterna'][0]['Segnatura']}} <small class="text-muted">{{" ".join(codice['descrizione_esterna'][0]['Segnatura'].split(' ')[1:])}}</small></h6>
-  <img src="http://lezioni.meneghetti.univr.it//imageapi/LXI/m0061_0visn20_0009a2.jp2/pct:2,18,80,7/800,/0/default.jpg" class="img-fluid rounded mb5">
-    <table class="table">
+  <div class="manbanner">
+  <img src="http://lezioni.meneghetti.univr.it//imageapi/LXI/m0061_0visn20_0009a2.jp2/pct:2,18,80,7/800,/0/default.jpg" class="img-fluid mb5" id="imgmanu">
+  <div class="mantext">{{codice['descrizione_esterna'][0]['Segnatura']}}</div>
+</div>
+  <table class="table">
       <tr>
       <td style="width:  2.33%">
         <img src="http://lezioni.meneghetti.univr.it//imageapi/LXI/m0061_0visn20_0000a2.jp2/1312,104,1904,7776/90,/180/default.jpg"  class="rounded mx-auto d-block" >
@@ -37,7 +40,6 @@
             {% for field in codice['descrizione_esterna'] %}
         <span>
         <table>
-           <tr>
             <tr><td><b>Segnatura: </b></td><td>{{field['Segnatura']}}</td></tr>
             <tr><td><b>Datazione: </b></td><td>{{field['datazione']}}</td></tr>
             <tr><td><b>Tipologia di supporto e qualità: </b></td><td>{{field['tipo_di_supporto_e_qualita']}}</td></tr>
@@ -72,16 +74,16 @@
             {% if  codice['descrizione_interna'] %}
             {% for field in codice['descrizione_interna'] %}
         <span >
+          <h6>{{field['Descrizione_interna_id']}}</h6>
+          <br>
           <table>
-            <h6>{{field['Descrizione_interna_id']}}</h6>
-           <tr>
-            <tr><td><b>Autore: </b></td><td>{{field['autore']}}</td></tr>
-            <tr><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
-            <tr><td><b>Rubrica: </b></td><td>{{field['rubrica']}}</td></tr>
-            <tr><td><b>Incipit: </b></td><td>{{field['incipit']}}  <a href={{field['incipit_url']}} target="_blank">&#128270;</a> </td></tr>
-            <tr><td><b>Explicit: </b></td><td>{{field['explicit']}}</td></tr>
-            <tr><td><b>Carte: </b></td><td>{{field['carte']}}</td></tr>
-            <tr><td><b>Testo di riferimento(segnatura): </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
+            <tr class="resultstr"><td><b>Autore: </b></td><td>{{field['autore']}}</td></tr>
+            <tr class="resultstr"><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
+            <tr class="resultstr"><td><b>Rubrica: </b></td><td>{{field['rubrica']}}</td></tr>
+            <tr class="resultstr"><td><b>Incipit: </b></td><td>{{field['incipit']}}  <a href={{field['incipit_url']}} target="_blank">&#128270;</a> </td></tr>
+            <tr class="resultstr"><td><b>Explicit: </b></td><td>{{field['explicit']}}</td></tr>
+            <tr class="resultstr"><td><b>Carte: </b></td><td>{{field['carte']}}</td></tr>
+            <tr class="resultstr"><td><b>Testo di riferimento(segnatura): </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
         </table><hr><br>
         </span>
             {% endfor %}
@@ -100,12 +102,11 @@
             {% if codice['copisti'] %}
             {% for field in codice['copisti'] %}
         <span >
-
-<table>
-            <h6>Copista {{field['id']}}</h6>
-           <tr>
-            <tr><td><b>Id: </b></td><td>{{field['id']}}</td></tr>
+            <h6>Copista {{field['id_cop']}}</h6>
+            <br>
+            <table>
             <tr><td><b>Datazione: </b></td><td>{{field['datazione']}}</td></tr>
+            <tr><td><b>Intervallo carte: </b></td><td>{{field['intervallo_carte']}}</td></tr>
             <tr><td><b>Tipologia scrittura: </b></td><td>{{field['tipologia_scrittura']}}</td></tr>
             <tr><td><b>Testo di riferimento(segnatura): </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
         </table><hr><br>
@@ -130,12 +131,10 @@
             {% if codice['annotazioni_marginali'] %}
             {% for field in codice['annotazioni_marginali'] %}
         <span >
-
-        <table>
             <h6>Annotazione {{field['Id_auto_inc']}}</h6>
-           <tr>
-            <tr><td><b>Id: </b></td><td>{{field['Id_auto_inc']}}</td></tr>
-            <tr><td><b>Mano: </b></td><td>{{field['Id']}}</td></tr>
+            <br>
+            <table>
+            <tr><td><b>Intevallo carte: </b></td><td>{{field['intervallo_carte']}}</td></tr>
             <tr><td><b>Datazione: </b></td><td>{{field['Datazione']}}</td></tr>
             <tr><td><b>Contenuto: </b></td><td>{{field['Contenuto']}}</td></tr>
             <tr><td><b>Posizione: </b></td><td>{{field['Posizione']}}</td></tr>
@@ -159,11 +158,10 @@
           <p>
             {% if codice['annotazioni_testo'] %}
             {% for field in codice['annotazioni_testo'] %}
-        <span >
-        <table>
-            
+        <span >            
             <h6>Annotazione {{field['Id_auto_inc']}}</h6>
-           <tr>
+            <br>
+            <table>
             <tr><td><b>Id: </b></td><td>{{field['Id_auto_inc']}}</td></tr>
             <tr><td><b>Datazione: </b></td><td>{{field['Datazione']}}</td></tr>
             <tr><td><b>Contenuto: </b></td><td>{{field['Contenuto']}}</td></tr>
@@ -188,11 +186,8 @@
         {% if codice['biblio_int_libri'] %}
         {% for field in codice['biblio_int_libri'] %}
         <span >
-
-          <table>
-          <h6>Libro {{field['id']}}</h6>
-             <tr>
-              <tr><td><b>Id: </b></td><td>{{field['id']}}</td></tr>
+            <br>
+            <table>
               <tr><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
               <tr><td><b>Anno: </b></td><td>{{field['anno']}}</td></tr>
               <tr><td><b>Numero pagine: </b></td><td>{{field['numero_pagine']}}</td></tr>
@@ -212,9 +207,10 @@
             <h5>Articoli in rivista</h5>
             {% if biblio_int_articolo_rivista %}
             {% for index, field in biblio_int_articolo_rivista.iterrows() %}
-            <table>
+            
               <h6>Articolo {{field['id']}}</h6>
-            <tr>
+              <br>
+              <table>
               <tr><td><b>Id: </b></td><td>{{field['id']}}</td></tr>
               <tr><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
               <tr><td><b>Anno: </b></td><td>{{field['anno']}}</td></tr>
@@ -233,9 +229,10 @@
           <h5>Articoli in miscellanea</h5>
           {% if biblio_int_articolo_miscellanea %}
           {% for index, field in biblio_int_articolo_miscellanea.iterrows() %}
-          <table>
+          
             
-             <tr>
+             <br>
+             <table>
               <tr><td><b>Id: </b></td><td>{{field['id']}}</td></tr>
               <tr><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
               <tr><td><b>Anno: </b></td><td>{{field['anno']}}</td></tr>
@@ -253,8 +250,8 @@
           <h5>Libri miscellanea</h5>
           {% if biblio_int_articolo_miscellanea_libro %}
           {% for index, field in biblio_int_articolo_miscellanea_libro.iterrows() %}
+          <br>
           <table>
-              <tr>
               <tr><td><b>Id: </b></td><td>{{field['id']}}</td></tr>
               <tr><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
               <tr><td><b>Anno: </b></td><td>{{field['anno']}}</td></tr>
@@ -286,9 +283,10 @@
         <span >
         {% if biblio_est_libri %}
         {% for index, field in biblio_est_libri.iterrows() %}
-        <table>
+    
           <h6>Libro {{field['id']}}</h6>
-             <tr>
+          <br>
+          <table>
               <tr><td><b>Id: </b></td><td>{{field['id']}}</td></tr>
               <tr><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
               <tr><td><b>Anno: </b></td><td>{{field['anno']}}</td></tr>
@@ -310,9 +308,8 @@
           <h6>Articoli in rivista</h6>
             {% if biblio_est_articolo_rivista %}
             {% for index, field in biblio_est_articolo_rivista.iterrows() %}
-            <table>
-            
-             <tr>
+            <br>
+          <table>
               <tr><td><b>Id: </b></td><td>{{field['id']}}</td></tr>
               <tr><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
               <tr><td><b>Anno: </b></td><td>{{field['anno']}}</td></tr>
@@ -332,9 +329,8 @@
 <h6>Articoli in miscellanea</h6>
           {% if biblio_est_articolo_miscellanea %}
           {% for index, field in biblio_est_articolo_miscellanea.iterrows() %}
+          <br>
           <table>
-            
-             <tr>
               <tr><td><b>Id: </b></td><td>{{field['id']}}</td></tr>
               <tr><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
               <tr><td><b>Anno: </b></td><td>{{field['anno']}}</td></tr>
@@ -353,8 +349,8 @@
          <h6>Libro Miscellanea</h6>
          {% if biblio_est_articolo_miscellanea_libro %}
          {% for index, field in biblio_est_articolo_miscellanea_libro.iterrows() %}
-          <table>
-              <tr>
+         <br>
+         <table>
               <tr><td><b>Id: </b></td><td>{{field['id']}}</td></tr>
               <tr><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
               <tr><td><b>Anno: </b></td><td>{{field['anno']}}</td></tr>
