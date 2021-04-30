@@ -81,7 +81,7 @@
             <tr class="resultstr"><td><b>Autore: </b></td><td>{{field['autore']}}</td></tr>
             <tr class="resultstr"><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
             <tr class="resultstr"><td><b>Rubrica: </b></td><td>{{field['rubrica']}}</td></tr>
-            <tr class="resultstr"><td><b>Incipit: </b></td><td>{{field['incipit']}}  <a href={{field['incipit_url']}} target="_blank">&#128270;</a> </td></tr>
+            <tr class="resultstr"><td><b>Incipit: </b></td><td>{{field['incipit']}}  {% if field['incipit_url'] != "Non disponibile" %}<a href={{field['incipit_url']}} target="_blank">&#128270;</a>{% endif %} </td></tr>
             <tr class="resultstr"><td><b>Explicit: </b></td><td>{{field['explicit']}}</td></tr>
             <tr class="resultstr"><td><b>Carte: </b></td><td>{{field['carte']}}</td></tr>
             <tr class="resultstr"><td><b>Testo di riferimento(segnatura): </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
