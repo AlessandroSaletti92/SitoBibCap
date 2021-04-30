@@ -274,3 +274,8 @@ a.manifesturl {
     border-bottom: 1px solid #333333;
     border-left: 1px solid #CCCCCC;
   }
+
+.carousel-caption {
+    
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
