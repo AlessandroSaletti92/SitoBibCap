@@ -98,6 +98,10 @@ def progetti():
 def lineeguida():
 	return render_template("lineguida.html")
 
+@app.route('/privacypolicy')
+def privacypolicy():
+	return render_template("privacypolicy.html")
+
 @app.route('/strumenti')
 def strumenti():
 	return render_template("strumenti.html")

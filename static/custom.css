@@ -279,3 +279,12 @@ a.manifesturl {
     
     text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
+
+footer {
+    width: 100%;
+    background-color: #1C2125;
+    color: white;
+    text-align: center;
+    font-size: 10px;
+  }
+
