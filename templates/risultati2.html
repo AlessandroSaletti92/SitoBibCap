@@ -56,6 +56,7 @@
             <tr><td><b>Palinsesto: </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
         </table>
         </span>
+        <br>
             {% endfor %}
 {% else %}
  <p> Nessun record inserito.</p>
@@ -152,17 +153,16 @@
 
 
 
-<button class="accordion">Annotazioni sul testo</button>
+<button class="accordion">Storia del manoscritto</button>
         <div class="panel">
           <div class="show">
           <p>
-            {% if codice['annotazioni_testo'] %}
-            {% for field in codice['annotazioni_testo'] %}
+            {% if codice['storia_del_manoscritto'] %}
+            {% for field in codice['storia_del_manoscritto'] %}
         <span >            
-            <h6>Annotazione {{field['Id_auto_inc']}}</h6>
+            <h6>{{field['Id_auto_inc']}}</h6>
             <br>
             <table>
-            <tr><td><b>Id: </b></td><td>{{field['Id_auto_inc']}}</td></tr>
             <tr><td><b>Datazione: </b></td><td>{{field['Datazione']}}</td></tr>
             <tr><td><b>Contenuto: </b></td><td>{{field['Contenuto']}}</td></tr>
             <tr><td><b>Posizione: </b></td><td>{{field['Posizione']}}</td></tr>
