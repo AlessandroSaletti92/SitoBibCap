@@ -2,12 +2,11 @@
 {% block  body%}
 
 <br>
-<div class="container">
-  <h6  class='text-center'>{{codice['descrizione_esterna'][0]['Segnatura']}} <small class="text-muted">{{" ".join(codice['descrizione_esterna'][0]['Segnatura'].split(' ')[1:])}}</small></h6>
+
   <div class="manbanner">
   <img src="http://lezioni.meneghetti.univr.it//imageapi/LXI/m0061_0visn20_0009a2.jp2/pct:2,18,80,7/800,/0/default.jpg" class="img-fluid mb5" id="imgmanu">
   <div class="mantext">{{codice['descrizione_esterna'][0]['Segnatura']}}</div>
-</div>
+
   <table class="table">
       <tr>
       <td style="width:  2.33%">
@@ -81,7 +80,7 @@
             <tr class="resultstr"><td><b>Autore: </b></td><td>{{field['autore']}}</td></tr>
             <tr class="resultstr"><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
             <tr class="resultstr"><td><b>Rubrica: </b></td><td>{{field['rubrica']}}</td></tr>
-            <tr class="resultstr"><td><b>Incipit: </b></td><td>{{field['incipit']}}  {% if field['incipit_url'] != "Non disponibile" %}<a href={{field['incipit_url']}} target="_blank">&#128270;</a>{% endif %} </td></tr>
+            <tr class="resultstr"><td><b>Incipit: </b></td><td>{{field['incipit']}}  {% if field['incipit_url'] != "Non disponibile" %}<a href={{field['incipit_url']}} target="_blank">&#128270;&#x1F4F7;</a>{% endif %} </td></tr>
             <tr class="resultstr"><td><b>Explicit: </b></td><td>{{field['explicit']}}</td></tr>
             <tr class="resultstr"><td><b>Carte: </b></td><td>{{field['carte']}}</td></tr>
             <tr class="resultstr"><td><b>Testo di riferimento(segnatura): </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
