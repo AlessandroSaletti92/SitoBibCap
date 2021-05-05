@@ -1,4 +1,4 @@
-<nav id="navbarCapi" class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<nav id="navbarCapi" class="navbar navbar-expand-md py-2 navbar-dark bg-dark fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">Capitolar-<b>e</b></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,12 +18,23 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/media" data-bs-target="#media">MEDIA</a>
         </li>
-
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Applicativi 
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/esplora">Catalogo storico</a></li>
+            <li><a class="dropdown-item" href="/archivio">Archivio delle pergamene</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
 <!--         <li class="nav-item active">
           <a class="nav-link" href="/esplora" data-bs-target="#esplora" data-target="#esplora">Esplora</a>
           <li class="nav-item active">
             <a class="nav-link" href="/ricerca" data-bs-target="#ricerca" data-target="#ricerca">Ricerca</a>
           </li> -->
+        
       </ul>
       <form class="d-flex"  data-target="#vai" data-bs-target="#vai" action="{{ url_for('search') }}" method="POST">
         <input class="form-control me-2 form-control input-sm" id="autocomplete" data-target="#vai" data-bs-target="#vai"   name="autocomplete" type="search" aria-label="Search">

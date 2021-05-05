@@ -7,15 +7,16 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1 , shrink-to-fit=no">
+    <!--- Hints search https://stackoverflow.com/questions/34704997/jquery-autocomplete-in-flask future upgrade https://stackoverflow.com/questions/3488016/using-html-in-jquery-ui-autocomplete-->
+    <link href="//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
+    <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="//code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link href={{ url_for("static",filename="custom.css") }} rel="stylesheet" type="text/css" >
 
   <title>Capitolar-e</title>
-  <!--- Hints search https://stackoverflow.com/questions/34704997/jquery-autocomplete-in-flask future upgrade https://stackoverflow.com/questions/3488016/using-html-in-jquery-ui-autocomplete-->
-  <link href="//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
-  <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
-  <script src="//code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+
   <!--  myfavicon  -->
   <link rel="shortcut icon" href="{{ url_for('static', filename='myfavicon.ico') }}">
 
@@ -85,8 +86,9 @@
 
 <footer>
   <hr>
-  <p> Capitolar-e è gestito dal laboratorio <a class="bka" href=https://sites.hss.univr.it/laboratori_integrati/laboratorio-lamedan/>LaMeDan</a>. 
-    Non esitare a contattarci per ulteriori informazioni. Parte del materiale utilizzato potrebbe essere soggetto a copyright © 2021 </p>
+  <p> Capitolar-e è gestito dal laboratorio <a class="bka" href=https://sites.hss.univr.it/laboratori_integrati/laboratorio-lamedan/>LaMeDan</a>, parte
+    dei <a class="bka" href=https://sites.hss.univr.it/laboratori_integrati/>laboratori integrati</a>  dell'Università di Verona.
+    Non esitare a contattarci per ulteriori informazioni. Parte del materiale utilizzato potrebbe essere soggetto a copyright © 2021. </p>
   <p>
     <a class="bka" href=/privacypolicy >Privacy Policy</a>
   <hr>
