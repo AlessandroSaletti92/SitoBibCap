@@ -6,33 +6,90 @@
     <div class="row">
         <div class="sidenav">
             <p><b>Indice:</b></p>
-            <a href="#video">Audio video</a>
-            <a href="#stampa">Stampa</a>
+            <a href="#tg2"> Servizio Tg2 e Tg2 Dossier.</a>
+            <a href="#tg3"> Servizio Tg3.</a>
+            <a href="#telepace"> Servizio telepace. </a>
+
         </div>
         <div class="col-md-7 col-sm-6">
-        <section id="video">
-            <h2>Video</h2>
-            <p></p>
-            Questa sezione ospita i contributi audio-video (interviste, servizi speciali, presentazioni pubbliche) che raccontano la storia e lo sviluppo del progetto:
+        <section id="scopo">
+            <br>
+            <h1>Apparizioni sui Media</h1>
+            <p>
+                Questa sezione ospita i contributi audio-video (interviste, servizi speciali,
+                 presentazioni pubbliche) che raccontano la storia e lo sviluppo del progetto:
             dai primi passi mossi nell’ambito del progetto di ricerca di base DascabiDa
             (Dallo scriptorium carolingio alla biblioteca di Dante), sino all’approdo 
             alla prestigiosa rubrica televisiva TG2 Dossier, che ha documentato le 
             attività di ricerca e diagnostica del Laboratorio.
-            <h3> TG2 Dossier</h3>
-            <p>
-                <a class="embedly-card" data-card-image="0" href="http://www.tg2.rai.it/dl/RaiTV/programmi/media/ContentItem-73afded6-5bd7-4984-b232-19e4f4255be9-tg2.html">TG2 20:30 servizio n. 13 del giorno 20/03/2021</a><script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
+            Riportando quanto più esaustivamente possibile l’attenzione ricevuta sulla stampa quotidiana a periodica
+            dalle attività e dalle ricerche condotte nell’ambito del progetto.
             </p>
+            <!-- <p>
+            Per avere informazioni più dettagliate per la visita della Biblioteca Capitolare e del museo diocesano,
+            vi invitiamo a consultare <a href="http://bibliotecacapitolare.org/">il sito ufficiale della biblioteca Capitolare di Verona</a>. 
+            </p> -->
         </section>
-        <section id="stampa">
-            <h2>Stampa</h2>
-            <p>
-            Questa sezione documenta quanto più esaustivamente possibile l’attenzione ricevuta sulla stampa quotidiana a periodica
-             dalle attività e dalle ricerche condotte nell’ambito del progetto.
-            </p>
-            <h3>L'arena</h3>
-            <h9>14/06/2020</h9>
-            <p></p>
+        </div>  
+        
+     
+        <section id="tg2" class="storia  py-5 ">
+            <div class="row align-items-center container py-5 mx-auto">
+
+            <div class="text col-lg-6 col-md-12 col-12">
+                <h6>SERVIZIO TELEVISIVO</h6>
+                <h1>Tg2 e Tg2 Dossier</h1>
+                <p>
+                    Il progetto è stato parte anche di una puntata del Tg2 Dossier dedicata a Dante.
+
+                </p>
+                <p>
+                    Il Tg2 ha inoltre dedicato l'intero trailer al progetto scaligero, che ha quindi
+                    raggiunto più di due milioni e mezzo di spettatori.
+                </p>
+                <p>
+                    <a class="embedly-card" data-card-image="0" href="http://www.tg2.rai.it/dl/RaiTV/programmi/media/ContentItem-73afded6-5bd7-4984-b232-19e4f4255be9-tg2.html">TG2 20:30 servizio n. 13 del giorno 20/03/2021</a><script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
+                </p>
+                </div>
+            <div class="col-lg-6 col-md-12 col-12">
+                <img class="img-fluid" src={{url_for('static',filename='imgs/TG2.jpeg')}} alt="Basso rilevo che mostra un maestro con dei discepoli.">  
+
+              </div>
+            </div>
         </section>
+        <section id="tg3" class="illaboratorio  py-5 ">
+            <div class="row align-items-center container py-5 mx-auto">
+                <div class="img col-lg-6 col-md-12 col-12">
+                    <img class="img-fluid" src={{url_for('static',filename='imgs/TG3.jpeg')}} alt="Immagine del laboratorio, e del sistema di digitalizzazione.">   
+                  </div>
+                  <div class="text col-lg-6 col-md-12 col-12">
+                    <h6>SERVIZIO TELEVISIVO</h6>
+                    <h1>TG3 Regione Veneto e Rai News</h1>
+                    <p>L'inizio del primo progetto pilota nel 2018, ha raccolto l'interesse della stampa
+                        che ha dedicato un servizio andato in onda sul <a href=https://www.rainews.it/dl/rainews/TGR/media/ven-Verona-Biblioteca-Capitolare-manoscritti-b368a937-a75d-42a3-89b9-3af5bfaf69af.html>TgR Veneto</a>.
+                    </p>
+                    
+
+                  </div>
+                </div>
+              </section>
+
+        <section id="telepace" class="storia  py-5 ">
+            <div class="row align-items-center container py-5 mx-auto">
+
+            <div class="text col-lg-6 col-md-12 col-12">
+                <h6>SERVIZIO TELEVISIVO</h6>
+                <h1>TelePace</h1>
+                Anche TelePace ha dedicato <a href="https://www.telepace.it/puntate/capitolare-un-laboratorio-per-il-medioevo/">un servizio</a>  all'apertura del primo laboratorio all'interno della Biblioteca Capitolare.
+
+                </div>
+            <div class="col-lg-6 col-md-12 col-12">
+                <div class="embed-responsive embed-responsive-4by3">
+                <iframe class="embed-responsive-item" height="400px" width="100%" src="https://www.youtube.com/embed/Wkd58xpwdoQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                </div>
+            </div>
+            </section>
         <div>
     </div>
 </div>

@@ -188,13 +188,13 @@ def test():
 def BT2():
 	form = MyForm()
 	table = [['1','b','d'],['3','r','d'],['2','a','f']]
-	cursor = client.capitolare.codici.find({"version" : 1 })
+	cursor = client.capitolare.codici.find({"$and":[{"version" : 1 },{"status": { "$ne": "appena creato" } }]})
 	#import pdb; pdb.set_trace()
 	if form.validate_on_submit():
 		#data = request.form['slider-range']
 		anno = request.form['anno']
 		#query = defaultdict(list)
-		query = {"$and":[{"version" : 1 }]}
+		query = {"$and":[{"version" : 1 },{"status": { "$ne": "appena creato" } }]}
 		if form.autore.data != "":
 			query_autore_re2 = {"descrizione_interna" :
 									{"$elemMatch": 
