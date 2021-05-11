@@ -59,14 +59,23 @@
 
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
-{% include 'includes/footer.html' %}
+<footer>
+  <hr>
+  <p> Capitolar-e è gestito dal laboratorio <a class="bka" href=https://sites.hss.univr.it/laboratori_integrati/laboratorio-lamedan/>LaMeDan</a>, parte
+    dei <a class="bka" href=https://sites.hss.univr.it/laboratori_integrati/>laboratori integrati</a>  dell'Università di Verona.
+    Non esitare a contattarci per ulteriori informazioni. Parte del materiale utilizzato potrebbe essere soggetto a copyright © 2021. </p>
+  <p>
+    <a class="bka" href=/privacypolicy >Privacy Policy</a>
+  <hr>
+  </p>
+</footer>
 <script>
     function detailFormatter(index, row) {
         var html = []
         html.push("<img src='http://placekitten.com/g/200/300' alt='Italian Trulli' style='padding: 0px 5px 0px 0px;float: left;'>")
         $.each(row, function (key, value) {
           if (key[0] != "_") {
-          html.push('<p><b>' + key + ':</b> ' + value + '</p>')
+          html.push('<p class="fw-light" ><b>' + key + ':</b> ' + value + '</p>')
           }
         })
         
