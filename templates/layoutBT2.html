@@ -72,10 +72,19 @@
 <script>
     function detailFormatter(index, row) {
         var html = []
-        html.push("<img src='http://placekitten.com/g/200/300' alt='Italian Trulli' style='padding: 0px 5px 0px 0px;float: left;'>")
         $.each(row, function (key, value) {
           if (key[0] != "_") {
-          html.push('<p class="fw-light" ><b>' + key + ':</b> ' + value + '</p>')
+          console.log(key)
+            if (key == 'link_immagine'){
+              html.push("<img src='"+value+"' alt='Manuscript thumbnail' style='padding: 0px 5px 0px 0px;float: left;'>")
+
+            }
+            else if (key == 'idscheda'){
+              html.push("<a class='btn btn-primary' href='"+value+"' role='button'>Vai alla scheda</a>")
+
+            }
+            else{html.push('<p class="fw-light" ><b>' + key + ':</b> ' + value + '</p>')}
+          
           }
         })
         

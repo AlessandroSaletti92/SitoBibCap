@@ -14,13 +14,13 @@ GlobalVar = []
 
 class MyForm(FlaskForm):
  #   name = StringField('Materiale', validators=[DataRequired()])
- 	materiale = SelectField(u'Materiale: ',
-	 			choices=['qualsiasi','papiro', 'pergamena', 'carta'],
-				render_kw={'class':"form-control",})
+ 	#materiale = SelectField(u'Materiale: ',
+	# 			choices=['qualsiasi','papiro', 'pergamena', 'carta'],
+	#			render_kw={'class':"form-control",})
  	autore = StringField('Autore',render_kw={'class':"form-control",})
  	titolo = StringField('Titolo',render_kw={'class':"form-control",})
  	fulltext = StringField('Ricerca su tutti i campi',render_kw={'class':"form-control",})
- 	anno = StringField('Datazione',render_kw={'class':"form-control",})
+ 	#anno = StringField('Datazione',render_kw={'class':"form-control",})
 
 def get_all_values(nested_dictionary):
     for key, value in nested_dictionary.items():
@@ -192,7 +192,7 @@ def BT2():
 	#import pdb; pdb.set_trace()
 	if form.validate_on_submit():
 		#data = request.form['slider-range']
-		anno = request.form['anno']
+		#anno = request.form['anno']
 		#query = defaultdict(list)
 		query = {"$and":[{"version" : 1 },{"status": { "$ne": "appena creato" } }]}
 		if form.autore.data != "":
@@ -201,11 +201,11 @@ def BT2():
 									{"autore":re.compile(form.autore.data,
 									re.IGNORECASE)}}}
 			query["$and"].append(query_autore_re2)
-		if form.materiale.data != "qualsiasi":
-			query_materiale_re = {"descrizione_esterna.tipo_di_supporto_e_qualita" : 
-									re.compile(form.materiale.data, re.IGNORECASE)}
-
-			query["$and"].append(query_materiale_re)
+		# if form.materiale.data != "qualsiasi":
+		#	query_materiale_re = {"descrizione_esterna.tipo_di_supporto_e_qualita" : 
+		#							re.compile(form.materiale.data, re.IGNORECASE)}
+		#
+		#	query["$and"].append(query_materiale_re)
 		if form.titolo.data != "":
 			query_titolo_re2 = {"descrizione_interna" :
 									{"$elemMatch": 

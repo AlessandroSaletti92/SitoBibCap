@@ -40,7 +40,7 @@
 </div>
 <form  method="POST" action="">
 	{{ form.csrf_token }}
-	<p>
+<!-- 	<p>
   	
   	<label for="anno">Data: </label>
   	
@@ -48,16 +48,16 @@
 	</p>
 
 	<div id="slider-range" class="container-md"></div>
-
+ -->
 	<br>
 
     <div class="form-group">
     {{ form.fulltext.label }} {{ form.fulltext }}
    	</div>	
 
-   	<div class="form-group">
-    {{ form.materiale.label }} {{ form.materiale }}
-	</div>
+<!--   <div class="form-group">
+    {# form.materiale.label #} {# form.materiale #}
+	</div> -->
 
     <div class="form-group">
     {{ form.autore.label }} {{ form.autore }}
@@ -119,28 +119,33 @@ RESULTS TABLE
         >
         <thead>
             <tr>
+              <th data-field="link_immagine" data-filter-control="input" data-sortable="true" data-visible="false">link_immagine</th>
+              <th data-field="Consistenza" data-filter-control="input" data-sortable="true" data-visible="false">Consistenza</th>
                 <!--special characters and spaces not allowed in data-field name-->
                 <th data-field="Segnatura" data-filter-control="input" data-sortable="true">Segnatura</th>
                 <th data-field="Datazione" data-filter-control="input" data-sortable="true">Datazione</th>
                 <th data-field="Materiale" data-filter-control="select" data-sortable="true">Materiale </th>
-                
-                <th data-field="Consistenza" data-filter-control="input" data-sortable="true" data-visible="false">Consistenza</th>
-                <th data-field="Numerazione carte" data-filter-control="input" data-sortable="true" data-visible="false">Numerazione carte</th>
-                <th data-field="Prospetto fascicolazione" data-filter-control="input" data-sortable="true" data-visible="false">Prospetto fascicolazione</th>
+                <th data-field="idscheda" data-filter-control="input" data-sortable="true" data-visible="false">id_scheda</th>
 
+                
+                
+
+                
             </tr>
         </thead>
         <tbody>
           {% for row in tableA %}
           <tr>
+              
+              <!--non visibili  -->
+              <td>{{row['immagine_esemplificativa']|safe}}</td>
+              <td>{{ row['descrizione_esterna'][0]['consistenza'] }}</td>
               <!--special characters and spaces not allowed in data-field name-->
               <td>{{ row['descrizione_esterna'][0]['Segnatura'] }}</td>
               <td>{{ row['descrizione_esterna'][0]['datazione'] }}</td>
               <td>{{ row['descrizione_esterna'][0]['tipo_di_supporto_e_qualita'] }}</td>
-              <!--non visibili  -->
-              <td>{{ row['descrizione_esterna'][0]['consistenza'] }}</td>
-              <td>{{ row['descrizione_esterna'][0]['numerazione_carte']|safe }}</td>
-              <td>{{ row['descrizione_esterna'][0]['prospetto_fascicolazione']|safe }}</td>
+              <td>{{url_for('segnatura', segnatura_id=row['segnatura_idx'])}}</td>
+
           </tr>
           {% endfor %}
         </tbody>
