@@ -112,6 +112,14 @@ def nontrovato():
 def strumenti():
 	return render_template("strumenti.html")
 
+@app.route('/exploreapp')
+def exploreapp():
+	return render_template("exploreapp.html")
+
+@app.route('/archivioapp')
+def archivioapp():
+	return render_template("archivioapp.html")
+
 
 @app.route('/opendata')
 def opendata():

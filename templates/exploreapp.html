@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% block  body%}
+<br>
+<br>
+<div class="container">
+<h4>Ricerca basata sui dati del Catalogo di don Spagnolo.</h1>
+
+<p>
+Questa applicazione permette di esplorare il contenuto della biblioteca Capitolare sulla base dei dati del <a href="esplora">catalogo storico di don Spagnolo</a> e di alcuni supplementi.
+La grandezza relativa del cerchio rappresenta il numero dei fogli contenuti nel bene. Il colore del cerchio indica il materiale
+delle carte: 
+ <span style="color: #7f7fff">●</span>membranaceo,
+ <span style="color: #ffd27f">●</span>cartaceo,
+<span style="color: #ebb5eb">●</span>bombacino.
+ Il bordo del cerchio indica se il bene è conservato come: 
+  <span style="color: #ff7a5e"> ○</span>fogli sciolti
+ <span style="color: #800000"> ○</span>in fascicoli 
+ o  <span style="color: #57a043"> ○</span> rilegato.
+</p>
+Il colore grigio indica invece, che il campo non è disponibile.
+<p style="font-size:0.9vw">
+<i >L'applicazione e basata su <a href="https://bokeh.org/">Bokeh</a> integrando i dati contenuti nel "I manoscritti della Biblioteca Capitolare di Verona :
+    catalogo descrittivo redatto da Antonio Spagnolo a cura di Silvia Marchi".</i>
+</p>
+<script id="1000">
+  var xhr = new XMLHttpRequest()
+  xhr.responseType = 'blob';
+  xhr.open('GET', "http://lezioni.meneghetti.univr.it:5006/bokehbiblioteca/autoload.js?bokeh-autoload-element=1000&bokeh-app-path=/bokehbiblioteca&bokeh-absolute-url=http://lezioni.meneghetti.univr.it:5006/bokehbiblioteca", true);
+  
+  xhr.onload = function (event) {
+    var script = document.createElement('script'),
+    src = URL.createObjectURL(event.target.response);
+    script.src = src;
+    document.body.appendChild(script);
+  };
+xhr.send();
+</script>
+</div>
+{% endblock  %}
+
+ 

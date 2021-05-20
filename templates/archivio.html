@@ -46,20 +46,10 @@
     
     Il database dell’Archivio permette di ricercare per intervallo di date, per nome del notaio, collocazione attuale e antica; dalla ricerca è possibile accedere direttamente alle riproduzioni dei documenti. È altresì possibile scorrere le pergamene secondo l’ordine di collocazione, che corrisponde approssimativamente, entro le singole serie, anche a quello cronologico.
     
-  
-<script id="1000">
-    var xhr = new XMLHttpRequest()
-    xhr.responseType = 'blob';
-    xhr.open('GET', "http://lezioni.meneghetti.univr.it:5008/bokeharchivio/autoload.js?bokeh-autoload-element=1000&bokeh-app-path=/bokeharchivio&bokeh-absolute-url=http://lezioni.meneghetti.univr.it:5008/bokeharchivio", true);
-    
-    xhr.onload = function (event) {
-      var script = document.createElement('script'),
-      src = URL.createObjectURL(event.target.response);
-      script.src = src;
-      document.body.appendChild(script);
-    };
-  xhr.send();
-  </script>
+<br>
+    <p>
+        <a class="btn btn-primary" href="/archivioapp"> Vai all'applicazione</a>
+      </p>
 
 
 
