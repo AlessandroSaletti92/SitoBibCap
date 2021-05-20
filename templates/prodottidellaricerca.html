@@ -6,17 +6,81 @@
     <div class="row">
         <div class="sidenav">
             <p><b>Indice:</b></p>
-            <a href="#intr">Introduzione</a>
-            <a href="#oai">Open Archive Initiative</a>
-            <a href="#ark">Archival Resource Key (ARK)</a>
-            <a href="#iiif">Sfruttare il protocollo IIIF</a>
-            <a href="#rice">Ricerca avanzata</a>
-            <a href="#cita">Citare i manoscritti (Zotero)</a>
-            <a href="#aapi">Accesso alle API</a>
-            <a href="#bknd">Back-end</a>
+            <a href="#zenodo"> Prodotti open-access.</a>
+            <a href="#zotero"> Bibliografia condivisa.</a>
+
         </div>
         <div class="col-md-7 col-sm-6">
-                <object  data="https://zenodo.org/communities/pptg/search?page=1&size=20" ></object>
+        <section id="scopo">
+            <br>
+            <h1>Prodotti della ricerca</h1>
+            <p>
+                Puntiamo a produrre ricerche di qualità consultabili dagli studiosi nazionali ed 
+                internazionali.
+                Quando possibile rilasciamo i nostri risultati in open-access sfruttando
+                gli standard internazionali per permettere l'accessibilità ed il riutilizzo
+                dei contenuti.
+
+            </p>
+            <p>
+
+            </p>
+            <!-- <p>
+            Per avere informazioni più dettagliate per la visita della Biblioteca Capitolare e del museo diocesano,
+            vi invitiamo a consultare <a href="http://bibliotecacapitolare.org/">il sito ufficiale della biblioteca Capitolare di Verona</a>. 
+            </p> -->
+        </section>
+        </div>  
+        
+     
+        <section id="zenodo" class="storia esplora py-5 ">
+            <div class="row align-items-center container py-5 mx-auto">
+
+            <div class="text col-lg-6 col-md-12 col-12">
+                <h6>ZENODO COMUNITY</h6>
+                <h1>Prodotti open-access</h1>
+                <p>
+                    Molti dei nostri prodotti di ricerca sono ospitati su <a href="https://about.zenodo.org/">Zenodo</a>. 
+                </p>
+                <p>
+                    La nostra <a href="https://zenodo.org/communities/bibliotecacapitolareveronaunivr/?page=1&size=20">comunity di Zenodo</a> offre l'accesso ed il download 
+                    di diversi contenuti open-access.
+                </p>
+                <p>
+                    Attraverso il protocollo <a href="https://www.openarchives.org/pmh/">OAI-PMH</a> è inoltre possibile accedere alle <a href="https://zenodo.org/oai2d?verb=ListRecords&set=user-bibliotecacapitolareveronaunivr&metadataPrefix=oai_dc">API per la raccolta dei metadati</a>.
+                </p>
+                </div>
+            <div class="col-lg-6 col-md-12 col-12">
+                <a href="https://zenodo.org/communities/bibliotecacapitolareveronaunivr/?page=1&size=20">
+                <img class="img-fluid" src={{url_for('static',filename='imgs/zenodo.png')}} alt="Basso rilevo che mostra un maestro con dei discepoli.">  
+                </a>
+              </div>
+            </div>
+        </section>
+        <section id="zotero" class="illaboratorio   py-5 ">
+        <section id="telepace" class="storia  py-5 ">
+            <div class="row align-items-center container py-5 mx-auto">
+
+            <div class="text col-lg-6 col-md-12 col-12">
+                <h6>ZOTERO SHARED LIBRARY</h6>
+                <h1>Una bibliografia condivisa</h1>
+                <p>
+                Per poter fare ricerca non serve solo un accesso veloce agli ultimi articoli 
+                ma anche alla letteratura prodotta dagli studiosi nei secoli.
+                </p>
+                <p>
+                Curiamo un <a href="https://www.zotero.org/groups/3759014/capitolare-univr/library">database di riferimenti bibliografici aperto</a> 
+                ed inter-operabile basato su <a href="https://it.wikipedia.org/wiki/Zotero">Zotero</a> un software open-source per gestire i 
+                riferimenti bibliografici.
+                </p>
+                </div>
+            <div class="col-lg-6 col-md-12 col-12">
+                <a href="https://zenodo.org/communities/bibliotecacapitolareveronaunivr/?page=1&size=20">
+                    <img class="img-fluid" src={{url_for('static',filename='imgs/zotero.png')}} alt="Basso rilevo che mostra un maestro con dei discepoli.">  
+                    </a>
+                </div>
+            </div>
+            </section>
         <div>
     </div>
 </div>

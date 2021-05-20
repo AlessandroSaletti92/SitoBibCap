@@ -3,7 +3,7 @@
     
 }
 
-body { background: #f3f1ef;
+body { background: #f9f9f9 !important;
        padding-top: 35px;} /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
 
 #navbarSupportContent > ul > li:nth-child(n) > a:active{
