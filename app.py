@@ -36,6 +36,8 @@ def get_all_values(nested_dictionary):
 def sort_dec_int(var):
 	var['descrizione_interna'] = sorted(var['descrizione_interna'], key= lambda s: list(map(int, s['Descrizione_interna_id'].split('.'))))
 
+
+
 client = pymongo.MongoClient(databaseaddress_capitolare_mongo)
 
 app = Flask(__name__)
