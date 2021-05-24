@@ -2,13 +2,16 @@
 {% block  script_section%}
 <script>
 window.onload = function(){ 
+  
   document.getElementById('focusbtn').onclick = function() {
+  document.querySelector("#navbarCapi > div > button > span").click();
   document.getElementById('autocomplete').focus();
   };};
 </script> 
 {% endblock script_section %}
 {% block  body%}
 {% include 'includes/carousel.html' %}
+<div id="content">
 <section id="about" class="about py-5 ">
   <div class="row align-items-center container py-5 mx-auto">
     <div class="text col-lg-6 col-md-12 col-12 bg-white">
@@ -26,11 +29,11 @@ window.onload = function(){
       </p>
       <div class="row">
         <div class="img col">
-          <img class="img-fluid" src={{url_for('static',filename='imgs/logounivr400.png')}} alt="Disegno esemplificativo con i nomi dei partecipanti del progetto.">  
+          <img class="img-fluid" src={{url_for('static',filename='imgs/logounivr400.png')}} alt="Logo dell'Università di Verona.">  
         </div>
         <div class="img col">
           <a href=http://bibliotecacapitolare.org/en/the-biblioteca-capitolare-of-verona/>
-          <img class="img-fluid" src={{url_for('static',filename='imgs/logocapitolare.png')}} alt="Disegno esemplificativo con i nomi dei partecipanti del progetto.">
+          <img class="img-fluid" src={{url_for('static',filename='imgs/logocapitolare.png')}} alt="Logo della Biblioteca Capitolare di Verona.">
         </a>  
         </div>
       </div>
@@ -53,8 +56,8 @@ window.onload = function(){
 
 <section id="lefasi" class="esplora  py-5 ">
   <div class="row  align-items-center container py-5 mx-auto">
-    <div class="img col-lg-6 col-md-12 col-12 " alt="Grafico rappresentante le dimensioni ed il numero dei beni contenuti nella collezione.">
-      <img class="img-fluid" src={{url_for('static',filename="imgs/disegno_spagnoloarchivio_colori.svg")}}  alt="Grafico rappresentante le dimensioni ed il numero dei beni contenuti nella collezione."></script>      
+    <div class="img col-lg-6 col-md-12 col-12 " alt="Disegno esemplificativo che rappresenta i temi della ricerca, nuovo catalogo digitale, catalogo storico ed archivio capitolare.">
+      <img class="img-fluid" src={{url_for('static',filename="imgs/disegno_spagnoloarchivio_colori.svg")}}  alt="Disegno esemplificativo che rappresenta i temi della ricerca, nuovo catalogo digitale, catalogo storico ed archivio capitolare."></script>      
     </div>
     <div class="text col-lg-6 col-md-12 order-first col-12">
       <!-- <h1>Tra antico e innovazione.</h1> -->
@@ -95,7 +98,7 @@ window.onload = function(){
   </div>
 </section>
 
-<section id="formazione" class="about py-5 ">
+<section id="formazione" class="about py-5  ">
   <div class="row align-items-center container py-5 mx-auto">
     <div class="text col-lg-6 col-md-12 col-12 ">
       <h6>FORMAZIONE E DIVULGAZIONE</h6>
@@ -106,9 +109,9 @@ window.onload = function(){
       </p>
       Consulta le varie sezioni per ottenere maggiori informazioni su:
     <div class="list-group">
-      <a href=/altaformazione class="list-group-item list-group-item-action">Offerta formativa</a>
-      <a href="/prodottidellaricerca" class="list-group-item list-group-item-action">Pubblicazioni e contenuti open-access</a>
-      <a href="/media" class="list-group-item list-group-item-action">Apparizioni sui media</a>
+      <a href=/altaformazione class="list-group-item list-group-item-action list-group-item-info">Offerta formativa</a>
+      <a href="/prodottidellaricerca" class="list-group-item list-group-item-action list-group-item-info">Pubblicazioni e contenuti open-access</a>
+      <a href="/media" class="list-group-item list-group-item-action list-group-item-info">Apparizioni sui media</a>
     </div>
      
  <!--   <p> L'<a href=https://www.univr.it/it/>Università di Verona</a> in collaborazione con la <a href=http://bibliotecacapitolare.org/en/the-biblioteca-capitolare-of-verona/>Fondazione Biblioteca Capitolare </a>
@@ -119,7 +122,7 @@ window.onload = function(){
         Questo sito ospita le risorse digitali del progetto.</p> -->
     </div>
     <div class="img col-lg-6 col-md-12 col-12">
-      <img class="img-fluid" src={{url_for('static',filename='imgs/master.jpeg')}} alt="Basso rilevo che mostra un maestro con dei discepoli.">  
+      <img class="img-fluid" src={{url_for('static',filename='imgs/master.png')}} alt="Basso rilevo che mostra un maestro con dei discepoli.">  
     </div>
   </div>
 </section>
@@ -140,14 +143,14 @@ window.onload = function(){
 </section>
 
  -->
-<section id="vai" class="vari  py-5 ">
+<section id="vai" class="vari  py-5 bg-white">
   <div class="row align-items-center container py-5 mx-auto">
     <div class="text col-lg-6 col-md-12 col-12">
       <h6>SUBITO AL CODICE</h6>
       <h1>Sai già cosa stai cercando?</h1>
       <p>Se sai già la segnatura del codice che stai cercando inseriscila sul
         campo segnatura e vai direttamente al bene che stai studiando! <i>Lege feliciter!</i>
-        Prova a digitare LXI...
+        Prova a digitare LXI... <span class="visually-hidden">Segue un pulsante che permette di andare direttamente al campo segnatura. Una volta digitato, premendo la freccia in basso è possibile accedere ai contenuti che cominciano con la segnatura indicata. Premere due volte invio per selezionare il bene. </span>
         <p>
         <button id="focusbtn" type="button" class="btn btn-primary">Vai al campo segnatura</button>
        </p>

@@ -1,9 +1,9 @@
 {% extends 'layout.html' %}
 {% block  body%}
 <br>
-<div class="container">
+<div class="container" id="content">
 <br>
-    
+    <section class="bg-white">
     <h2>
         La ricerca e la consultazione
     </h2>
@@ -14,7 +14,7 @@
      È altresì possibile scorrere le pergamene secondo 
     l’ordine di collocazione, che corrisponde approssimativamente, entro le singole serie, anche a quello cronologico.
     
-  
+
 <script id="1000">
     var xhr = new XMLHttpRequest()
     xhr.responseType = 'blob';
@@ -28,7 +28,7 @@
     };
   xhr.send();
   </script>
-
+  </section>
 {% endblock  %}
 
  

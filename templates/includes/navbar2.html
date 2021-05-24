@@ -1,5 +1,6 @@
 <nav id="navbarCapi" class="navbar navbar-expand-md py-2 navbar-dark bg-dark fixed-top">
   <div class="container-fluid">
+    <a class="visually-hidden-focusable" href="#content">Vai al contenuto principale</a>
     <a class="navbar-brand" href="/">Capitolar-<b>e</b></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -39,7 +40,7 @@
       <form class="d-flex"  data-target="#vai" data-bs-target="#vai" action="{{ url_for('search') }}" method="POST">
         <input class="form-control me-2 form-control input-sm" id="autocomplete" data-target="#vai" data-bs-target="#vai"   name="autocomplete" type="search" aria-label="Search">
         <label class="nvb" for="autocomplete">Ricerca per segnatura</label>
-        <button class="btn btn-outline-success"  data-target="#vai" data-bs-target="#vai" type="submit">Vai</button>
+        <button class="btn btn-outline-light"  data-target="#vai" data-bs-target="#vai" type="submit">Vai</button>
       </form>
     </div>
   </div>
