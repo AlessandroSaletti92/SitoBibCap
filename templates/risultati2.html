@@ -9,37 +9,7 @@
 </div>
   <div class="container py-3 px-0" id="scheda">
     <div class="row">
-      <div class="col-md col-lg order-sm-last">
 
-        <div class="alert alert-info" role="alert">
-          <p>
-          <b>Autore della scheda:</b>
-        {% if codice['descrizione_esterna'] %}
-              {% for field in codice['descrizione_esterna'] %}
-               {{field['utenti_email']}} 
-               {% endfor %} 
-        {% endif %} 
-        <br>  
-        <b>Ultima modifica:</b> {{codice['last_modified']}} 
-      </p>
-      {% if 'sommario_desc' in codice.keys() %}
-               {{codice['sommario_desc']}} 
-        {% endif %} 
-        </div>
-
-        
-        
-        
-  
-         <div class="menu sticky-top p-3 bg-light py-5">
-          <br>
-          <br>
-          <h5 class="text-primary">Navigazione:</h5>
-          <div class="nav flex-column">
-              <a href="#manbannerreg"> Vai alle schede.</a>
-          </div>
-      </div>
-      </div>
     <div class="col-2 py-5">
         <img src="{{codice['immagine_dorso']}}"  class="rounded d-block" >
     </div>
@@ -429,7 +399,7 @@ for (i = 0; i < acc.length; i++) {
 </script>
         
             </div>
-        <div class="tab-pane fade bg-lightd" id="Fac-similes" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="tab-pane fade bg-light" id="Fac-similes" role="tabpanel" aria-labelledby="profile-tab">
             <table>
             <tr>
             <tr><td><b>Tipologia:</b></td><td>Copia digitale</td></tr>
@@ -442,7 +412,37 @@ for (i = 0; i < acc.length; i++) {
         <div class="tab-pane fade" id="analisi" role="tabpanel" aria-labelledby="analisi-tab">...</div>
         </div>
     </div>
+    <div class="col-md col-lg">
 
+      <div class="alert alert-info" role="alert">
+        <p>
+        <b>Autore della scheda:</b>
+      {% if codice['descrizione_esterna'] %}
+            {% for field in codice['descrizione_esterna'] %}
+             {{field['utenti_email']}} 
+             {% endfor %} 
+      {% endif %} 
+      <br>  
+      <b>Ultima modifica:</b> {{codice['last_modified'].strftime('%Y-%m-%d')}} 
+    </p>
+    {% if 'sommario_desc' in codice.keys() %}
+             {{codice['sommario_desc']}} 
+      {% endif %} 
+      </div>
+
+      
+      
+      
+
+       <div class="menu sticky-top p-3 bg-light py-5">
+        <br>
+        <br>
+        <h5 class="text-primary">Navigazione:</h5>
+        <div class="nav flex-column">
+            <a href="#manbannerreg"> Vai alle schede.</a>
+        </div>
+    </div>
+    </div>
     </div>
 </div>
 
