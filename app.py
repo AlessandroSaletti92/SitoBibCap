@@ -202,11 +202,9 @@ def test():
 
 
 @app.route('/ricerca', methods=['GET', 'POST'])
-#TODO: remove
 def BT2():
 	form = MyForm()
-	table = [['1','b','d'],['3','r','d'],['2','a','f']]
-	cursor = client.capitolare.codici.find({"$and":[{"version" : 1 },{"status": { "$ne": "appena creato" } }]})
+	cursor = client.capitolare.codici.find({"$and":[{"version" : 1 },{"status": { "$in": ["Concluso","Presentabile"] } }]})
 	#import pdb; pdb.set_trace()
 	if form.validate_on_submit():
 		#data = request.form['slider-range']
