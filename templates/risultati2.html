@@ -3,7 +3,7 @@
 
 <br>
 
-<div class="manbanner" id="manbannerreg">
+<div class="manbanner" id="content">
   <img src="{{codice['immagine_banner']}}" class="img-fluid mb5" id="imgmanu">
   <div class="mantext">{{codice['descrizione_esterna'][0]['Segnatura']}}</div>
 </div>
@@ -52,6 +52,10 @@
             <tr><td><b>Rigatura: </b></td><td>{{field['rigatura']}}</td></tr>
             <tr><td><b>Foratura: </b></td><td>{{field['foratura']}}</td></tr>
             <tr><td><b>Legatura: </b></td><td>{{field['legatura']}}</td></tr>
+            {% if field['filigrana'] != "Non disponibile"%}
+            <tr><td><b>Filigrana: </b></td><td>{{field['filigrana']}}</td></tr>
+            {% endif %}
+            <tr><td><b>Decorazioni: </b></td><td>{{field['decorazioni']}}</td></tr>
             <tr><td><b>Palinsesto: </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
         </table>
         </span>
@@ -77,10 +81,10 @@
           <h6>{{field['Descrizione_interna_id']}}</h6>
           <br>
           <table>
-            <tr class="resultstr"><td><b>Carte: </b></td><td>{{field['carte']}}</td></tr>
+            <tr class="resultstr"><td><b>Carte: </b></td><td>{{field['carte']}}   {% if field['incipit_url'] != "Non disponibile" %}<a href={{field['incipit_url']}} target="_blank">&#x1F4F7;</a>{% endif %} </td></tr>
             <tr class="resultstr"><td><b>Autore: </b></td><td>{{field['autore']}}</td></tr>
             <tr class="resultstr"><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
-            <tr class="resultstr"><td><b>Rubrica: </b></td><td>{{field['rubrica']}} {% if field['incipit_url'] != "Non disponibile" %}<a href={{field['incipit_url']}} target="_blank">&#x1F4F7;</a>{% endif %} </td></tr>
+            <tr class="resultstr"><td><b>Rubrica: </b></td><td>{{field['rubrica']}}</td></tr>
             <tr class="resultstr"><td><b>Incipit: </b></td><td>{{field['incipit']}}</td></tr>
             <tr class="resultstr"><td><b>Explicit: </b></td><td>{{field['explicit']}}</td></tr>
             <tr class="resultstr"><td><b>Testo di riferimento(segnatura): </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
@@ -418,10 +422,18 @@ for (i = 0; i < acc.length; i++) {
         <p>
         <b>Autore della scheda:</b>
       {% if codice['descrizione_esterna'] %}
-            {% for field in codice['descrizione_esterna'] %}
-             {{field['utenti_email']}} 
+            {% for field in get_authors(codice,'utenti_email') %}
+             {{field}} 
              {% endfor %} 
-      {% endif %} 
+      {% endif %}
+      {% if codice['descrizione_esterna'] %}
+            {% for orchid in get_authors(codice,'orchid') %}
+            <a href="{{orchid}}">
+              <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
+              <small>{{orchid}}</small>
+            </a>
+             {% endfor %} 
+      {% endif %}  
       <br>  
       <b>Ultima modifica:</b> {{codice['last_modified'].strftime('%Y-%m-%d')}} 
     </p>
@@ -439,7 +451,7 @@ for (i = 0; i < acc.length; i++) {
         <br>
         <h5 class="text-primary">Navigazione:</h5>
         <div class="nav flex-column">
-            <a href="#manbannerreg"> Vai alle schede.</a>
+            <a href="#content"> Vai alle schede.</a>
         </div>
     </div>
     </div>

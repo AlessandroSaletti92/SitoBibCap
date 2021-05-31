@@ -34,7 +34,10 @@ def get_all_values(nested_dictionary):
                 nested_dictionary[key] = "Non disponibile"
 
 def sort_dec_int(var):
-	var['descrizione_interna'] = sorted(var['descrizione_interna'], key= lambda s: list(map(int, s['Descrizione_interna_id'].split('.'))))
+	try:
+		var['descrizione_interna'] = sorted(var['descrizione_interna'], key= lambda s: list(map(int, s['Descrizione_interna_id'].split('.'))))
+	except ValueError:
+		pass
 
 
 
@@ -44,6 +47,11 @@ app = Flask(__name__)
 # questo è per lo sviluppo (ricarica i file statici non caching) commentarlo in production!!
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config['SECRET_KEY'] = secret_key
+
+def get_authors(codice,field):
+    return list(set([i[field] for i in codice['descrizione_esterna']]))
+
+app.jinja_env.globals.update(get_authors=get_authors)
 
 
 
@@ -158,7 +166,7 @@ def search():
 		if var is None:
 			return render_template("noncreato.html",segnatura=segnatura)
 		get_all_values(var)
-		sort_dec_int(var)
+		#sort_dec_int(var)
 		
 	return render_template("risultati2.html", codice=var)
 
@@ -172,7 +180,7 @@ def segnatura(segnatura_id):
 	if var is None:
 		return render_template("nontrovato.html",segnatura=segnatura)
 	get_all_values(var)
-	sort_dec_int(var)
+	#sort_dec_int(var)
 	return render_template("risultati2.html", codice=var)
 
 @app.route('/autocomplete', methods=['GET'])
