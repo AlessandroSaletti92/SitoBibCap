@@ -123,11 +123,13 @@ RESULTS TABLE
         <thead>
             <tr>
               <th data-field="link_immagine" data-filter-control="input" data-sortable="true" data-visible="false">link_immagine</th>
-              <th data-field="Consistenza" data-filter-control="input" data-sortable="true" data-visible="false">Consistenza</th>
+              
                 <!--special characters and spaces not allowed in data-field name-->
                 <th data-field="Segnatura" data-filter-control="input" data-sortable="true">Segnatura</th>
                 <th data-field="Datazione" data-filter-control="input" data-sortable="true">Datazione</th>
                 <th data-field="Materiale" data-filter-control="select" data-sortable="true">Materiale </th>
+                <th data-field="Consistenza" data-filter-control="input" data-sortable="true" data-visible="false">Consistenza</th>
+                <th data-field="sommario_desc" data-filter-control="input" data-sortable="true" data-visible="false">Sommario</th>
                 <th data-field="idscheda" data-filter-control="input" data-sortable="true" data-visible="false">id_scheda</th>
 
                 
@@ -142,12 +144,15 @@ RESULTS TABLE
               
               <!--non visibili  -->
               <td>{{row['immagine_esemplificativa']|safe}}</td>
-              <td>{{ row['descrizione_esterna'][0]['consistenza'] }}</td>
+             
               <!--special characters and spaces not allowed in data-field name-->
               <td>{{ row['descrizione_esterna'][0]['Segnatura'] }}</td>
               <td>{{ row['descrizione_esterna'][0]['datazione'] }}</td>
               <td>{{ row['descrizione_esterna'][0]['tipo_di_supporto_e_qualita'] }}</td>
+              <td>{{ row['descrizione_esterna'][0]['consistenza'] }}</td>
+              <td>{{row['sommario_desc']}}</td>
               <td>{{url_for('segnatura', segnatura_id=row['segnatura_idx'])}}</td>
+              
 
           </tr>
           {% endfor %}

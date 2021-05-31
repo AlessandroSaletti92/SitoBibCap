@@ -79,11 +79,16 @@
               html.push("<img src='"+value+"' alt='Manuscript thumbnail' style='padding: 0px 5px 0px 0px;float: left;'>")
 
             }
+            else if (key == 'sommario_desc'){
+              html.push('<p class="fw-light py-2 px-2" >' + value + '</p>')
+
+            }
             else if (key == 'idscheda'){
               html.push("<a class='btn btn-primary' href='"+value+"' role='button'>Vai alla scheda</a>")
 
             }
-            else{html.push('<p class="fw-light" ><b>' + key + ':</b> ' + value + '</p>')}
+            // html.push('<p class="fw-light" ><b>' + key + ':</b> ' + value + '</p>')
+            else{html.push(value + '&#8226;')}
           
           }
         })
