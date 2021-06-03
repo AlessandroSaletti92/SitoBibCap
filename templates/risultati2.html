@@ -423,7 +423,7 @@ for (i = 0; i < acc.length; i++) {
         <b>Autore della scheda:</b>
       {% if codice['descrizione_esterna'] %}
             {% for field in get_authors(codice,'utenti_email') %}
-             {{field}} 
+             {{field}}<br> 
              {% endfor %} 
       {% endif %}
       {% if codice['descrizione_esterna'] %}

@@ -8,6 +8,8 @@ import pymongo
 from static_objects import segnaturecodici,segnaturecodici_dict
 import re
 from collections import defaultdict
+from flask_consent import Consent
+
 import os
 
 GlobalVar = []
@@ -47,7 +49,10 @@ app = Flask(__name__)
 # questo è per lo sviluppo (ricarica i file statici non caching) commentarlo in production!!
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config['SECRET_KEY'] = secret_key
-
+app.config['CONSENT_FULL_TEMPLATE'] = 'consent.html'
+app.config['CONSENT_BANNER_TEMPLATE'] = 'consent_banner.html'
+consent = Consent(app)
+consent.add_standard_categories()
 def get_authors(codice,field):
     return list(set([i[field] for i in codice['descrizione_esterna']]))
 
