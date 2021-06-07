@@ -54,7 +54,8 @@
           }
       });
   })
-
+ 
+  
   </script>
 
 {% block script_section %}
@@ -97,5 +98,24 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 {% block dB_script_section %}
 {% endblock dB_script_section %}
+
+{% if cookies_check() %}
+        {# then user has already consented so no requirement for consent banner #}
+{% else %}
+        {# show a cookie consent banner #}
+        <div id="cookie-consent-container" class="cookie-consent-container">
+          Questo sito o gli strumenti terzi da questo utilizzati si avvalgono di cookie necessari al funzionamento ed utili alle finalità illustrate nella cookie policy. Se vuoi saperne di più o negare il consenso a tutti o ad alcuni cookie, consulta la cookie policy. Chiudendo questo banner, scorrendo questa pagina, cliccando su un link o proseguendo la navigazione in altra maniera, acconsenti all’uso dei cookie.
+          <a aria-label="learn more about cookies" role="button" tabindex="0" class="cc-link" href="https://www.univr.it/it/privacy#doc_26997" rel="noopener noreferrer nofollow" target="_blank">Info</a>
+          <br>    
+          <button class="btn btn-warning" id="cookie-consent" >Accetto</button>
+        </div>
+        <script>
+            var fn = function () {
+                document.cookie = "cookie_consent=true";
+                document.getElementById('cookie-consent-container').hidden = true;
+            };
+            document.getElementById('cookie-consent').onclick = fn;
+        </script>
+{% endif %}
   </body>
 </html>

@@ -152,6 +152,18 @@ section.progetti.container {
     border-style:none;
 }
 
+.cookie-consent-container {
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color:white;
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px; 
+}
 
 /* Carousel color contrast problme */
 .carousel-control {
