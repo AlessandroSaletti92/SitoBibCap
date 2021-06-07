@@ -138,7 +138,7 @@
             <h6>Annotazione {{field['Id_auto_inc']}}</h6>
             <br>
             <table>
-            <tr><td><b>Intevallo carte: </b></td><td>{{field['intervallo_carte']}}</td></tr>
+            <tr><td><b>Intevallo carte: </b></td><td>{{field['intervallo_carte']}}{% if field['incipit_url'] != "Non disponibile" %}<a href={{field['link_img']}} target="_blank">&#x1F4F7;</a>{% endif %}</td></tr>
             <tr><td><b>Datazione: </b></td><td>{{field['Datazione']}}</td></tr>
             <tr><td><b>Contenuto: </b></td><td>{{field['Contenuto']}}</td></tr>
             <tr><td><b>Posizione: </b></td><td>{{field['Posizione']}}</td></tr>
@@ -171,7 +171,7 @@
             <table>
             <tr><td><b>Datazione: </b></td><td>{{field['Datazione']}}</td></tr>
             <tr><td><b>Contenuto: </b></td><td>{{field['Contenuto']}}</td></tr>
-            <tr><td><b>Posizione: </b></td><td>{{field['Posizione']}}</td></tr>
+            <tr><td><b>Posizione: </b></td><td>{{field['Posizione']}}{% if field['link_img'] != "Non disponibile" %}<sup><a href={{field['link_img']}} target="_blank">&#x1F4F7;</a></sup>{% endif %}</td></tr>
             <tr><td><b>Tipologia scrittura: </b></td><td>{{field['Tipologia_scrittura']}}</td></tr>
             <tr><td><b>Testo di riferimento(segnatura): </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
         </table><br>
