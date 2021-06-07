@@ -144,7 +144,10 @@
             <tr><td><b>Posizione: </b></td><td>{{field['Posizione']}}</td></tr>
             <tr><td><b>Tipologia scrittura: </b></td><td>{{field['Tipologia_scrittura']}}</td></tr>
             <tr><td><b>Testo di riferimento(segnatura): </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
-        </table><hr><br>
+        </table>
+        <br>
+        {% if field['link_ROI'] != "Non disponibile" %}<img src={{field['link_ROI']}} class="rounded mx-auto d-block">{% endif %}
+        <hr><br>
    </span>
             {% endfor %}
             {% else %}
@@ -171,7 +174,9 @@
             <tr><td><b>Posizione: </b></td><td>{{field['Posizione']}}</td></tr>
             <tr><td><b>Tipologia scrittura: </b></td><td>{{field['Tipologia_scrittura']}}</td></tr>
             <tr><td><b>Testo di riferimento(segnatura): </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
-        </table><hr><br>
+        </table><br>
+        {% if field['link_ROI'] != "Non disponibile" %}<img src={{field['link_ROI']}} class="rounded mx-auto d-block">{% endif %}
+        <hr><br>
         </span>
             {% endfor %}
             {% else %}
