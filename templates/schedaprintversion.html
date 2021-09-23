@@ -1,0 +1,125 @@
+
+<style>
+ol {
+    counter-reset: item
+  }
+  li.di {
+    display: block
+  }
+  li.di:before {
+    content: counters(item, ".") " ";
+    counter-increment: item
+  }
+</style>
+<h1>Verona, Biblioteca Capitolare, manoscritto {{codice['descrizione_esterna'][0]['Segnatura']}}</h1>
+<img src="{{codice['immagine_banner']}}" >
+<br>
+<b>Autore della scheda:</b>
+{% if codice['descrizione_esterna'] %}
+    {% for field in get_authors(codice,'utenti_email') %}
+        {{field}}
+        {% endfor %} 
+{% endif %}
+{% if codice['descrizione_esterna'] %}
+    {% for orchid in get_authors(codice,'orchid') %}
+    <a href="{{orchid}}">
+        <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
+        <small>{{orchid}}</small>
+    </a>
+        {% endfor %} 
+{% endif %}  
+<br>  
+<b>Ultima modifica:</b> {{codice['last_modified'].strftime('%Y-%m-%d')}} 
+</p>
+<p>{{codice['sommario_desc']}}</p>
+<h2>Descrizione Esterna</h2>
+
+{% if codice['descrizione_esterna'] %}
+        {% set parti = codice['descrizione_esterna']|length%}
+        {% if parti > 1 %}
+        Il manoscritto è composto da {{parti}} unità.
+        {% else %}
+        <p>Il manoscritto {{codice['descrizione_esterna'][0]['Segnatura']}} ({{codice['descrizione_esterna'][0]['dimensioni']}}) è databile al {{codice['descrizione_esterna'][0]['datazione']}}.<p>
+        {% endif%}
+        {% for field in codice['descrizione_esterna'] %}
+        {% if parti > 1%}
+        <h3> {{loop.index}} </h3>
+        L'unità {{loop.index}} ({{field['dimensioni']}}) è databile al {{field['datazione']}}.
+        {% endif%}
+         Ha un supporto {{field['tipo_di_supporto_e_qualita']}} di {{field['consistenza']}}, con {{field['numerazione_carte']}}. Le carte di guardia sono {{field['carte_di_guardia']}}; ha una {{field['legatura']}}.</p>
+        <p>Il manoscritto presenta il seguente prospetto di fascicolazione: {{field['prospetto_fascicolazione']|safe}}.)
+            {% if field['filigrana'] != "Non disponibile"%}
+            <b>Filigrana: </b>{{field['filigrana']}}
+            {% endif %}
+        <b>Decorazioni: </b>{{field['decorazioni']}}
+        <b>Palinsesto: </b>{{field['Descrizione_Esterna_Segnatura']}}
+        <br>
+        {% endfor %}
+{% else %}
+ <p> Nessun record inserito.</p>
+{% endif %}
+        
+
+<h2>Descrizioni interne.</h2>
+
+{% if  codice['descrizione_interna'] %}
+{% set ns = namespace(current_level=0,level=0) %}
+{% for field in codice['descrizione_interna'] %}
+    {% set ns.level = field['Descrizione_interna_id'].split('.')|length %}
+    {% if  ns.level > ns.current_level %}
+        {% set ns.current_level = ns.level %}
+        <ol>
+    {% elif  ns.level < ns.current_level %}
+    {% set ns.current_level = ns.level %}
+    </ol>
+    </li>
+    {% endif %}
+    <li class='di'><i>{{field['titolo']}}</i> ({{field['autore']}}), {{field['carte']}}. <b>Incipit:</b> <i>{{field['incipit']}}</i> <b>Explicit:</b> <i>{{field['explicit']}}</i>
+{% endfor %}
+{% else %}
+<p> Nessun record inserito.</p>
+{% endif %}
+</ol>
+</p>
+
+<h2>Mani.</h2>
+
+{% set numero_mani = codice['copisti']|length %}
+{% if numero_mani == 1 %}
+<p>Il manoscritto è scritto da una sola mano.</p>
+{% else %}
+<p>Sono state identificate {{numero_mani}} mani differenti.<p>
+<ul>
+{% for mano in codice['copisti'] %}
+        <li>
+        La mano qui identificata come {{mano['id_cop']}} ({{mano['intervallo_carte']}}) usa una {{mano['tipologia_scrittura']}}, è databile al {{mano['datazione']}}
+        </li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<h2>Annotazioni marginali.</h2>
+<p>Sono state individuate le seguenti annotazioni marginali.</p>
+<ul>
+{% for anno in codice['annotazioni_marginali'] %}
+        <li>
+        {{anno['Contenuto']}} ({{anno['intervallo_carte']}}) usa una {{anno['tipologia_scrittura']}}, è databile al {{anno['Datazione']}}
+        <br>
+        <img src="{{anno['link_ROI']}}" alt="{{anno['Contenuto']}}">
+        </li>
+{% endfor %}
+</ul>
+
+<h2>Storia del manoscritto.</h2>
+<p>Di seguito vengono riportati gli elementi riconducibili alla storia del manoscritto.</p>
+<ul>
+{% for evento in codice['storia_del_manoscritto'] %}
+        <li>
+        {{evento['Contenuto']}} ({{evento['intervallo_carte']}})  è databile al {{evento['Datazione']}}
+        <br>
+        </li>
+        <img src="{{evento['link_ROI']}}" alt="{{evento['Contenuto']}}">
+{% endfor %}
+</ul>
+
+

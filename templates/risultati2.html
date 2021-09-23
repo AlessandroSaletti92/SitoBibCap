@@ -422,26 +422,45 @@ for (i = 0; i < acc.length; i++) {
         </div>
     </div>
     <div class="col-md col-lg">
+      
+          <div class="alert alert-info" role="alert">
+            <div class="row">
+            <div class="col-sm-9">
+                <p>
+                <b>Autore della scheda:</b>
+              {% if codice['descrizione_esterna'] %}
+                    {% for field in get_authors(codice,'utenti_email') %}
+                    {{field}}<br> 
+                    {% endfor %} 
+              {% endif %}
+              {% if codice['descrizione_esterna'] %}
+                    {% for orchid in get_authors(codice,'orchid') %}
+                    <a href="{{orchid}}">
+                      <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
+                      <small>{{orchid}}</small>
+                    </a>
+                    {% endfor %} 
+              {% endif %}  
+              <br>  
+              <b>Ultima modifica:</b> {{codice['last_modified'].strftime('%Y-%m-%d')}} 
+            </p>
+          </div>
+          <div class="col-sm-1">
+        <div class="dropdown export">
+          <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            📥 Esporta
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="/printversion/{{codice['segnatura_idx']}}  "> 🖨️ Versione stampabile </a></li>
+            <!-- <li><a class="dropdown-item" href="#"> <img src=
+              "https://media.geeksforgeeks.org/wp-content/uploads/20200630132504/uflag.jpg"
+                                  width="20" height="15"> Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+          </ul>
+        </div>
+        </div>
 
-      <div class="alert alert-info" role="alert">
-        <p>
-        <b>Autore della scheda:</b>
-      {% if codice['descrizione_esterna'] %}
-            {% for field in get_authors(codice,'utenti_email') %}
-             {{field}}<br> 
-             {% endfor %} 
-      {% endif %}
-      {% if codice['descrizione_esterna'] %}
-            {% for orchid in get_authors(codice,'orchid') %}
-            <a href="{{orchid}}">
-              <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
-              <small>{{orchid}}</small>
-            </a>
-             {% endfor %} 
-      {% endif %}  
-      <br>  
-      <b>Ultima modifica:</b> {{codice['last_modified'].strftime('%Y-%m-%d')}} 
-    </p>
+  </div>
     {% if 'sommario_desc' in codice.keys() %}
              {{codice['sommario_desc']}} 
       {% endif %} 

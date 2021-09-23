@@ -8,6 +8,9 @@ import pymongo
 from static_objects import segnaturecodici,segnaturecodici_dict
 import re
 from collections import defaultdict
+import xml.etree.ElementTree as ET
+from TEIexporter import TEImsdesc
+
 #from flask_consent import Consent
 
 import os
@@ -200,6 +203,15 @@ def segnatura(segnatura_id):
 	#sort_dec_int(var)
 	return render_template("risultati2.html", codice=var)
 
+@app.route('/printversion/<segnatura_id>')
+def printversion(segnatura_id):
+	var = client.capitolare.codici.find_one({'segnatura_idx': segnatura_id})
+	if var is None:
+		return render_template("nontrovato.html",segnatura=segnatura)
+	#get_all_values(var)
+	#sort_dec_int(var)
+	return render_template("schedaprintversion.html", codice=var)
+
 @app.route('/autocomplete', methods=['GET'])
 def autocomplete():
 	search = request.args.get('q').upper()
@@ -255,6 +267,85 @@ def BT2():
 		#print(form.materiale)
 
 	return render_template("bootstraptable2.html",tableA = cursor, form=form)
+
+
+available_formats = {
+	"oai_dc" :{
+		"name":"oai_dc",
+		"type":"application/xml",
+		"docs":"http://www.openarchives.org/OAI/2.0/oai_dc.xsd"
+	},
+	"rdf_bibliontology" : {
+		"name":"rdf_bibliontology",
+		"type":"application/xml",
+		"docs":"https://raw.githubusercontent.com/structureddynamics/Bibliographic-Ontology-BIBO/master/bibo.owl"
+	},
+	"tei_manuscriptdescription" : {
+		"name":"tei_manuscriptdescription",
+		"type":"application/xml",
+		"docs":"https://tei-c.org/release/xml/tei/custom/schema/xsd/tei_lite.xsd"
+	}
+
+}
+
+def get_formats(formats):
+	"""Return available formats in XML.
+
+	Args:
+		formats (list): A list containing the formats to be shown.
+
+	Returns:
+		str: A bytes litteral of the XML containing the list of the formats.
+	"""
+	root = ET.Element('formats')
+	for i in formats:
+		child = ET.SubElement(root,'format')
+		child.set("name",available_formats[i]['name']) 
+		child.set("type",available_formats[i]['type'])
+		child.set("docs",available_formats[i]['docs'])
+	return b"""<?xml version="1.0" encoding="UTF-8"?>"""+ET.tostring(root)
+
+@app.route('/unapi')
+def unapi():
+	database = ['none']
+	el_id = request.args.get('id',None)
+	el_format = request.args.get('format',None)
+	if el_id is None and el_format is None:
+		# UNAPI (no parameters)
+		# Provide a list of object formats which should be supported for all 
+		# objects available through the unAPI service. Content-type must be 
+		# "application/xml". An example response for a site that supports "oai_dc",
+		# and "rdf" formats might be: 
+		return app.response_class(get_formats(available_formats), mimetype='application/xml')  
+
+	elif el_id and el_format is None:
+		# Provide a list of object formats available from the unAPI service for
+		# the object identified by IDENTIFIER. Content-type must be 
+		# "application/xml". It is similar to the UNAPI response, adding only 
+		# an "id" attribute on the root "formats" element; this echoes the 
+		# requested identifier. An example response for a Pubmed citation 
+		# available in text, Pubmed XML, and ASN.1 formats might be:
+		obj = database[el_id]
+		return app.response_class(get_formats(obj.keys()), mimetype='application/xml')
+	
+	elif el_id and el_format is not None:
+		# Provide a list of object formats available from the unAPI service for
+		# the object identified by IDENTIFIER. Content-type must be 
+		# "application/xml". It is similar to the UNAPI response, adding only 
+		# an "id" attribute on the root "formats" element; this echoes the 
+		# requested identifier. An example response for a Pubmed citation 
+		# available in text, Pubmed XML, and ASN.1 formats might be:
+		var = client.capitolare.codici.find_one({'segnatura_idx': el_id})
+		if el_format == 'tei_manuscriptdescription':
+			obj = b"""<?xml version="1.0" encoding="UTF-8"?>"""+ET.tostring(TEImsdesc(var))
+			#import pdb; pdb.set_trace()
+
+		return app.response_class(obj, mimetype='application/xml')
+	
+	elif el_id is None and el_format is not None:
+		# This is not specified in the API.
+		return app.response_class('Use id, or id and format, not only format',status=400)
+
 
 @app.route('/xmltext')
 def get_TEI():
