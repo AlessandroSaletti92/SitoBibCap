@@ -165,7 +165,7 @@ def TEImsdesc(var):
     p_support = ET.SubElement(support , 'p')
     filig = ''
     if var['descrizione_esterna'][0]['filigrana'] != '':
-        filig = 'con filigrana: <watermark> %s</watermark>' %var['descrizione_esterna'][0]['filigrana']
+        filig = 'con filigrana: <watermark> %s</watermark>' %['descrizione_esterna'][0]['filigrana']
     material = var['descrizione_esterna'][0]['tipo_di_supporto_e_qualita']
 
     p_support.text = " ".join((material,filig))

@@ -1,9 +1,9 @@
 from pymongo import MongoClient
 # connect to MongoDB, change the << MONGODB URL >> to reflect your own connection string
-#from confidenziale import databaseaddress_capitolare_mongo,secret_key
-#client = MongoClient(databaseaddress_capitolare_mongo)
-#idx = "m0043_0"
-#var = client.capitolare.codici.find_one({'segnatura_idx': idx}) 
+from confidenziale import databaseaddress_capitolare_mongo,secret_key
+client = MongoClient(databaseaddress_capitolare_mongo)
+idx = "m0043_0"
+var = client.capitolare.codici.find_one({'segnatura_idx': idx}) 
 #https://www.tei-c.org/release/doc/tei-p5-doc/it/html/MS.html
 import xml.etree.ElementTree as ET
 
@@ -19,99 +19,55 @@ def TEImsdesc(var):
     Returns:
         [type]: [description]
     """
-    p = ET.Element("TEI")
-    p.set("xmlns","http://www.tei-c.org/ns/1.0") 
-    p.set("xml:lang","it")
-    teiHeader = ET.SubElement(p,'teiHeader')
-    # specifiche non trovate chiedere a prof.Ferrarini
-    fileDesc = ET.SubElement(teiHeader,'teiHeader')
-    titleStmt = ET.SubElement(fileDesc,'titleStmt')
-    title1 = ET.SubElement(titleStmt,'title')
-    title1.text = "Scriptorium Veronensis ecclesiae"
-    title1.set('type','main')
-    title2 = ET.SubElement(titleStmt,'title')
-    title2.text = "Verona, Biblioteca Capitolare,%s" %var['descrizione_esterna'][0]['Segnatura'] 
-    title2.set('type','sub')
 
-    resS1 = ET.SubElement(titleStmt,'respStmt')
-    resp1 = ET.SubElement(titleStmt,'resp')
-    resp1.text = "Direzione scientifica di:"
-    name1 = ET.SubElement(titleStmt,'name')
-    name1.text = "Paolo Pellegrini" 
+with open('%s.html' %idx,"w") as f:
+    def w(text):
+        f.write(text) 
+    
+    
+    def wl(text):
+        f.write(text+"\n") 
 
-    resS2 = ET.SubElement(titleStmt,'respStmt')
-    resp2 = ET.SubElement(titleStmt,'resp')
-    resp2.text = "Scheda a cura di:"
-    name2 = ET.SubElement(titleStmt,'name')
-    name2.text = var['descrizione_esterna'][0]['utenti_email']
+    current_level = 0 
 
-    resS3 = ET.SubElement(titleStmt,'respStmt')
-    resp3 = ET.SubElement(titleStmt,'resp')
-    resp3.text = "Codifica elettronica a cura di:"
-    name3 = ET.SubElement(titleStmt,'name')
-    name3.text = var['descrizione_esterna'][0]['utenti_email'] 
-
-    resS4 = ET.SubElement(titleStmt,'respStmt')
-    resp4 = ET.SubElement(titleStmt,'resp')
-    resp4.text = "Revisione della codifica a cura di:"
-    name4 = ET.SubElement(titleStmt,'name')
-    name4.text = "" # inserire revisore
-
-    publicationStmt = ET.SubElement(fileDesc,'publicationStmt')
-    availability = ET.SubElement(publicationStmt,'availability')
-    ab = ET.SubElement(availability,'ab')
-    ab.text = "Tutti i contenuti sono riproducibili a patto che se ne indichi la fonte."
-                                
-    sourceDesc = ET.SubElement(teiHeader,'sourceDesc')
-    msDesc = ET.SubElement(sourceDesc, 'msDesc')
-    # Mandatory
-    msIdentifier = ET.SubElement(sourceDesc, 'msIdentifier')
-    # The msIdentifier element is intended to provide an unambiguous means of uniquely 
-    # identifying a particular manuscript. This may be done in a struct ured way, by providing 
-    # information about the holding institution and the call number, shelfmark, or other 
-    # identifier used to indicate its location within that institution. Alternatively, or in 
-    # addition, a manuscript may be identified simply by a commonly used name.
-    country = ET.SubElement(msIdentifier, 'country')
-    country.text = "Italy"
-    # contiene il nome di un'unità geopolitica, come una nazione, un paese, una colonia, 
-    # o un'unione di stati, che sia più ampia o amministrativamente superiore rispetto a una
-    # regione ma di dimensioni inferiori rispetto a un blocco
-    region = ET.SubElement(msIdentifier, 'region')
-    region.text = "Veneto"
-    settlement = ET.SubElement(msIdentifier, 'settlement')
-    settlement.text = "Verona"
-    institution = ET.SubElement(msIdentifier, 'institution')
-    institution.text ="Biblioteca Capitolare di Verona"
-    institution.set("xml:lang","it")
-
-    #repository = ET.SubElement(msIdentifier, 'repository')
-    #repository.text = "Cavou della biblioteca"
-    collection = ET.SubElement(msIdentifier, 'collection')
-    collection.text = "Fondo manoscritti Biblioteca Capitolare"
-    collection.set("xml:lang","it")
-    # for i in names
-    # un qualsiasi nome alternativo non strutturato utilizzato per un manoscritto,
-    # per esempio ‘ocellus nominum’, o soprannome
-    #msName = ET.SubElement(msIdentifier, 'msName')
-    #msName.text = "VAR Titolo spangolo? VAR"
-    #msName.set("xml:lang",'la') # settare la lingua
-    idno = ET.SubElement(msIdentifier, 'idno')
-    idno.text = var['descrizione_esterna'][0]['Segnatura'] 
-
-
-    altIdentifier = ET.SubElement(msIdentifier, 'altIdentifier')
-    altIdentifier.set('type','SC')
-    # collocazione!
-    # Not mandatory
-    #head = ET.SubElement(sourceDesc, 'head')
-    #head.text('Marsilius de Inghen, Abbreviata phisicorum Aristotelis; Italy,1463.')
-    #MS CONTENTS
-    msContents = ET.SubElement(sourceDesc, 'msContents ')
-    summary = ET.SubElement(msContents, 'summary ')
-    summary.text = var['sommario_desc']
-    items = ['VAR_descrizione_intere_VAR']
+    wl("<h1>Verona, Biblioteca Capitolare, manoscritto %s</h1>" %var['descrizione_esterna'][0]['Segnatura'])
+    wl(f"<p>{var['sommario_desc']}</p>")
     # Descrizione interna
+    wl("<h2>Descrizione esterna.</h2>")
+    de = var['descrizione_esterna'] 
+    for d in de:
+        w(f" <p>Il manoscritto {d['Segnatura']} ({d['dimensioni']}) è databile al {d['datazione']}. Ha un supporto {d['tipo_di_supporto_e_qualita']} di {d['consistenza']}, con {d['numerazione_carte']}. Le carte di guardia sono {d['carte_di_guardia']}; ha una {d['legatura']}.</p>") 
+        w(f"Il manoscritto presenta il seguente prospetto di fascicolazione: {d['prospetto_fascicolazione']}.")
+    wl("<h2>Descrizioni interne.</h2>")
     items = var['descrizione_interna']
+    wl("<ol>")
+    current_level = 1
+    for i in items: 
+        level = len(i['Descrizione_interna_id'].split('.'))
+        if  level > current_level:
+            wl("   "*current_level+"<ol>")
+            current_level = level
+        elif level < current_level:
+            wl("   "*current_level+r"</ol>")
+            current_level = level
+        #print(current_level,level)
+        wl(f"<li><i>{i['titolo']}</i> ({i['autore']}), {i['carte']}. <b>Incipit:</b> <i>{i['incipit']}</i> <b>Explicit:</b> <i>{i['explicit']}</i></li>")
+    wl("</ol>")
+    wl("<h2>Mani.</h2>")
+    numero_mani = len(var['copisti'])
+    if numero_mani == 1: 
+        wl(f"<p>Il manoscritto è scritto da una sola mano.</p>")
+    else:
+        intro_mani = "</p>Sono state identificate f{numero_mani} mani differenti.<p>"
+        wl("<ul>")
+        for mano in var['copisti']:
+            wl(<li>)
+            wl(f"La mano qui identificata come {mano['id_cop']} ({intervallo_carte['id_cop']}) usa una {mano['tipologia_scrittura']}")
+            w(f", è databile al {mano['datazione']}")
+            wl(</li>)
+        wl("</ul>")
+    wl("<h2>Storia del manoscritto.</h2>")
+
     for ind,item in enumerate(items):
         msItem = ET.SubElement(msContents, 'msItem')
         msItem.set("n",str(ind+1))
@@ -165,7 +121,7 @@ def TEImsdesc(var):
     p_support = ET.SubElement(support , 'p')
     filig = ''
     if var['descrizione_esterna'][0]['filigrana'] != '':
-        filig = 'con filigrana: <watermark> %s</watermark>' %var['descrizione_esterna'][0]['filigrana']
+        filig = 'con filigrana: <watermark> %s</watermark>' %['descrizione_esterna'][0]['filigrana']
     material = var['descrizione_esterna'][0]['tipo_di_supporto_e_qualita']
 
     p_support.text = " ".join((material,filig))

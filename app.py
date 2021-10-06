@@ -310,6 +310,8 @@ def unapi():
 	database = ['none']
 	el_id = request.args.get('id',None)
 	el_format = request.args.get('format',None)
+	#import pdb; pdb.set_trace()
+
 	if el_id is None and el_format is None:
 		# UNAPI (no parameters)
 		# Provide a list of object formats which should be supported for all 
@@ -325,8 +327,8 @@ def unapi():
 		# an "id" attribute on the root "formats" element; this echoes the 
 		# requested identifier. An example response for a Pubmed citation 
 		# available in text, Pubmed XML, and ASN.1 formats might be:
-		obj = database[el_id]
-		return app.response_class(get_formats(obj.keys()), mimetype='application/xml')
+		# obj = database[el_id]
+		return app.response_class(get_formats(available_formats), mimetype='application/xml')
 	
 	elif el_id and el_format is not None:
 		# Provide a list of object formats available from the unAPI service for
@@ -336,9 +338,15 @@ def unapi():
 		# requested identifier. An example response for a Pubmed citation 
 		# available in text, Pubmed XML, and ASN.1 formats might be:
 		var = client.capitolare.codici.find_one({'segnatura_idx': el_id})
+		if var is None:
+			return app.response_class('Id not found in the database.',status=400)
+		#import pdb; pdb.set_trace()
 		if el_format == 'tei_manuscriptdescription':
 			obj = b"""<?xml version="1.0" encoding="UTF-8"?>"""+ET.tostring(TEImsdesc(var))
-			#import pdb; pdb.set_trace()
+		if el_format == 'rdf_bibliontology':
+			from RDFexporter import RDFexporter
+			obj = b"""<?xml version="1.0" encoding="UTF-8"?>"""+ET.tostring(RDFexporter(var))
+			
 
 		return app.response_class(obj, mimetype='application/xml')
 	

@@ -1,11 +1,15 @@
 {% extends 'layout.html' %}
+{% block header %}
+<!-- This link is needed by unAPI it points to the API url -->
+<link rel="unapi-server" type="application/xml" title="unAPI" href={{"/".join((request.url_root,"unapi"))}} />
+{% endblock header %}
 {% block  body%}
 
 <br>
 
 <div class="manbanner" id="content">
   <img src="{{codice['immagine_banner']}}" class="img-fluid mb5" id="imgmanu">
-  <div class="mantext">{{codice['descrizione_esterna'][0]['Segnatura']}}</div>
+  <div class="mantext"><abbr class="unapi-id" title={{codice['segnatura_idx']}}>{{codice['descrizione_esterna'][0]['Segnatura']}}</abbr></div>
 </div>
   <div class="container py-3 px-0" id="scheda">
     <div class="row">
@@ -407,7 +411,7 @@ for (i = 0; i < acc.length; i++) {
 }
 </script>
         
-            </div>
+    </div>
         <div class="tab-pane fade bg-light" id="Fac-similes" role="tabpanel" aria-labelledby="profile-tab">
             <table>
             <tr>
@@ -416,7 +420,7 @@ for (i = 0; i < acc.length; i++) {
               <img src={{url_for('static', filename="imgs/iiificon.png")}} alt="IIIF Drag-n-drop"/>
             </a><a href={{codice['manifest']}} class="manifesturl"><div class="text-break">{{codice['manifest']}}</div></a></td></tr>
             <tr><td><b>Visualizzabile con:</b></td><td> <a href=http://lezioni.meneghetti.univr.it/UVjs/?manifest={{codice['manifest']}} target="_blank">Universal viewer</a> <a href=http://lezioni.meneghetti.univr.it/m3/?manifest={{codice['manifest']}} target="_blank">Mirador</a>  </td></tr>
-        </table>
+            </table>
         </div>
         <div class="tab-pane fade" id="analisi" role="tabpanel" aria-labelledby="analisi-tab">...</div>
         </div>
@@ -452,6 +456,10 @@ for (i = 0; i < acc.length; i++) {
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li><a class="dropdown-item" href="/printversion/{{codice['segnatura_idx']}}  "> 🖨️ Versione stampabile </a></li>
+            <li><a class="dropdown-item" href="/unapi?id={{codice['segnatura_idx']}}&format=rdf_bibliontology">
+                <img src={{url_for('static',filename='imgs/RDF60.png')}} width="20" height="20" alt="rdflogo"> RDF</a></li>
+            <li><a class="dropdown-item" href="/unapi?id={{codice['segnatura_idx']}}&format=tei_manuscriptdescription">
+                <img src={{url_for('static',filename='imgs/TEI60.png')}} width="20" height="20" alt="TEI logo"> TEI</a></li>
             <!-- <li><a class="dropdown-item" href="#"> <img src=
               "https://media.geeksforgeeks.org/wp-content/uploads/20200630132504/uflag.jpg"
                                   width="20" height="15"> Another action</a></li>
