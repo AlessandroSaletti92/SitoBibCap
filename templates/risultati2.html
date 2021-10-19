@@ -8,26 +8,26 @@
 <br>
 
 <div class="manbanner" id="content">
-  <img src="{{codice['immagine_banner']}}" class="img-fluid mb5" id="imgmanu">
+  <img alt="Particolare del manoscritto" src="{{codice['immagine_banner']}}" class="img-fluid mb5" id="imgmanu">
   <div class="mantext"><abbr class="unapi-id" title={{codice['segnatura_idx']}}>{{codice['descrizione_esterna'][0]['Segnatura']}}</abbr></div>
 </div>
   <div class="container py-3 px-0" id="scheda">
     <div class="row">
 
     <div class="col-2 py-5">
-        <img src="{{codice['immagine_dorso']}}"  class="rounded d-block" >
+        <img alt="Dorso del manoscritto" src="{{codice['immagine_dorso']}}"  class="rounded d-block" >
     </div>
     <div class="col" style="min-width: 320px;">
 
         <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-              <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><small><strong>descrizione</strong></small></a>
+            <li class="nav-item " role="presentation">
+              <a class="nav-link active text-dark" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><small><strong>descrizione</strong></small></a>
             </li>
             <li class="nav-item" role="presentation">
-              <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#Fac-similes" role="tab" aria-controls="Fac-similes" aria-selected="false"><small><strong>facsimilia</strong></small></a>
+              <a class="nav-link text-dark" id="profile-tab" data-bs-toggle="tab" href="#Fac-similes" role="tab" aria-controls="Fac-similes" aria-selected="false"><small><strong>facsimilia</strong></small></a>
             </li>
             <li class="nav-item" role="presentation">
-              <a class="nav-link" id="analisi-tab" data-bs-toggle="tab" href="#analisi" role="tab" aria-controls="analisi" aria-selected="false"><small><strong>analisi</strong></small></a>
+              <a class="nav-link text-dark" id="analisi-tab" data-bs-toggle="tab" href="#analisi" role="tab" aria-controls="analisi" aria-selected="false"><small><strong>analisi</strong></small></a>
             </li>
         </ul>
 
@@ -150,7 +150,7 @@
             <tr><td><b>Testo di riferimento(segnatura): </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
         </table>
         <br>
-        {% if field['link_ROI'] != "Non disponibile" %}<img src={{field['link_ROI']}} class="rounded mx-auto d-block">{% endif %}
+        {% if field['link_ROI'] != "Non disponibile" %}<img alt="Annotazione presente sul manoscritto" src={{field['link_ROI']}} class="rounded mx-auto d-block">{% endif %}
         <hr><br>
    </span>
             {% endfor %}
@@ -179,7 +179,7 @@
             <tr><td><b>Tipologia scrittura: </b></td><td>{{field['Tipologia_scrittura']}}</td></tr>
             <tr><td><b>Testo di riferimento(segnatura): </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
         </table><br>
-        {% if field['link_ROI'] != "Non disponibile" %}<img src={{field['link_ROI']}} class="rounded mx-auto d-block">{% endif %}
+        {% if field['link_ROI'] != "Non disponibile" %}<img src={{field['link_ROI']}} class="rounded mx-auto d-block" alt="{{field['Contenuto']}}">{% endif %}
         <hr><br>
         </span>
             {% endfor %}
@@ -439,10 +439,12 @@ for (i = 0; i < acc.length; i++) {
               {% endif %}
               {% if codice['descrizione_esterna'] %}
                     {% for orchid in get_authors(codice,'orchid') %}
-                    <a href="{{orchid}}">
+                    
+                    <a href="{{orchid}}" class='text-dark'>
                       <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
                       <small>{{orchid}}</small>
                     </a>
+                    
                     {% endfor %} 
               {% endif %}  
               <br>  
@@ -457,9 +459,9 @@ for (i = 0; i < acc.length; i++) {
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li><a class="dropdown-item" href="/printversion/{{codice['segnatura_idx']}}  "> 🖨️ Versione stampabile </a></li>
             <li><a class="dropdown-item" href="/unapi?id={{codice['segnatura_idx']}}&format=rdf_bibliontology">
-                <img src={{url_for('static',filename='imgs/RDF60.png')}} width="20" height="20" alt="rdflogo"> RDF</a></li>
+                <img alt="logo RDF" src={{url_for('static',filename='imgs/RDF60.png')}} width="20" height="20" alt="rdflogo"> RDF</a></li>
             <li><a class="dropdown-item" href="/unapi?id={{codice['segnatura_idx']}}&format=tei_manuscriptdescription">
-                <img src={{url_for('static',filename='imgs/TEI60.png')}} width="20" height="20" alt="TEI logo"> TEI</a></li>
+                <img alt="logo TEI" src={{url_for('static',filename='imgs/TEI60.png')}} width="20" height="20" alt="TEI logo"> TEI</a></li>
             <!-- <li><a class="dropdown-item" href="#"> <img src=
               "https://media.geeksforgeeks.org/wp-content/uploads/20200630132504/uflag.jpg"
                                   width="20" height="15"> Another action</a></li>
@@ -478,12 +480,14 @@ for (i = 0; i < acc.length; i++) {
       
       
 
-       <div class="menu sticky-top p-3 bg-light py-5">
+       <div class="menu sticky-top p-3  py-5">
         <br>
         <br>
-        <h5 class="text-primary">Navigazione:</h5>
+        <h5 class="text-dark">Navigazione:</h5>
         <div class="nav flex-column">
-            <a href="#content"> Vai alle schede.</a>
+            <a class="text-dark" href="#content"> Torna all'inizio della pagina.</a>
+            <a class="text-dark" href="javascript:window.location.reload(true)"> Collassa le schede.</a>
+        </div>
         </div>
     </div>
     </div>

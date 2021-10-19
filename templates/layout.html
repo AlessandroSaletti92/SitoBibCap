@@ -42,6 +42,7 @@
   <script type="text/javascript">
   $(function() {
       $("#autocomplete").autocomplete({
+          autoFocus: true,
           source:function(request, response) {
               $.getJSON("{{url_for('autocomplete')}}",{
                   q: request.term, // in flask, "q" will be the argument to look for using request.args

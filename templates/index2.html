@@ -29,11 +29,20 @@ window.onload = function(){
       </p>
       <div class="row">
         <div class="img col">
-          <img class="img-fluid" src={{url_for('static',filename='imgs/logounivr400.png')}} alt="Logo dell'Università di Verona.">  
+          <picture>
+            <source srcset={{url_for('static',filename='imgs/logounivr400.avif')}} type="image/avif">
+            <source srcset={{url_for('static',filename='imgs/logounivr400.png')}} type="image/png"> 
+            <img class="img-fluid" src={{url_for('static',filename='imgs/logounivr400.png')}} alt="Logo dell'Università di Verona.">
+          </picture>
+            
         </div>
         <div class="img col">
           <a href=http://bibliotecacapitolare.org/en/the-biblioteca-capitolare-of-verona/>
+          <picture>
+            <source srcset={{url_for('static',filename='imgs/logocapitolare.avif')}} type="image/avif">
+            <source srcset={{url_for('static',filename='imgs/logocapitolare.png')}} type="image/png"> 
           <img class="img-fluid" src={{url_for('static',filename='imgs/logocapitolare.png')}} alt="Logo della Biblioteca Capitolare di Verona.">
+          </picture>
         </a>  
         </div>
       </div>
@@ -122,7 +131,11 @@ window.onload = function(){
         Questo sito ospita le risorse digitali del progetto.</p> -->
     </div>
     <div class="img col-lg-6 col-md-12 col-12">
+      <picture>
+        <source srcset={{url_for('static',filename='imgs/master.avif')}} type="image/avif">
+        <source srcset={{url_for('static',filename='imgs/master.png')}} type="image/png"> 
       <img class="img-fluid" src={{url_for('static',filename='imgs/master.png')}} alt="Basso rilevo che mostra un maestro con dei discepoli.">  
+      </picture>
     </div>
   </div>
 </section>

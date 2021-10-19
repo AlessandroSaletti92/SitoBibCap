@@ -251,6 +251,12 @@ def BT2():
 		#							re.compile(form.materiale.data, re.IGNORECASE)}
 		#
 		#	query["$and"].append(query_materiale_re)
+
+		#client.capitolare.codici.find({
+		#		
+		#	})
+		#
+		#
 		if form.titolo.data != "":
 			query_titolo_re2 = {"descrizione_interna" :
 									{"$elemMatch": 

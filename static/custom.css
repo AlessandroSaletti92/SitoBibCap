@@ -158,6 +158,7 @@ section.progetti.container {
   bottom: 0;
   width: 100%;
   background-color: black;
+  z-index: 2000;
   color:white;
   padding-top: 50px;
   padding-right: 30px;
