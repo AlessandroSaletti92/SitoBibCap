@@ -24,7 +24,7 @@ def TEImsdesc(var):
     p.set("xml:lang","it")
     teiHeader = ET.SubElement(p,'teiHeader')
     # specifiche non trovate chiedere a prof.Ferrarini
-    fileDesc = ET.SubElement(teiHeader,'teiHeader')
+    fileDesc = ET.SubElement(teiHeader,'fileDesc')
     titleStmt = ET.SubElement(fileDesc,'titleStmt')
     title1 = ET.SubElement(titleStmt,'title')
     title1.text = "Scriptorium Veronensis ecclesiae"
@@ -34,25 +34,25 @@ def TEImsdesc(var):
     title2.set('type','sub')
 
     resS1 = ET.SubElement(titleStmt,'respStmt')
-    resp1 = ET.SubElement(titleStmt,'resp')
+    resp1 = ET.SubElement(resS1,'resp')
     resp1.text = "Direzione scientifica di:"
     name1 = ET.SubElement(titleStmt,'name')
     name1.text = "Paolo Pellegrini" 
 
     resS2 = ET.SubElement(titleStmt,'respStmt')
-    resp2 = ET.SubElement(titleStmt,'resp')
+    resp2 = ET.SubElement(resS2,'resp')
     resp2.text = "Scheda a cura di:"
     name2 = ET.SubElement(titleStmt,'name')
     name2.text = var['descrizione_esterna'][0]['utenti_email']
 
     resS3 = ET.SubElement(titleStmt,'respStmt')
-    resp3 = ET.SubElement(titleStmt,'resp')
+    resp3 = ET.SubElement(resS3,'resp')
     resp3.text = "Codifica elettronica a cura di:"
     name3 = ET.SubElement(titleStmt,'name')
     name3.text = var['descrizione_esterna'][0]['utenti_email'] 
 
     resS4 = ET.SubElement(titleStmt,'respStmt')
-    resp4 = ET.SubElement(titleStmt,'resp')
+    resp4 = ET.SubElement(resS4,'resp')
     resp4.text = "Revisione della codifica a cura di:"
     name4 = ET.SubElement(titleStmt,'name')
     name4.text = "" # inserire revisore
@@ -81,13 +81,15 @@ def TEImsdesc(var):
     settlement = ET.SubElement(msIdentifier, 'settlement')
     settlement.text = "Verona"
     institution = ET.SubElement(msIdentifier, 'institution')
-    institution.text ="Biblioteca Capitolare di Verona"
+    institution.text ="Biblioteca Capitolare"
     institution.set("xml:lang","it")
+    institution.set("xml:id","https://anagrafe.iccu.sbn.it/isil/IT-VR0056")
+
 
     #repository = ET.SubElement(msIdentifier, 'repository')
     #repository.text = "Cavou della biblioteca"
     collection = ET.SubElement(msIdentifier, 'collection')
-    collection.text = "Fondo manoscritti Biblioteca Capitolare"
+    collection.text = "Manoscritti"
     collection.set("xml:lang","it")
     # for i in names
     # un qualsiasi nome alternativo non strutturato utilizzato per un manoscritto,
@@ -99,8 +101,10 @@ def TEImsdesc(var):
     idno.text = var['descrizione_esterna'][0]['Segnatura'] 
 
 
-    altIdentifier = ET.SubElement(msIdentifier, 'altIdentifier')
-    altIdentifier.set('type','SC')
+    #altIdentifier = ET.SubElement(msIdentifier, 'altIdentifier')
+    #altIdentifier.set('type','coll.')
+    # idnocol = ET.SubElement(altIdentifier, 'idno')
+    # idnocol.text = 
     # collocazione!
     # Not mandatory
     #head = ET.SubElement(sourceDesc, 'head')
@@ -109,7 +113,7 @@ def TEImsdesc(var):
     msContents = ET.SubElement(sourceDesc, 'msContents ')
     summary = ET.SubElement(msContents, 'summary ')
     summary.text = var['sommario_desc']
-    items = ['VAR_descrizione_intere_VAR']
+    # items = ['VAR_descrizione_intere_VAR']
     # Descrizione interna
     items = var['descrizione_interna']
     for ind,item in enumerate(items):
@@ -308,7 +312,9 @@ def TEImsdesc(var):
     # msPart = ET.SubElement(sourceDesc, 'msPart')
     # per manoscritti separati in più pezzi, Palinsesto di Gaio?
     # msFrag = ET.SubElement(sourceDesc, 'msFrag')
-
+    
+    # aggiungiamo un body vuoto
+    ET.SubElement(p,'body')
     def indent(elem, level=0):
                 i = "\n" + level*"  "
                 j = "\n" + (level-1)*"  "
