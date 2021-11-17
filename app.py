@@ -402,7 +402,13 @@ def down_TEI():
             			attachment_filename= 'teitest.xml',
             			as_attachment = True)
 
-
+@app.route('/pagelayout')
+def pagelayour():
+	import SVGpagelayout
+	mas = request.args.get('mas',None)
+	# http://localhost:5000/pagelayout/?mas=250x165=24[185]41x15[(6)124(6)]15
+	obj = ET.tostring(SVGpagelayout.generateSVG(mas,'test'))
+	return app.response_class(obj, mimetype='application/xml')
 
 if __name__  == '__main__':
 	app.run(debug=True)
