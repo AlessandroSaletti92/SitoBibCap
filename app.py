@@ -1,6 +1,6 @@
 # coding=utf-8
 from flask import Flask, render_template, request, url_for,send_file,jsonify,send_from_directory
-from confidenziale import databaseaddress_capitolare_mongo,secret_key
+from confidenziale import databaseaddress_capitolare_mongo,secret_key,zoteroapikey
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField
 from wtforms.validators import DataRequired
@@ -10,6 +10,7 @@ import re
 from collections import defaultdict
 import xml.etree.ElementTree as ET
 from TEIexporter import TEImsdesc
+import requests
 
 #from flask_consent import Consent
 
@@ -18,13 +19,13 @@ import os
 GlobalVar = []
 
 class MyForm(FlaskForm):
- #   name = StringField('Materiale', validators=[DataRequired()])
- 	#materiale = SelectField(u'Materiale: ',
+	#   name = StringField('Materiale', validators=[DataRequired()])
+	#materiale = SelectField(u'Materiale: ',
 	# 			choices=['qualsiasi','papiro', 'pergamena', 'carta'],
 	#			render_kw={'class':"form-control",})
- 	autore = StringField('Autore',render_kw={'class':"form-control",})
- 	titolo = StringField('Titolo',render_kw={'class':"form-control",})
- 	fulltext = StringField('Ricerca su tutti i campi',render_kw={'class':"form-control",})
+	autore = StringField('Autore',render_kw={'class':"form-control",})
+	titolo = StringField('Titolo',render_kw={'class':"form-control",})
+	fulltext = StringField('Ricerca su tutti i campi',render_kw={'class':"form-control",})
  	#anno = StringField('Datazione',render_kw={'class':"form-control",})
 
 def get_all_values(nested_dictionary):
@@ -98,7 +99,7 @@ def ricerca():
 	form = MyForm()
 	if form.validate_on_submit():
 
-		import pdb; pdb.set_trace()
+		#import pdb; pdb.set_trace()
 		#TODO: cambiare
 		segnatura = 'XXB'
 		#data = request.form['slider-range']
@@ -201,7 +202,12 @@ def segnatura(segnatura_id):
 		return render_template("nontrovato.html",segnatura=segnatura)
 	get_all_values(var)
 	#sort_dec_int(var)
-	return render_template("risultati2.html", codice=var)
+	#import pdb; pdb.set_trace()
+	sgn = var['descrizione_esterna'][0]['Segnatura']
+	#sgn = "DCCCXLIX (DCCCLIII)"
+	url = f"https://api.zotero.org/groups/3759014/items?key={zoteroapikey}&tag={sgn}&format=bib&locale=it-IT"
+	r = requests.get(url)
+	return render_template("risultati2.html", codice=var,bibliografia = r.text,sgn=sgn)
 
 @app.route('/printversion/<segnatura_id>')
 def printversion(segnatura_id):

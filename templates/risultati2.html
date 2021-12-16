@@ -48,11 +48,11 @@
             <tr><td><b>Segnatura: </b></td><td>{{field['Segnatura']}}</td></tr>
             <tr><td><b>Datazione: </b></td><td>{{field['datazione']}}</td></tr>
             {% if field['trascrizione_datazione'] != "Non disponibile"%}
-            <tr><td><b>Trascrizione_datazione: </b></td><td>{{field['trascrizione_datazione']}} ({{field['locus_datazione']}} </td></tr>
+            <tr><td><b>Trascrizione_datazione: </b></td><td>{{field['trascrizione_datazione']}} ({{field['locus_datazione']}}) </td></tr>
             {% endif %}
             <tr><td><b>Luogo: </b></td><td>{{field['luogo']}}</td></tr>
             {% if field['trascrizione_datazione'] != "Non disponibile"%}
-            <tr><td><b>Trascrizione luogo: </b></td><td>{{field['trascrizione_luogo']}} ({{field['locus_luogo']}} </td></tr>
+            <tr><td><b>Trascrizione luogo: </b></td><td>{{field['trascrizione_luogo']}} ({{field['locus_luogo']}}) </td></tr>
             {% endif %}
             <tr><td><b>Tipologia di supporto e qualità: </b></td><td>{{field['tipo_di_supporto_e_qualita']}}</td></tr>
             <tr><td><b>Consistenza: </b></td><td>{{field['consistenza']}}</td></tr>
@@ -202,204 +202,19 @@
           </div>
           </div>
 
-
-<button class="accordion">Bibliografia Interna</button>
-        <div class="panel">
-          <div class="show">
-          <p><h6>Libri</h6>
-        {% if codice['biblio_int_libri'] %}
-        {% for field in codice['biblio_int_libri'] %}
-        <span >
-            <br>
-            <table>
-              <tr><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
-              <tr><td><b>Anno: </b></td><td>{{field['anno']}}</td></tr>
-              <tr><td><b>Numero pagine: </b></td><td>{{field['numero_pagine']}}</td></tr>
-              <tr><td><b>Città: </b></td><td>{{field['citta']}}</td></tr>
-              <tr><td><b>Casa editrice scrittura: </b></td><td>{{field['casa_editrice']}}</td></tr>
-              <tr><td><b>Collana: </b></td><td>{{field['collana']}}</td></tr>
-              <tr><td><b>Numero collana: </b></td><td>{{field['n_collana']}}</td></tr>
-              <tr><td><b>Autore: </b></td><td>{{field['autore_nome_cognome']}}</td></tr>
-              <tr><td><b>Descrizione interna di riferimento: </b></td><td>{{field['Descrizione_interna_id']}}</td></tr>
-
-          </table><hr><br>
-          {% endfor %}
-          {% else %}
-          <p> Nessun record inserito.</p>
-          {% endif %}
-            
-            <h5>Articoli in rivista</h5>
-            {% if biblio_int_articolo_rivista %}
-            {% for index, field in biblio_int_articolo_rivista.iterrows() %}
-            
-              <h6>Articolo {{field['id']}}</h6>
-              <br>
-              <table>
-              <tr><td><b>Id: </b></td><td>{{field['id']}}</td></tr>
-              <tr><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
-              <tr><td><b>Anno: </b></td><td>{{field['anno']}}</td></tr>
-              <tr><td><b>Numero pagine: </b></td><td>{{field['numero_pagine']}}</td></tr>
-              <tr><td><b>Numero fascicolo: </b></td><td>{{field['numero_fascicolo']}}</td></tr>
-              <tr><td><b>Nome rivista: </b></td><td>{{field['nome_rivista']}}</td></tr>
-              <tr><td><b>Autore: </b></td><td>{{field['autore_nome_cognome']}}</td></tr>
-              <tr><td><b>Descrizione interna di riferimento: </b></td><td>{{field['Descrizione_interna_id']}}</td></tr>
-            </table><hr><br>
-          {% endfor %}
-          {% else %}
-          <p> Nessun record inserito.</p>
-          {% endif %}
-
-
-          <h5>Articoli in miscellanea</h5>
-          {% if biblio_int_articolo_miscellanea %}
-          {% for index, field in biblio_int_articolo_miscellanea.iterrows() %}
-          
-            
-             <br>
-             <table>
-              <tr><td><b>Id: </b></td><td>{{field['id']}}</td></tr>
-              <tr><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
-              <tr><td><b>Anno: </b></td><td>{{field['anno']}}</td></tr>
-              <tr><td><b>Numero pagine: </b></td><td>{{field['numero_pagine']}}</td></tr>
-              <tr><td><b>Curatore: </b></td><td>{{field['curatore_nome_cognome']}}</td></tr>
-              <tr><td><b>Autore: </b></td><td>{{field['autore_nome_cognome']}}</td></tr>
-              <tr><td><b>Descrizione interna di riferimento: </b></td><td>{{field['desc_int']}}</td></tr>
-
-          </table><hr><br>
-          {% endfor %}
-          {% else %}
-          <p> Nessun record inserito.</p>
-          {% endif %}
-
-          <h5>Libri miscellanea</h5>
-          {% if biblio_int_articolo_miscellanea_libro %}
-          {% for index, field in biblio_int_articolo_miscellanea_libro.iterrows() %}
-          <br>
-          <table>
-              <tr><td><b>Id: </b></td><td>{{field['id']}}</td></tr>
-              <tr><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
-              <tr><td><b>Anno: </b></td><td>{{field['anno']}}</td></tr>
-              <tr><td><b>Numero pagine: </b></td><td>{{field['numero_pagine']}}</td></tr>
-              <tr><td><b>Città: </b></td><td>{{field['citta']}}</td></tr>
-              <tr><td><b>Casa editrice scrittura: </b></td><td>{{field['casa_editrice']}}</td></tr>
-              <tr><td><b>Collana: </b></td><td>{{field['collana']}}</td></tr>
-              <tr><td><b>Numero collana: </b></td><td>{{field['n_collana']}}</td></tr>
-              <tr><td><b>Curatore: </b></td><td>{{field['curatore_nome_cognome']}}</td></tr>
-              <tr><td><b>Descrizione interna di riferimento: </b></td><td>{{field['desc_int']}}</td></tr>
-
-          </table><hr><br>
-
-
-         </span>
-          {% endfor %}
-          {% else %}
-          <p> Nessun record inserito.</p>
-          {% endif %}
-          </p>
-          </div>
-          </div>
-
-
 <button class="accordion">Bibliografia Esterna</button>
         <div class="panel">
+          <br>
+
           <div class="show">
-          <p><h6>Libri</h6>
-        <span >
-        {% if biblio_est_libri %}
-        {% for index, field in biblio_est_libri.iterrows() %}
-    
-          <h6>Libro {{field['id']}}</h6>
-          <br>
-          <table>
-              <tr><td><b>Id: </b></td><td>{{field['id']}}</td></tr>
-              <tr><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
-              <tr><td><b>Anno: </b></td><td>{{field['anno']}}</td></tr>
-              <tr><td><b>Numero pagine: </b></td><td>{{field['numero_pagine']}}</td></tr>
-              <tr><td><b>Città: </b></td><td>{{field['citta']}}</td></tr>
-              <tr><td><b>Casa editrice scrittura: </b></td><td>{{field['casa_editrice']}}</td></tr>
-              <tr><td><b>Collana: </b></td><td>{{field['collana']}}</td></tr>
-              <tr><td><b>Numero collana: </b></td><td>{{field['n_collana']}}</td></tr>
-              <tr><td><b>Autore: </b></td><td>{{field['autore_nome_cognome']}}</td></tr>
-              <tr><td><b>Manoscritto di riferimento: </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
-
-          </table><hr><br>
-        {% endfor %}
-        {% else %}
-        <p> Nessun record inserito.</p>
-        {% endif %}
-
-
-          <h6>Articoli in rivista</h6>
-            {% if biblio_est_articolo_rivista %}
-            {% for index, field in biblio_est_articolo_rivista.iterrows() %}
-            <br>
-          <table>
-              <tr><td><b>Id: </b></td><td>{{field['id']}}</td></tr>
-              <tr><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
-              <tr><td><b>Anno: </b></td><td>{{field['anno']}}</td></tr>
-              <tr><td><b>Numero pagine: </b></td><td>{{field['numero_pagine']}}</td></tr>
-              <tr><td><b>Numero fascicolo: </b></td><td>{{field['numero_fascicolo']}}</td></tr>
-              <tr><td><b>Nome rivista: </b></td><td>{{field['nome_rivista']}}</td></tr>
-              <tr><td><b>Autore: </b></td><td>{{field['autore_nome_cognome']}}</td></tr>
-              <tr><td><b>Manoscritto di riferimento: </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
-
-          </table><hr><br>
-          {% endfor %}
-          {% else %}
-          <p> Nessun record inserito.</p>
-          {% endif %}
-
-
-<h6>Articoli in miscellanea</h6>
-          {% if biblio_est_articolo_miscellanea %}
-          {% for index, field in biblio_est_articolo_miscellanea.iterrows() %}
-          <br>
-          <table>
-              <tr><td><b>Id: </b></td><td>{{field['id']}}</td></tr>
-              <tr><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
-              <tr><td><b>Anno: </b></td><td>{{field['anno']}}</td></tr>
-              <tr><td><b>Numero pagine: </b></td><td>{{field['numero_pagine']}}</td></tr>
-              <tr><td><b>Curatore: </b></td><td>{{field['curatore_nome_cognome']}}</td></tr>
-              <tr><td><b>Autore: </b></td><td>{{field['autore_nome_cognome']}}</td></tr>
-              <tr><td><b>Manoscritto di riferimento: </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
-
-          </table><hr><br>
-          {% endfor %}
-          {% else %}
-          <p> Nessun record inserito.</p>
-          {% endif %}
-
-
-         <h6>Libro Miscellanea</h6>
-         {% if biblio_est_articolo_miscellanea_libro %}
-         {% for index, field in biblio_est_articolo_miscellanea_libro.iterrows() %}
-         <br>
-         <table>
-              <tr><td><b>Id: </b></td><td>{{field['id']}}</td></tr>
-              <tr><td><b>Titolo: </b></td><td>{{field['titolo']}}</td></tr>
-              <tr><td><b>Anno: </b></td><td>{{field['anno']}}</td></tr>
-              <tr><td><b>Numero pagine: </b></td><td>{{field['numero_pagine']}}</td></tr>
-              <tr><td><b>Città: </b></td><td>{{field['citta']}}</td></tr>
-              <tr><td><b>Casa editrice scrittura: </b></td><td>{{field['casa_editrice']}}</td></tr>
-              <tr><td><b>Collana: </b></td><td>{{field['collana']}}</td></tr>
-              <tr><td><b>Numero collana: </b></td><td>{{field['n_collana']}}</td></tr>
-              <tr><td><b>Curatore: </b></td><td>{{field['curatore_nome_cognome']}}</td></tr>
-              <tr><td><b>Manoscritto di riferimento: </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
-
-          </table>
-          
-          <hr><br>
-
-          {% endfor %}
-          {% else %}
-          <p> Nessun record inserito.</p>
-          {% endif %}
-
-
-   </span>
-            
-          </p>
+            {{bibliografia|safe}}
           </div>
+         <br>
+         <div class="d-grid gap-2 col-10 mx-auto">
+          <a href="https://www.zotero.org/groups/3759014/capitolare-univr/tags/{{sgn}}/library" class="btn btn-outline-primary" target="_blank">Visualizzazione avanzata su una nuova scheda su zotero.org</a>
+          </div>
+          <br>
+          
           </div>
 
 
