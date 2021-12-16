@@ -35,7 +35,7 @@
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
             
-        <button class="accordion">Descrizione Esterna</button>
+        <button class="accordion">Unità codicologiche</button>
         <div class="panel">
           <div class="show">
           <p>
@@ -56,8 +56,8 @@
             {% endif %}
             <tr><td><b>Tipologia di supporto e qualità: </b></td><td>{{field['tipo_di_supporto_e_qualita']}}</td></tr>
             <tr><td><b>Consistenza: </b></td><td>{{field['consistenza']}}</td></tr>
-            <tr><td><b>Numerazione delle carte: </b></td><td>{{field['numerazione_carte']}}</td></tr>
             <tr><td><b>Carte di guardia: </b></td><td>{{field['carte_di_guardia']}}</td></tr>
+            <tr><td><b>Numerazione delle carte: </b></td><td>{{field['numerazione_carte']}}</td></tr>
             {% if field['prospetto_fascicolazione'] != "Non disponibile"%}
             <tr><td><b>Prospetto fascicolazione: </b></td><td>{{field['prospetto_fascicolazione']|safe}}</td></tr>
             {% endif %}
@@ -83,7 +83,34 @@
           </div>
           </div>
 
-
+<button class="accordion">Scriventi principali</button>
+          <div class="panel">
+            <div class="show">
+            <p>
+              {% if codice['copisti'] %}
+              {% for field in codice['copisti'] %}
+          <span >
+              <h6>Scrivente {{field['id_cop']}}</h6>
+              <br>
+              <table>
+              {% if field['identificazione'] != "Non disponibile" %}
+              <tr><td><b>Identificato come: </b></td><td>{{field['identificazione']}}</td></tr>
+              {% endif %}
+              <tr><td><b>Datazione: </b></td><td>{{field['datazione']}}</td></tr>
+              <tr><td><b>Intervallo carte: </b></td><td>{{field['intervallo_carte']}}</td></tr>
+              <tr><td><b>Tipologia scrittura: </b></td><td>{{field['tipologia_scrittura']}}</td></tr>
+              <tr><td><b>Unità codicologica: </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
+          </table><hr><br>
+     </span>
+  
+            
+              {% endfor %}
+              {% else %}
+              <p> Nessun record inserito.</p>
+              {% endif %}
+              </p>
+            </div>
+            </div>
 
 <button class="accordion">Descrizione Interna</button>
         <div class="panel">
@@ -102,7 +129,7 @@
             <tr class="resultstr"><td><b>Rubrica: </b></td><td>{{field['rubrica']}}</td></tr>
             <tr class="resultstr"><td><b>Incipit: </b></td><td>{{field['incipit']}}</td></tr>
             <tr class="resultstr"><td><b>Explicit: </b></td><td>{{field['explicit']}}</td></tr>
-            <tr class="resultstr"><td><b>Testo di riferimento(segnatura): </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
+            <tr class="resultstr"><td><b>Unità codicologica: </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
         </table><hr><br>
         </span>
             {% endfor %}
@@ -112,34 +139,6 @@
             </p>
           </div>
           </div>
-
-
-<button class="accordion">Copisti</button>
-        <div class="panel">
-          <div class="show">
-          <p>
-            {% if codice['copisti'] %}
-            {% for field in codice['copisti'] %}
-        <span >
-            <h6>Copista {{field['id_cop']}}</h6>
-            <br>
-            <table>
-            <tr><td><b>Datazione: </b></td><td>{{field['datazione']}}</td></tr>
-            <tr><td><b>Intervallo carte: </b></td><td>{{field['intervallo_carte']}}</td></tr>
-            <tr><td><b>Tipologia scrittura: </b></td><td>{{field['tipologia_scrittura']}}</td></tr>
-            <tr><td><b>Testo di riferimento(segnatura): </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
-        </table><hr><br>
-   </span>
-
-          
-            {% endfor %}
-            {% else %}
-            <p> Nessun record inserito.</p>
-            {% endif %}
-            </p>
-          </div>
-          </div>
-
 
 <button class="accordion">Annotazioni marginali</button>
         <div class="panel">
@@ -156,9 +155,10 @@
             <tr><td><b>Intevallo carte: </b></td><td>{{field['intervallo_carte']}}{% if field['incipit_url'] != "Non disponibile" %}<a href={{field['link_img']}} target="_blank">&#x1F4F7;</a>{% endif %}</td></tr>
             <tr><td><b>Datazione: </b></td><td>{{field['Datazione']}}</td></tr>
             <tr><td><b>Contenuto: </b></td><td>{{field['Contenuto']}}</td></tr>
+            <tr><td><b>Trascrizione: </b></td><td>{{field['Trascrizione']}}</td></tr>
             <tr><td><b>Posizione: </b></td><td>{{field['Posizione']}}</td></tr>
             <tr><td><b>Tipologia scrittura: </b></td><td>{{field['Tipologia_scrittura']}}</td></tr>
-            <tr><td><b>Testo di riferimento(segnatura): </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
+            <tr><td><b>Unità codicologica: </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
         </table>
         <br>
         {% if field['link_ROI'] != "Non disponibile" %}<img alt="Annotazione presente sul manoscritto" src={{field['link_ROI']}} class="rounded mx-auto d-block">{% endif %}
@@ -186,9 +186,10 @@
             <table>
             <tr><td><b>Datazione: </b></td><td>{{field['Datazione']}}</td></tr>
             <tr><td><b>Contenuto: </b></td><td>{{field['Contenuto']}}</td></tr>
+            <tr><td><b>Trascrizione: </b></td><td>{{field['Trascrizione']}}</td></tr>
             <tr><td><b>Posizione: </b></td><td>{{field['Posizione']}}{% if field['link_img'] != "Non disponibile" %}<sup><a href={{field['link_img']}} target="_blank">&#x1F4F7;</a></sup>{% endif %}</td></tr>
             <tr><td><b>Tipologia scrittura: </b></td><td>{{field['Tipologia_scrittura']}}</td></tr>
-            <tr><td><b>Testo di riferimento(segnatura): </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
+            <tr><td><b>Unità codicologica: </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
         </table><br>
         {% if field['link_ROI'] != "Non disponibile" %}<img src={{field['link_ROI']}} class="rounded mx-auto d-block" alt="{{field['Contenuto']}}">{% endif %}
         <hr><br>
