@@ -272,8 +272,16 @@ for (i = 0; i < acc.length; i++) {
         </div>
     </div>
     <div class="col-md col-lg">
-      
+        {% if codice['status'] == "Presentabile" %}
+        <div class="row">
+          <div class="alert alert-warning" role="alert">
+            <p class="text-center">🚧 <b>CATALOGAZIONE IN CORSO</b> 🚧</p>
+            Questa è una versione preliminare della scheda il catalogatore deve ancora revisionare le informazioni contenute.
+          </div>
+        </div>
+        {% endif %}
           <div class="alert alert-info" role="alert">
+           
             <div class="row">
             <div class="col-sm-9">
                 <p>
