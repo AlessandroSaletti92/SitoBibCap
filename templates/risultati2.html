@@ -42,16 +42,28 @@
 
             {% if codice['descrizione_esterna'] %}
             {% for field in codice['descrizione_esterna'] %}
+            <h6>{{field['Descrizione_Esterna_Segnatura']}}</h6>
         <span>
         <table>
             <tr><td><b>Segnatura: </b></td><td>{{field['Segnatura']}}</td></tr>
             <tr><td><b>Datazione: </b></td><td>{{field['datazione']}}</td></tr>
+            {% if field['trascrizione_datazione'] != "Non disponibile"%}
+            <tr><td><b>Trascrizione_datazione: </b></td><td>{{field['trascrizione_datazione']}} ({{field['locus_datazione']}} </td></tr>
+            {% endif %}
+            <tr><td><b>Luogo: </b></td><td>{{field['luogo']}}</td></tr>
+            {% if field['trascrizione_datazione'] != "Non disponibile"%}
+            <tr><td><b>Trascrizione luogo: </b></td><td>{{field['trascrizione_luogo']}} ({{field['locus_luogo']}} </td></tr>
+            {% endif %}
             <tr><td><b>Tipologia di supporto e qualità: </b></td><td>{{field['tipo_di_supporto_e_qualita']}}</td></tr>
             <tr><td><b>Consistenza: </b></td><td>{{field['consistenza']}}</td></tr>
             <tr><td><b>Numerazione delle carte: </b></td><td>{{field['numerazione_carte']}}</td></tr>
             <tr><td><b>Carte di guardia: </b></td><td>{{field['carte_di_guardia']}}</td></tr>
+            {% if field['prospetto_fascicolazione'] != "Non disponibile"%}
             <tr><td><b>Prospetto fascicolazione: </b></td><td>{{field['prospetto_fascicolazione']|safe}}</td></tr>
+            {% endif %}
+            {% if field['arrangiamento_fogli_gregory'] != "Non disponibile"%}
             <tr><td><b>Arrangiamento dei fogli (regola di Gregory): </b></td><td>{{field['arrangiamento_fogli_gregory']}}</td></tr>
+            {% endif %}
             <tr><td><b>Dimensioni: </b></td><td>{{field['dimensioni']}} <a href=/pagelayout?mas={{field['dimensioni'].replace(" ","")}} target="_blank">🔎</a> </td></tr>
             <tr><td><b>Rigatura: </b></td><td>{{field['rigatura']}}</td></tr>
             <tr><td><b>Foratura: </b></td><td>{{field['foratura']}}</td></tr>
@@ -60,7 +72,6 @@
             <tr><td><b>Filigrana: </b></td><td>{{field['filigrana']}}</td></tr>
             {% endif %}
             <tr><td><b>Decorazioni: </b></td><td>{{field['decorazioni']}}</td></tr>
-            <tr><td><b>Palinsesto: </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
         </table>
         </span>
         <br>
@@ -413,15 +424,34 @@ for (i = 0; i < acc.length; i++) {
         
     </div>
         <div class="tab-pane fade bg-light" id="Fac-similes" role="tabpanel" aria-labelledby="profile-tab">
+
+            {% if codice['facsimile'] %}
+            {% for field in codice['facsimile'] %}
+            <br>
+            <h6>{{field['id_facsimile']}}</h6>
             <table>
-            <tr>
-            <tr><td><b>Tipologia:</b></td><td>Copia digitale</td></tr>
-            <tr><td><b>Manifest:</b></td><td><a href="default_target?manifest={{codice['manifest']}}" target="_blank">
-              <img src={{url_for('static', filename="imgs/iiificon.png")}} alt="IIIF Drag-n-drop"/>
-            </a><a href={{codice['manifest']}} class="manifesturl"><div class="text-break">{{codice['manifest']}}</div></a></td></tr>
-            <tr><td><b>Visualizzabile con:</b></td><td> <a href=http://lezioni.meneghetti.univr.it/UVjs/?manifest={{codice['manifest']}} target="_blank">Universal viewer</a> <a href=http://lezioni.meneghetti.univr.it/m3/?manifest={{codice['manifest']}} target="_blank">Mirador</a>  </td></tr>
-            </table>
-        </div>
+                <tr><td><b>tipologia: </b></td><td>{{field['tipologia']}}</td></tr>
+                <tr><td><b>descrizione: </b></td><td>{{field['descrizione']}}</td></tr>
+                <tr><td><b>Anno: </b></td><td>{{field['datazione']}}</td></tr>
+                <tr><td><b>ID Origine: </b></td><td>{{field['id_origine']}}</td></tr>
+                <tr><td><b>Creatore: </b></td><td>{{field['creatore']}}</td></tr>
+                <tr><td><b>Luogo di custodia: </b></td><td>{{field['luogo_di_custodia']}}</td></tr>
+                {% if field['manifest'] != "Non disponibile" %}
+                <tr><td><b> <a href="default_target?manifest={{field['manifest']}}" target="_blank">
+                  <img src={{url_for('static', filename="imgs/iiificon.png")}} alt="IIIF Drag-n-drop"/></a> Manifest:</b></td><td>
+                <a href={{field['manifest']}} class="manifesturl"><div class="text-break">{{field['manifest']}}</div></a></td></tr>
+                <tr><td><b>Visualizzabile con:</b></td><td> <a href=http://lezioni.meneghetti.univr.it/UVjs/?manifest={{field['manifest']}} target="_blank">Universal viewer</a> <a href=http://lezioni.meneghetti.univr.it/m3/?manifest={{field['manifest']}} target="_blank">Mirador</a>  </td></tr>
+                {% endif %}
+                <tr><td><b>Link :</b></td><td><a href={{field['link_online']}} class="exturl" target="_blank"><div class="text-break">{{field['link_online']}}</div></a></td></tr>
+                <tr><td><b>completezza: </b></td><td>{{field['completezza']}}</td></tr>
+
+  
+            </table><hr><br>
+            {% endfor %}
+            {% else %}
+            <p> Nessun record inserito.</p>
+            {% endif %}
+          </div>
         <div class="tab-pane fade" id="analisi" role="tabpanel" aria-labelledby="analisi-tab">...</div>
         </div>
     </div>
