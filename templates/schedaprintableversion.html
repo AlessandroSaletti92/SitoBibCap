@@ -1,4 +1,5 @@
-
+<head>
+<meta name=”robots” content=”noindex,nofollow”>
 <style>
 ol {
     counter-reset: item
@@ -10,9 +11,21 @@ ol {
     content: counters(item, ".") " ";
     counter-increment: item
   }
+  .warning{
+background-color: darkorange;
+text-align:center;
+}
 </style>
+</head>
+
 <h1>Verona, Biblioteca Capitolare, manoscritto {{codice['descrizione_esterna'][0]['Segnatura']}}</h1>
 <img src="{{codice['immagine_banner']}}" >
+{% if codice['status'] == "Presentabile" %}
+<div class="warning">
+    <p>🚧 <b>CATALOGAZIONE IN CORSO</b> 🚧</p>
+    Questa è una versione preliminare della scheda, il catalogatore deve ancora revisionare le informazioni contenute.
+</div>
+{% endif %}
 <br>
 <b>Autore della scheda:</b>
 {% if codice['descrizione_esterna'] %}

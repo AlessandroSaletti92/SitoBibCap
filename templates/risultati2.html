@@ -311,7 +311,7 @@ for (i = 0; i < acc.length; i++) {
             📥 Esporta
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="/printversion/{{codice['segnatura_idx']}}  "> 🖨️ Versione stampabile </a></li>
+            <li><a class="dropdown-item" href="/printableversion/{{codice['segnatura_idx']}}  "> 🖨️ Versione stampabile </a></li>
             <li><a class="dropdown-item" href="/unapi?id={{codice['segnatura_idx']}}&format=rdf_bibliontology">
                 <img alt="logo RDF" src={{url_for('static',filename='imgs/RDF60.png')}} width="20" height="20" alt="rdflogo"> RDF</a></li>
             <li><a class="dropdown-item" href="/unapi?id={{codice['segnatura_idx']}}&format=tei_manuscriptdescription">

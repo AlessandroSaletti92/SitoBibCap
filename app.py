@@ -212,14 +212,14 @@ def segnatura(segnatura_id):
 	r = requests.get(url)
 	return render_template("risultati2.html", codice=var,bibliografia = r.text,sgn=sgn)
 
-@app.route('/printversion/<segnatura_id>')
-def printversion(segnatura_id):
+@app.route('/printableversion/<segnatura_id>')
+def printableversion(segnatura_id):
 	var = client.capitolare.codici.find_one({'segnatura_idx': segnatura_id})
 	if var is None:
 		return render_template("nontrovato.html",segnatura=segnatura)
 	#get_all_values(var)
 	#sort_dec_int(var)
-	return render_template("schedaprintversion.html", codice=var)
+	return render_template("schedaprintableversion.html", codice=var)
 
 @app.route('/autocomplete', methods=['GET'])
 def autocomplete():
