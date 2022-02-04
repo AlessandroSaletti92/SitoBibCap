@@ -1,0 +1,155 @@
+{% extends 'layoutBT2filigrane.html' %}
+{% block  body%}
+
+
+
+<div class="container" id="content">
+<div class="row">
+   
+<div class="col-md-4">
+<!-- 
+<form method="POST" >
+    <p><b>Ricerca per segnatura: </b><input type="text" name="search" required/></p>
+    <p><input type="submit" name="submit" value="Cerca"/></p>
+ </form>
+ -->
+ <br>
+ <br>
+ <h3>Ricerca avanzata</h3>
+  <!--  <div class="alert alert-primary" role="alert">
+    La ricerca avanzata è basata sulla catalogazione dei beni secondo lo <a href="example.com">schema
+    proposto dal progetto Dascabida</a>.
+  </div> -->
+<form  method="POST" action="">
+	{{ form.csrf_token }}
+  <p>
+  	
+  	<label for="anno">Data: </label>
+  	
+  	<input type="text" name='anno' id="anno" style="border:0; color:#000000; font-weight:bold;">
+	</p>
+
+	<div id="slider-range" class="container-md"></div>
+
+	<br>
+
+    <div class="form-group">
+    {{ form.motivo.label }} {{ form.motivo }}
+   	</div>	
+
+<!--   <div class="form-group">
+    {# form.materiale.label #} {# form.materiale #}
+	</div> -->
+
+    <div class="form-group">
+    {{ form.luogo.label }} {{ form.luogo }}
+    </div>
+
+    <div class="form-group">
+    {{ form.manoscritto.label }} {{ form.manoscritto }}
+   	</div>
+    <div class="form-group">
+      {{ form.IPHN.label }} {{ form.IPHN }}
+    </div>
+  <br>
+    <input type="submit" value="Interroga" class="btn btn-primary">
+</form>
+</div>
+
+<!-- 
+*****
+
+RESULTS TABLE 
+
+*****
+ -->
+
+<div class="col-md-8">
+  <br>
+  <div class="container">
+    <table id="table"
+        data-toggle="table"
+        data-filter-control="true"
+        data-show-search-clear-button="true"
+        data-sortable="true"
+        classes="table-sm"
+        data-pagination="true"
+        data-show-columns="true"
+        data-show-columns-toggle-all="true"
+        class="table-responsive"
+        
+        data-toolbar="#toolbar"
+        data-search="true"
+        data-show-refresh="true"
+        data-show-toggle="true"
+        data-show-fullscreen="true"
+        data-show-columns="true"
+        data-show-columns-toggle-all="true"
+        data-detail-view="true"
+        data-show-export="true"
+        data-click-to-select="true"
+        data-detail-formatter="detailFormatter"
+        data-minimum-count-columns="2"
+        data-show-pagination-switch="true"
+        data-pagination="true"
+        data-id-field="id"
+        data-page-list="[10, 25, 50, 100, all]"
+        data-show-footer="true"
+        >
+        <!-- 'id': '[I]', 'motivo': ' montagna a tre cime', 'motivo_id': '1.1.1.', 'sub_elementi': [], 'mss': [' CCLXVI (fasc.)'], 'ids': [{'label': 'BRIQUET', 'id_n': '11655', 'place': ['Vicenza'], 'date': [1450]}], 'IPHN': 'J3/3'} -->
+
+        <thead>
+            <tr>
+              <!-- <th data-field="link_immagine" data-filter-control="input" data-sortable="true" data-visible="false">link_immagine</th>
+               -->
+                <!--special characters and spaces not allowed in data-field name-->
+                <th data-field="ID" data-filter-control="input" data-sortable="true">Identificativo</th>
+                <th data-field="Motivo" data-filter-control="input" data-sortable="true">Motivo</th>
+                <th data-field="Elemenenti secondari" data-filter-control="input" data-sortable="true" data-visible="false">Elementi interni</th>
+                <th data-field="Indentificato in" data-filter-control="input" data-sortable="true" data-visible="false">Presente in</th>
+                <th data-field="IPHN" data-filter-control="input" data-sortable="true" data-visible="false">IPHN</th>
+                <!-- <th data-field="Datazione" data-filter-control="input" data-sortable="true">Datazione</th>
+                <th data-field="Materiale" data-filter-control="select" data-sortable="true">Materiale </th>
+                <th data-field="Consistenza" data-filter-control="input" data-sortable="true" data-visible="false">Consistenza</th>
+                <th data-field="sommario_desc" data-filter-control="input" data-sortable="true" data-visible="false">Sommario</th>
+                <th data-field="idscheda" data-filter-control="input" data-sortable="true" data-visible="false">id_scheda</th>
+ -->
+                
+                
+
+                
+            </tr>
+        </thead>
+        <tbody>
+          {% for row in tableA %}
+          <tr>
+              
+              <!--non visibili  -->
+             
+              <!--special characters and spaces not allowed in data-field name-->
+              <td>{{ row['id']}}</td>
+              <td>{{ row['motivo']}}</td>
+              <td>{{ ",".join(row['elementi_secondari'])}}</td>
+              <td>{{ ",".join(row['mss'])}}</td>
+              <td>{{ ",".join(row['IPHN']) }}</td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+
+
+<br>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    
+{% endblock body %}

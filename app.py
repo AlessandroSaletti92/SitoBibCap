@@ -11,12 +11,24 @@ from collections import defaultdict
 import xml.etree.ElementTree as ET
 from TEIexporter import TEImsdesc
 import requests
-
+import filigranestatic
 #from flask_consent import Consent
 
 import os
 
 GlobalVar = []
+
+class FormFiligrane(FlaskForm):
+	#   name = StringField('Materiale', validators=[DataRequired()])
+	#materiale = SelectField(u'Materiale: ',
+	# 			choices=['qualsiasi','papiro', 'pergamena', 'carta'],
+	#			render_kw={'class':"form-control",})
+	luogo = SelectField('Luogo',choices=filigranestatic.luoghi,render_kw={'class':"form-control",})
+	motivo = SelectField('Motivo',choices=filigranestatic.classi,render_kw={'class':"form-control",})
+	manoscritto = StringField('Manoscritto',render_kw={'class':"form-control",})
+	IPHN = StringField('IPHN',render_kw={'class':"form-control",})
+ 	#anno = StringField('Datazione',render_kw={'class':"form-control",})
+
 
 class MyForm(FlaskForm):
 	#   name = StringField('Materiale', validators=[DataRequired()])
@@ -282,6 +294,60 @@ def BT2():
 		#print(form.materiale)
 
 	return render_template("bootstraptable2.html",tableA = cursor, form=form)
+
+
+
+@app.route('/ricercafiligrane', methods=['GET', 'POST'])
+def ricercafiligrane():
+	form = FormFiligrane()
+	cursor = client.capitolare.filigrane.find()
+	#import pdb; pdb.set_trace()
+	if form.validate_on_submit():
+		#import pdb; pdb.set_trace()
+		#data = request.form['slider-range']
+		#anno = request.form['anno']
+		# if request.form.get('match-with-bears'):
+		query = defaultdict(list)
+		if form.luogo.data != "Qualsiasi":
+			query_luogo = {"ids":{"$elemMatch":{"place":form.luogo.data}}}
+			query["$and"].append(query_luogo)
+		if form.motivo.data != "Qualsiasi":
+			query_motivo = {"motivo_id": {'$regex':"^%s" %(form.motivo.data)}}
+			query["$and"].append(query_motivo)
+		if form.IPHN.data != "":
+			query_IPHN = {"IPHN":{'$regex':"^%s" %(form.IPHN.data)}}
+			query["$and"].append(query_IPHN)
+		if form.manoscritto.data != "":
+			query_manoscritto = {"mss":{"$elemMatch":{'$regex':"^%s" %(form.manoscritto.data)}}}
+			query["$and"].append(query_manoscritto)
+		# if form.materiale.data != "qualsiasi":
+		#	query_materiale_re = {"descrizione_esterna.tipo_di_supporto_e_qualita" : 
+		#							re.compile(form.materiale.data, re.IGNORECASE)}
+		#
+		#	query["$and"].append(query_materiale_re)
+
+		#client.capitolare.codici.find({
+		#		
+		#	})
+		#
+		#
+		# if form.titolo.data != "":
+		# 	query_titolo_re2 = {"descrizione_interna" :
+		# 							{"$elemMatch": 
+		# 							{"titolo":re.compile(form.titolo.data, re.IGNORECASE)}}}
+		# 	query["$and"].append(query_titolo_re2)
+		# if form.fulltext.data != "":
+		# 	query_text = {"$text": { "$search": form.fulltext.data }}
+		# 	query["$and"].append(query_text)
+
+
+		cursor = client.capitolare.filigrane.find(query)
+		#cursor = client.capitolare.filigrane.find()
+		print("Funziona!")
+		print(form.data)
+		#print(form.materiale)
+
+	return render_template("ricercafiligrane.html",tableA = cursor, form=form)
 
 
 available_formats = {
