@@ -2,6 +2,10 @@
 {% block header %}
 <!-- This link is needed by unAPI it points to the API url -->
 <link rel="unapi-server" type="application/xml" title="unAPI" href={{"/".join((request.url_root,"unapi"))}} />
+{% if codice['status'] == "In lavorazione" %}
+<meta name="robots" content="none">
+{% endif %}
+
 {% endblock header %}
 {% block  body%}
 

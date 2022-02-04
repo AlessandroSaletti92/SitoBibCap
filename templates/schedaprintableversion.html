@@ -4,16 +4,18 @@
 ol {
     counter-reset: item
   }
-  li.di {
-    display: block
-  }
-  li.di:before {
-    content: counters(item, ".") " ";
-    counter-increment: item
-  }
-  .warning{
+li.di {
+display: block
+}
+li.di:before {
+content: counters(item, ".") " ";
+counter-increment: item
+}
+.warning{
 background-color: darkorange;
 text-align:center;
+}
+h3 {text-align:center;
 }
 </style>
 </head>
@@ -26,6 +28,7 @@ text-align:center;
     Questa è una versione preliminare della scheda, il catalogatore deve ancora revisionare le informazioni contenute.
 </div>
 {% endif %}
+Versione stampabile generata sulla base delle informazioni contenute nella <a href="/segnatura/{{codice['segnatura_idx']}}">scheda digitale</a> al seguente link http://capitolar-e.univr.it/segnatura/{{codice['segnatura_idx']}}. 
 <br>
 <b>Autore della scheda:</b>
 {% if codice['descrizione_esterna'] %}
@@ -56,7 +59,8 @@ text-align:center;
         {% endif%}
         {% for field in codice['descrizione_esterna'] %}
         {% if parti > 1%}
-        <h3> {{loop.index}} </h3>
+        <!-- <h3> {{loop.index}} </h3> -->
+        <h3>{{field['Descrizione_Esterna_Segnatura']}}</h3>
         L'unità {{loop.index}} ({{field['dimensioni']}}) è databile al {{field['datazione']}}.
         {% endif%}
          Ha un supporto {{field['tipo_di_supporto_e_qualita']}} di {{field['consistenza']}}, con {{field['numerazione_carte']}}. Le carte di guardia sono {{field['carte_di_guardia']}}; ha una {{field['legatura']}}.</p>
@@ -65,7 +69,6 @@ text-align:center;
             <b>Filigrana: </b>{{field['filigrana']}}
             {% endif %}
         <b>Decorazioni: </b>{{field['decorazioni']}}
-        <b>Palinsesto: </b>{{field['Descrizione_Esterna_Segnatura']}}
         <br>
         {% endfor %}
 {% else %}
