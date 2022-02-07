@@ -32,7 +32,9 @@
 	<div id="slider-range" class="container-md"></div>
 
 	<br>
-
+  <div class="form-group">
+    {{ form.luogo.label }} {{ form.luogo }}
+    </div>
     <div class="form-group">
     {{ form.motivo.label }} {{ form.motivo }}
    	</div>	
@@ -41,9 +43,7 @@
     {# form.materiale.label #} {# form.materiale #}
 	</div> -->
 
-    <div class="form-group">
-    {{ form.luogo.label }} {{ form.luogo }}
-    </div>
+    
 
     <div class="form-group">
     {{ form.manoscritto.label }} {{ form.manoscritto }}
@@ -106,7 +106,7 @@ RESULTS TABLE
                 <th data-field="ID" data-filter-control="input" data-sortable="true">Identificativo</th>
                 <th data-field="Motivo" data-filter-control="input" data-sortable="true">Motivo</th>
                 <th data-field="Elemenenti secondari" data-filter-control="input" data-sortable="true" data-visible="false">Elementi interni</th>
-                <th data-field="Indentificato in" data-filter-control="input" data-sortable="true" data-visible="false">Presente in</th>
+                <th data-field="Occorrenze" data-filter-control="input" data-sortable="true" data-visible="false">Presente in</th>
                 <th data-field="IPHN" data-filter-control="input" data-sortable="true" data-visible="false">IPHN</th>
                 <!-- <th data-field="Datazione" data-filter-control="input" data-sortable="true">Datazione</th>
                 <th data-field="Materiale" data-filter-control="select" data-sortable="true">Materiale </th>
