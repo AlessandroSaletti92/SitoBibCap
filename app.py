@@ -164,7 +164,6 @@ def exploreapp():
 def archivioapp():
 	return render_template("archivioapp.html")
 
-
 @app.route('/opendata')
 def opendata():
 	return render_template("opendata.html")
@@ -484,6 +483,10 @@ def pagelayour():
 	# http://localhost:5000/pagelayout/?mas=250x165=24[185]41x15[(6)124(6)]15
 	obj = ET.tostring(SVGpagelayout.generateSVG(mas,'test'))
 	return app.response_class(obj, mimetype='application/xml')
+
+@app.route('/testbossaglia/')
+def testbossaglia():
+	return render_template('test_bootstrap.html')
 
 if __name__  == '__main__':
 	app.run(debug=True)
