@@ -213,7 +213,7 @@ def archivio():
 def segnatura(segnatura_id):
 	var = client.capitolare.codici.find_one({'segnatura_idx': segnatura_id})
 	if var is None:
-		return render_template("nontrovato.html",segnatura=segnatura)
+		return render_template("noncreato.html",segnatura=segnatura_id)
 	get_all_values(var)
 	#sort_dec_int(var)
 	#import pdb; pdb.set_trace()
@@ -299,7 +299,7 @@ def BT2():
 @app.route('/ricercafiligrane', methods=['GET', 'POST'])
 def ricercafiligrane():
 	form = FormFiligrane()
-	cursor = client.capitolare.filigrane.find()
+	cursor = client.test.filigranev5.find()
 	#import pdb; pdb.set_trace()
 	if form.validate_on_submit():
 		#import pdb; pdb.set_trace()
@@ -340,8 +340,9 @@ def ricercafiligrane():
 		# 	query["$and"].append(query_text)
 
 
-		cursor = client.capitolare.filigrane.find(query)
+		cursor = client.test.filigranev5.find(query)
 		#cursor = client.capitolare.filigrane.find()
+		#breakpoint()
 		print("Funziona!")
 		print(form.data)
 		#print(form.materiale)
