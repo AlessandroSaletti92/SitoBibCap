@@ -113,26 +113,23 @@ RESULTS TABLE
                 <th data-field="Consistenza" data-filter-control="input" data-sortable="true" data-visible="false">Consistenza</th>
                 <th data-field="sommario_desc" data-filter-control="input" data-sortable="true" data-visible="false">Sommario</th>
                 <th data-field="idscheda" data-filter-control="input" data-sortable="true" data-visible="false">id_scheda</th>
- -->
-                
-                
-
-                
+ -->     
             </tr>
         </thead>
         <tbody>
           {% for row in tableA %}
-          <tr>
-              
+          <tr>  
               <!--non visibili  -->
-             
               <!--special characters and spaces not allowed in data-field name-->
               <td>{{ row['id']}}</td>
               <td>{{ row['motivo']}}</td>
               <td>{{ ",".join(row['elementi_secondari'])}}</td>
-              <td>{{ ",".join(row['mss'])}}</td>
+              <td>
+              {% for elem in row['mssc'] %}
+              <a href="segnatura/{{elem['id']}}">{{elem['segnatura']}}</a>
+              {% endfor %}
+              </td>
               <td>{{ ",".join(row['IPHN']) }}</td>
-
           </tr>
           {% endfor %}
         </tbody>
