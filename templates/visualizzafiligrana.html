@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href={{url_for("static",filename="customfil.css")}} rel="stylesheet" type="text/css" >
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+        const t = document.querySelectorAll('g') 
+        const layer = Array.from(t)
+            .filter(t => t.getAttribute('inkscape:label') === 'Tracciato')[0]
+        const immagini = Array.from(t)
+            .filter(t => t.getAttribute('inkscape:label') === 'immagini')[0]
+        document.getElementById("watermarkwidth").innerHTML = Math.round(layer.getBBox()['width']);
+        document.getElementById("watermarkheight").innerHTML = Math.round(layer.getBBox()['height']);
+        var slide = document.getElementById('fotoopacity')
+        var tracciatoslide = document.getElementById('tracciatoopacity')
+        var spessoretracciato = document.getElementById('spessoretracciato')
+        var affianca = document.getElementById('affianca')
+        var nottranslatedyet = true
+        var paths = layer.getElementsByTagName("path")
+        slide.onchange = function() {
+            immagini.setAttribute('style',"display:inline;opacity:"+this.value);};
+     
+        tracciatoslide.onchange = function() {
+            layer.setAttribute('style',"display:inline;opacity:"+this.value);}
+        
+        spessoretracciato.onchange = function() {
+            for (var i = 0; i < paths.length; i++) {
+            paths[i].style.strokeWidth =this.value;} //second console output
+         }
+         affianca.onchange = function(){
+             // in some case the layer might have a transform already applied
+             // if there is one we need to preserve it.
+            trs = layer.getAttribute('transform')
+            var trsar = trs.split('),')
+            if(nottranslatedyet){
+                trsar.push("translate("+this.value+",0)")
+                finaltrs = trsar.join(',')
+                nottranslatedyet = false
+            }else{
+                trsar[trsar.length -1] = "translate("+this.value+",0)"
+                finaltrs = trsar.join('),')
+            }
+            layer.setAttribute("transform",finaltrs)
+
+         }
+       
+});
+    
+    
+
+    </script>
+</head>
+
+<!-- var Head = document.getElementById("svgGlasses").contentDocument();
+var mySVG = document.getElementById("SVGdrawing");
+var fridgeDoc = mySVG.contentDocument;
+Head.style.setProperty("fill", "#000000", ""); 
+
+const t = document.querySelectorAll('g') 
+
+const layer = Array.from(t)
+    .filter(t => t.getAttribute('inkscape:label') === 'Tracciato')[0]
+
+svg.addEventListener("load",function(){
+
+                var svgDoc = svg.contentDocument;
+                console.log(svgDoc);
+                // Get one of the SVG items by ID;
+                var svgItem = svgDoc.getElementById("layer1");
+                //console.log(svgItem);
+                // Set the colour to something else
+                svgItem.style.fill ="blue";
+
+            }, false);
+
+-->
+<body>
+
+    <div class="sidenav">
+        <p>
+        Dimensioni <span id='watermarkwidth'></span> x <span id="watermarkheight"></span> mm
+        </p>
+        <p>Opacità tracciato</p>
+        <input type="range" min="0" max="1" value="1" step="0.1" id="tracciatoopacity">
+        <p>Spessore tracciato</p>
+        <input type="range" min="0" max="4" value="0.2" step="0.1" id="spessoretracciato">
+        <p>Opacità fotografie</p>
+        <input type="range" min="0" max="1" value="1" step="0.1" id="fotoopacity">
+        <p>Opacità repertorio</p>
+        <input type="range" min="1" max="100" value="50" step="0.1"id="repertorioopacity">
+        <p>Affianca</p>
+        <input type="range" min="0" max="100" value="0" step="2"id="affianca">
+
+            
+        </div>
+{% include  watermarkpath %}  
+</body>
+</html>

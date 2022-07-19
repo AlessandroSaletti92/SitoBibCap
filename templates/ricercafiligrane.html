@@ -108,6 +108,8 @@ RESULTS TABLE
                 <th data-field="Elemenenti secondari" data-filter-control="input" data-sortable="true" data-visible="false">Elementi interni</th>
                 <th data-field="Occorrenze" data-filter-control="input" data-sortable="true" data-visible="false">Presente in</th>
                 <th data-field="IPHN" data-filter-control="input" data-sortable="true" data-visible="false">IPHN</th>
+                <th data-field="Links" data-filter-control="input" data-sortable="true" data-visible="false"></th>
+
                 <!-- <th data-field="Datazione" data-filter-control="input" data-sortable="true">Datazione</th>
                 <th data-field="Materiale" data-filter-control="select" data-sortable="true">Materiale </th>
                 <th data-field="Consistenza" data-filter-control="input" data-sortable="true" data-visible="false">Consistenza</th>
@@ -130,6 +132,7 @@ RESULTS TABLE
               {% endfor %}
               </td>
               <td>{{ ",".join(row['IPHN']) }}</td>
+              <td><a href="visualizzatorefiligrane/{{row['id']}}" class="btn btn-primary">Visualizza dettagli</a></td>
           </tr>
           {% endfor %}
         </tbody>

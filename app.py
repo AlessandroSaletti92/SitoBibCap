@@ -219,9 +219,15 @@ def segnatura(segnatura_id):
 	#import pdb; pdb.set_trace()
 	sgn = var['descrizione_esterna'][0]['Segnatura']
 	#sgn = "DCCCXLIX (DCCCLIII)"
+	filigrane = None
+	for i in var['descrizione_esterna']:
+		if i['filigrana'] == "Ravvisabile":
+			filigrane = client.test.filigranev5.find({"mssc":{"$elemMatch":{"id":segnatura_id}}})
+			break
+
 	url = f"https://api.zotero.org/groups/3759014/items?key={zoteroapikey}&tag={sgn}&format=bib&locale=it-IT"
 	r = requests.get(url)
-	return render_template("risultati2.html", codice=var,bibliografia = r.text,sgn=sgn)
+	return render_template("risultati2.html", codice=var,bibliografia = r.text,sgn=sgn,filigrane=filigrane)
 
 @app.route('/printableversion/<segnatura_id>')
 def printableversion(segnatura_id):
@@ -349,6 +355,10 @@ def ricercafiligrane():
 
 	return render_template("ricercafiligrane.html",tableA = cursor, form=form)
 
+@app.route("/visualizzafiligrana/<numero>")
+def visualizzafiligrana(numero):
+	watermarkpath = "watermarks/%s.svg" %numero
+	return render_template("visualizzafiligrana.html",watermarkpath=watermarkpath)
 
 available_formats = {
 	"oai_dc" :{

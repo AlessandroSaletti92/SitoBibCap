@@ -73,7 +73,15 @@
             <tr><td><b>Foratura: </b></td><td>{{field['foratura']}}</td></tr>
             <tr><td><b>Legatura: </b></td><td>{{field['legatura']}}</td></tr>
             {% if field['filigrana'] != "Non disponibile"%}
-            <tr><td><b>Filigrana: </b></td><td>{{field['filigrana']}}</td></tr>
+              {% if filigrane != None%}
+              <tr><td><b>Filigrane: </b></td><td>
+                {% for filigrana in filigrane%}
+                {{filigrana['id']}}
+                {% endfor %}
+              </td></tr>
+              {% else %}
+              <tr><td><b>Filigrana: </b></td><td>{{field['filigrana']}}</td></tr>
+              {% endif %}
             {% endif %}
             <tr><td><b>Decorazioni: </b></td><td>{{field['decorazioni']}}</td></tr>
         </table>
