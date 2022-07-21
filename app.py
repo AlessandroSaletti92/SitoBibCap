@@ -355,10 +355,10 @@ def ricercafiligrane():
 
 	return render_template("ricercafiligrane.html",tableA = cursor, form=form)
 
-@app.route("/visualizzafiligrana/<numero>")
-def visualizzafiligrana(numero):
-	watermarkpath = "watermarks/%s.svg" %numero
-	cursor = client.test.filigranev5.find_one({"id":int(numero)})
+@app.route("/visualizzafiligrana/<identificativo>")
+def visualizzafiligrana(identificativo):
+	watermarkpath = "watermarks/%s.svg" %identificativo
+	cursor = client.test.filigranev5.find_one({"id":identificativo})
 	return render_template("visualizzafiligrana.html",watermarkpath=watermarkpath, cursor=cursor)
 
 available_formats = {
