@@ -83,21 +83,35 @@ svg.addEventListener("load",function(){
 
     <div class="sidenav">
         <p>
-        Dimensioni <span id='watermarkwidth'></span> x <span id="watermarkheight"></span> mm
+        <p>Motivo: {{cursor['motivo']}}</p>
+        {% if cursor['elementi_secondari'] != [] %}
+        <p>Elementi secondari: {{",".join(cursor['elementi_secondari'])}}</p>
+        {% endif %}
+        <p>
+            Dimensioni <span id='watermarkwidth'></span> x <span id="watermarkheight"></span> mm
         </p>
+        <p>Occorrenze: {{"-".join(cursor['mss'])}}</p>
+        {% for att in cursor["ids"] %}
+        <p>Riferimenti: {{att['repertorio']}} {{att['id_n']}}</p>
+        <p>Luoghi: {{"-".join(att['luoghi'])}}</p>
+        <p>Data:  {{att['date'][0]}}</p>
+        {% endfor %}
+
+        <p>IPHN: {{",".join(cursor['IPHN'])}}</p>
+        
         <p>Opacità tracciato</p>
         <input type="range" min="0" max="1" value="1" step="0.1" id="tracciatoopacity">
         <p>Spessore tracciato</p>
         <input type="range" min="0" max="4" value="0.2" step="0.1" id="spessoretracciato">
         <p>Opacità fotografie</p>
         <input type="range" min="0" max="1" value="1" step="0.1" id="fotoopacity">
-        <p>Opacità repertorio</p>
-        <input type="range" min="1" max="100" value="50" step="0.1"id="repertorioopacity">
         <p>Affianca</p>
         <input type="range" min="0" max="100" value="0" step="2"id="affianca">
 
             
         </div>
-{% include  watermarkpath %}  
+<div class="svgdiv">
+    {% include  watermarkpath %}  
+</div>
 </body>
 </html>

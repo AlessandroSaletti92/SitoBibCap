@@ -358,7 +358,8 @@ def ricercafiligrane():
 @app.route("/visualizzafiligrana/<numero>")
 def visualizzafiligrana(numero):
 	watermarkpath = "watermarks/%s.svg" %numero
-	return render_template("visualizzafiligrana.html",watermarkpath=watermarkpath)
+	cursor = client.test.filigranev5.find_one({"id":int(numero)})
+	return render_template("visualizzafiligrana.html",watermarkpath=watermarkpath, cursor=cursor)
 
 available_formats = {
 	"oai_dc" :{

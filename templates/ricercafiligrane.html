@@ -125,14 +125,19 @@ RESULTS TABLE
               <!--special characters and spaces not allowed in data-field name-->
               <td>{{ row['id']}}</td>
               <td>{{ row['motivo']}}</td>
+              {% if row['elementi_secondari']!= [] %}
               <td>{{ ",".join(row['elementi_secondari'])}}</td>
+              {% else %}
+              <td> nessuno </td>
+              {% endif %}
+
               <td>
               {% for elem in row['mssc'] %}
               <a href="segnatura/{{elem['id']}}">{{elem['segnatura']}}</a>
               {% endfor %}
               </td>
               <td>{{ ",".join(row['IPHN']) }}</td>
-              <td><a href="visualizzatorefiligrane/{{row['id']}}" class="btn btn-primary">Visualizza dettagli</a></td>
+              <td><a href="visualizzafiligrana/{{row['id']}}" class="btn btn-primary">Visualizza dettagli</a></td>
           </tr>
           {% endfor %}
         </tbody>
