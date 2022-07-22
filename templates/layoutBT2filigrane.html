@@ -69,35 +69,6 @@
   <hr>
   </p>
 </footer>
-<script>
-    function detailFormatter(index, row) {
-        var html = []
-        html.push("<img src={{url_for('static',filename='imgs/filigrana.svg')}} style='padding: 0px 50px 0px 30px;float: left;'>")
-        $.each(row, function (key, value) {
-          if (key[0] != "_") {
-          html.push('<p class="fw-light" ><b>' + key + ':</b> ' + value + '</p>')
-
-          console.log(key)
-            if (key == 'link_immagine'){
-              html.push("<img src='"+value+"' alt='Manuscript thumbnail' style='padding: 0px 5px 0px 0px;float: left;'>")
-
-            }
-            else if (key == 'sommario_desc'){
-              html.push('<p class="fw-light py-2 px-2" >' + value + '</p>')
-
-            }
-            else if (key == 'idscheda'){
-              html.push("<a class='btn btn-primary' href='"+value+"' role='button'>Vai alla scheda</a>")
-
-            }
-            // else{html.push(value + '&#8226;')}
-          
-          }
-        })
-        
-        return html.join('')
-      }
-    </script>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
