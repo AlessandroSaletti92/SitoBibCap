@@ -103,23 +103,16 @@ num_map = [(1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'), (100, 'C'), (90, '
            (50, 'L'), (40, 'XL'), (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')]
 
 
-def toRoman(num):
-	"""Converto to roman
+def toRoman(n):
+    g = {
+        1: ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"],
+        2: ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "LC"],
+        3: ["", "C", "CC", "CCC", "CD", "DC", "DCC", "DCCC", "CM"],
+        4: ["", "M", "MM", "MMM", "MMMM"],
+    }
+    return "".join(g[len(str(n)) - ind][int(s)] for ind, s in enumerate(str(n)))
 
-	Args:
-	num (str): integer to convert
 
-	Returns:
-	str: converted
-	"""
-	roman = ''
-	num = int(num)
-	while num > 0:
-		for i, r in num_map:
-			while num >= i:
-				roman += r
-				num -= i
-	return roman
 
 app.jinja_env.filters['toRoman'] = toRoman 
 
