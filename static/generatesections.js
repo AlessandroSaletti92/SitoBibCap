@@ -24,6 +24,26 @@ t = {
     'Descrizione_Esterna_Segnatura': 'ID descrizione esterna'
 }
 
+
+function toRoman(str) {
+    const g = {
+        1: ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],
+        2: ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'LC'],
+        3: ['', 'C', 'CC', 'CCC', 'CD', 'DC', 'DCC', 'DCCC', 'CM'],
+        4: ['', 'M', 'MM', 'MMM','MMMM']
+    }
+    return [...str].map((s, i) => g[str.length - i][s]).join("")
+}
+
+function getUC(descrizione_interna){
+    res  = ""
+    if (descrizione_interna['Descrizione_Esterna_Segnatura'] != "0") {
+        r = toRoman(descrizione_interna['Descrizione_Esterna_Segnatura'])
+        res = '(Unità codicologica ' + r + ' ) ' 
+    }
+    return res  
+}
+
 g = document.querySelector("#JSONMetadata")
 codice = JSON.parse(g.innerHTML)
 function populateDescEst() {
@@ -34,7 +54,7 @@ function populateDescEst() {
             const field = codice.descrizione_esterna[index];
             if (field['Descrizione_Esterna_Segnatura'] != "0") {
                 h6a = document.createElement("h6");
-                h6a.innerHTML = field['Descrizione_Esterna_Segnatura']
+                h6a.innerHTML = toRoman(field['Descrizione_Esterna_Segnatura'])
                 h6b = document.createElement("h6");
                 h6b.innerHTML = "(" + field['tipologia'] + ")"
                 pDescEst.append(h6a, h6b)
@@ -160,7 +180,7 @@ function populateDescInt() {
             }
             li = document.createElement("li")
             li.className = 'linumbered'
-            li.innerHTML = di.titolo.bold() + " " + di.autore + "," + di.carte + "." + "<b>Incipit: </b>" + di.incipit.italics() + "<b> Explicit: </b> " + di.explicit.italics()
+            li.innerHTML = getUC(di) + di.titolo.bold() + " " + di.autore + "," + di.carte + "." + "<b>Incipit: </b>" + di.incipit.italics() + "<b> Explicit: </b> " + di.explicit.italics()
             if (di.incipit_url != "") {
                 a = document.createElement("a")
                 a.href = di.incipit_url
@@ -174,7 +194,13 @@ function populateDescInt() {
     }
 }
 
+function populateStoriaDesc() {
+    pStoria = document.querySelector('#show_storia_desc')
+    pStoria.innerHTML = codice.storia_desc
+
+}
+
 document.getElementById("accordion_descrizione_esterna").addEventListener("click", populateDescEst);
 document.getElementById("accordion_scritture_avventizie").addEventListener("click", populateScrittureAvventizie);
 document.getElementById("accordion_descInt").addEventListener("click", populateDescInt);
-
+document.getElementById("btn_storia_desc").addEventListener("click", populateStoriaDesc);
