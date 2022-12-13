@@ -49,7 +49,7 @@ codice = JSON.parse(g.innerHTML)
 function populateDescEst() {
     pDescEst = document.querySelector('#panel_descrizione_esterna')
     if (pDescEst.innerHTML == "") {
-        fields = ['datazione', 'consistenza', 'trascrizione_datazione', 'luogo', 'trascrizione_luogo', 'tipo_di_supporto_e_qualita', 'carte_di_guardia', 'numerazione_carte', 'prospetto_fascicolazione', 'arrangiamento_fogli_gregory', 'dimensioni', 'rigatura', 'foratura', 'legatura']
+        fields = ['legatura', 'foratura', 'rigatura', 'dimensioni', 'arrangiamento_fogli_gregory', 'prospetto_fascicolazione', 'numerazione_carte', 'carte_di_guardia', 'tipo_di_supporto_e_qualita', 'trascrizione_luogo', 'luogo', 'trascrizione_datazione', 'consistenza', 'datazione']
         for (let index = 0; index < codice.descrizione_esterna.length; index++) {
             const field = codice.descrizione_esterna[index];
             if (field['Descrizione_Esterna_Segnatura'] != "0") {
