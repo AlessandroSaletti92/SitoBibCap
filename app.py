@@ -13,6 +13,7 @@ from TEIexporter import TEImsdesc
 import requests
 import filigranestatic
 #from flask_consent import Consent
+from flask_debugtoolbar import DebugToolbarExtension
 
 import os
 
@@ -41,6 +42,11 @@ class MyForm(FlaskForm):
  	#anno = StringField('Datazione',render_kw={'class':"form-control",})
 
 def get_all_values(nested_dictionary):
+	"""Aggiunge non disponibile se non specificato.
+
+	Args:
+		nested_dictionary (_type_): _description_
+	"""
 	if isinstance(nested_dictionary,str):
 		pass
 	else:
@@ -68,10 +74,14 @@ app = Flask(__name__)
 # questo è per lo sviluppo (ricarica i file statici non caching) commentarlo in production!!
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config['SECRET_KEY'] = secret_key
+# the toolbar is only enabled in debug mode:
+# app.debug = True
+# app.config['DEBUG_TB_PROFILER_ENABLED'] = False
 #app.config['CONSENT_FULL_TEMPLATE'] = 'consent.html'
 #app.config['CONSENT_BANNER_TEMPLATE'] = 'consent_banner.html'
 #consent = Consent(app)
 #consent.add_standard_categories()
+# toolbar = DebugToolbarExtension(app)
 
 @app.context_processor
 def inject_template_scope():
@@ -88,6 +98,30 @@ def get_authors(codice,field):
     return list(set([i[field] for i in codice['descrizione_esterna']]))
 
 app.jinja_env.globals.update(get_authors=get_authors)
+
+num_map = [(1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'), (100, 'C'), (90, 'XC'),
+           (50, 'L'), (40, 'XL'), (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')]
+
+
+def toRoman(num):
+	"""Converto to roman
+
+	Args:
+	num (str): integer to convert
+
+	Returns:
+	str: converted
+	"""
+	roman = ''
+	num = int(num)
+	while num > 0:
+		for i, r in num_map:
+			while num >= i:
+				roman += r
+				num -= i
+	return roman
+
+app.jinja_env.filters['toRoman'] = toRoman 
 
 
 
@@ -200,10 +234,10 @@ def search():
 		var = client.capitolare.codici.find_one({'segnatura_idx': segnatura_id})
 		if var is None:
 			return render_template("noncreato.html",segnatura=segnatura)
-		get_all_values(var)
+		#get_all_values(var)
 		#sort_dec_int(var)
-		
-	return render_template("risultati2.html", codice=var)
+	# 4,5,6, 3
+	return render_template("risultati5.html", codice=var)
 
 @app.route('/archivio/')
 def archivio():
@@ -214,7 +248,8 @@ def segnatura(segnatura_id):
 	var = client.capitolare.codici.find_one({'segnatura_idx': segnatura_id})
 	if var is None:
 		return render_template("noncreato.html",segnatura=segnatura_id)
-	get_all_values(var)
+	# get_all_values(var)
+	# breakpoint()
 	#sort_dec_int(var)
 	#import pdb; pdb.set_trace()
 	sgn = var['descrizione_esterna'][0]['Segnatura']
@@ -227,7 +262,25 @@ def segnatura(segnatura_id):
 
 	url = f"https://api.zotero.org/groups/3759014/items?key={zoteroapikey}&tag={sgn}&format=bib&locale=it-IT"
 	r = requests.get(url)
-	return render_template("risultati2.html", codice=var,bibliografia = r.text,sgn=sgn,filigrane=filigrane)
+	# 4 versione prima, 5,6,3
+	return render_template("risultati6.html", codice=var,bibliografia = r.text,sgn=sgn,filigrane=filigrane)
+
+@app.route('/segnaturadyn/<segnatura_id>')
+def segnaturadyn(segnatura_id):
+	var = client.capitolare.codici.find_one({'segnatura_idx': segnatura_id})
+	if var is None:
+		return render_template("noncreato.html",segnatura=segnatura_id)
+	sgn = var['descrizione_esterna'][0]['Segnatura']
+	#sgn = "DCCCXLIX (DCCCLIII)"
+	filigrane = None
+	url = f"https://api.zotero.org/groups/3759014/items?key={zoteroapikey}&tag={sgn}&format=bib&locale=it-IT"
+	r = requests.get(url)
+	# 4 versione prima, 5,6,3
+	# breakpoint()
+	del var['_id']
+	var['created'] = var['created'].strftime('%Y-%m-%d')
+	var['last_modified'] = var['last_modified'].strftime('%Y-%m-%d')
+	return render_template("risultati6dyn.html", codice=var,bibliografia = r.text,sgn=sgn)
 
 @app.route('/printableversion/<segnatura_id>')
 def printableversion(segnatura_id):

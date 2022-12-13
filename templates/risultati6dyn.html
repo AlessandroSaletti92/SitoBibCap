@@ -1,0 +1,283 @@
+{% extends 'layout.html' %}
+{% block header %}
+<!-- This link is needed by unAPI it points to the API url -->
+<link rel="unapi-server" type="application/xml" title="unAPI" href={{"/".join((request.url_root,"unapi"))}} />
+{% if codice['status'] == "In lavorazione" %}
+<meta name="robots" content="none">
+{% endif %}
+
+<script type="application/ld+json" id="JSONMetadata">
+    {{codice|tojson|safe}}
+</script>
+{% endblock header %}
+{% block  body%}
+
+<br>
+
+<div class="manbanner" id="content">
+  <img alt="Particolare del manoscritto" src="{{codice['immagine_banner']}}" class="img-fluid mb5" id="imgmanu">
+  <div class="mantext"><abbr class="unapi-id" title={{codice['segnatura_idx']}}>{{codice['descrizione_esterna'][0]['Segnatura']}}</abbr></div>
+</div>
+  <div class="container py-3 px-0" id="scheda">
+    <div class="row">
+
+    <div class="col-2 py-5">
+        <img alt="Dorso del manoscritto" src="{{codice['immagine_dorso']}}"  class="rounded d-block" >
+    </div>
+    <div class="col" style="min-width: 320px;">
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item " role="presentation">
+              <a class="nav-link active text-dark" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><small><strong>descrizione</strong></small></a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link text-dark" id="profile-tab" data-bs-toggle="tab" href="#Fac-similes" role="tab" aria-controls="Fac-similes" aria-selected="false"><small><strong>facsimilia</strong></small></a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link text-dark" id="analisi-tab" data-bs-toggle="tab" href="#analisi" role="tab" aria-controls="analisi" aria-selected="false"><small><strong>analisi</strong></small></a>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+<div class="p-2 bg-secondary text-white">
+<h5 class="text-center">CXXI</h5>
+<!-- <h6>I</h6> -->
+<div class="text-center">
+  <p>
+  I.     
+  <b>Consistenza:</b> II, 349, II
+  <b>Collocazione:</b> [2312132]
+  <b>Carte di guardia:</b>	la terza carta di guardia anteriore è membranacea, probabilmente originale; la prima e l’ultima carta di guardia, rispettivamente anteriore e posteriore, non sono originali, dacché inserite nel corso del restauro della legatura
+</p><p>
+  II. 
+  <b>Consistenza:</b> II, 349, II
+  <b>Collocazione:</b> [2312132]
+  <b>Carte di guardia:</b>	la terza carta di guardia anteriore è membranacea, probabilmente originale; la prima e l’ultima carta di guardia, rispettivamente anteriore e posteriore, non sono originali, dacché inserite nel corso del restauro della legatura
+</p>
+</div>
+</div>  
+<button class="accordion" id="accordion_descrizione_esterna">Descrizione Esterna</button>
+        <div class="panel">
+          <div class="show" id="panel_descrizione_esterna"></div>
+        </div>
+
+<button class="accordion py-1" id="accordion_scritture_avventizie"><small>&nbsp;&nbsp;&nbsp; Scritture avventizie</small></button>
+        <div class="panel">
+          <div class="show" id="panel_scritture_avventizie"></div>
+        </div>
+
+
+<button class="accordion" id="accordion_descInt">Descrizione Interna</button>
+        <div class="panel">
+          <div class="show" id="panel_descInt"></div>
+        </div>
+
+
+
+
+
+<button class="accordion">Note di possesso, di biblioteca e segnature</button>
+        <div class="panel">
+          <div class="show">
+          <p>
+            {% if codice['storia_del_manoscritto'] %}
+            {% for field in codice['storia_del_manoscritto'] %}
+        <span >            
+            <h6>{{field['Id_auto_inc']}}</h6>
+            <br>
+            <table>
+            <tr><td><b>Datazione: </b></td><td>{{field['Datazione']}}</td></tr>
+            <tr><td><b>Contenuto: </b></td><td>{{field['Contenuto']}}</td></tr>
+            <tr><td><b>Trascrizione: </b></td><td>{{field['Trascrizione']}}</td></tr>
+            <tr><td><b>Posizione: </b></td><td>{{field['Posizione']}}{% if field['link_img'] != "" %}<sup><a href={{field['link_img']}} target="_blank">&#x1F4F7;</a></sup>{% endif %}</td></tr>
+            <tr><td><b>Tipologia scrittura: </b></td><td>{{field['Tipologia_scrittura']}}</td></tr>
+            <tr><td><b>Unità codicologica: </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
+        </table><br>
+        {% if field['link_ROI'] != "" %}<img src={{field['link_ROI']}} class="rounded mx-auto d-block" alt="{{field['Contenuto']}}">{% endif %}
+        <hr><br>
+        </span>
+            {% endfor %}
+            {% else %}
+            <p> Nessun record inserito.</p>
+            {% endif %}
+            </p>
+          </div>
+          </div>
+
+<button class="accordion">Storia del manoscritto</button>
+    <div class="panel">
+        <div class="show">
+          Il codice è una copia del IX secolo della Regula pastoralis di Gregorio Magno (cc. 4v-128v). La trascrizione dell'opera è preceduta, tra le carte 1v e 3r, da un sermone di Cesario di Arles, ed è seguita, tra le carte 129r e 130v, da un piccolo componimento anonimo noto come De ortu et obitu prophetarum et apostolorum.
+        </div>
+  </div>
+
+
+<button class="accordion">Bibliografia Esterna</button>
+        <div class="panel">
+          <br>
+
+          <div class="show">
+            {{bibliografia|safe}}
+          </div>
+         <br>
+         <div class="d-grid gap-2 col-10 mx-auto">
+          <a href="https://www.zotero.org/groups/3759014/capitolare-univr/tags/{{sgn}}/library" class="btn btn-outline-primary" target="_blank">Visualizzazione avanzata su una nuova scheda su zotero.org</a>
+          </div>
+          <br>
+          
+          </div>
+
+
+
+
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+
+function mostraDI(elem) {
+    elem.nextElementSibling.toggleAttribute('hidden')
+}
+</script>
+        
+    </div>
+        <div class="tab-pane fade bg-light" id="Fac-similes" role="tabpanel" aria-labelledby="profile-tab">
+
+            {% if codice['facsimile'] %}
+            {% for field in codice['facsimile'] %}
+            <br>
+            <h6>{{field['id_facsimile']}}</h6>
+            <table>
+                <tr><td><b>tipologia: </b></td><td>{{field['tipologia']}}</td></tr>
+                <tr><td><b>descrizione: </b></td><td>{{field['descrizione']}}</td></tr>
+                <tr><td><b>Anno: </b></td><td>{{field['datazione']}}</td></tr>
+                <tr><td><b>ID Origine: </b></td><td>{{field['id_origine']}}</td></tr>
+                <tr><td><b>Creatore: </b></td><td>{{field['creatore']}}</td></tr>
+                <tr><td><b>Luogo di custodia: </b></td><td>{{field['luogo_di_custodia']}}</td></tr>
+                {% if field['manifest'] != "" %}
+                <tr><td><b> <a href="default_target?manifest={{field['manifest']}}" target="_blank">
+                  <img src={{url_for('static', filename="imgs/iiificon.png")}} alt="IIIF Drag-n-drop"/></a> Manifest:</b></td><td>
+                <a href={{field['manifest']}} class="manifesturl"><div class="text-break">{{field['manifest']}}</div></a></td></tr>
+                <tr><td><b>Visualizzabile con:</b></td><td> <a href=http://lezioni.meneghetti.univr.it/UVjs/?manifest={{field['manifest']}} target="_blank">Universal viewer</a> <a href=http://lezioni.meneghetti.univr.it/m3/?manifest={{field['manifest']}} target="_blank">Mirador</a>  </td></tr>
+                {% endif %}
+                <tr><td><b>Link :</b></td><td><a href={{field['link_online']}} class="exturl" target="_blank"><div class="text-break">{{field['link_online']}}</div></a></td></tr>
+                <tr><td><b>completezza: </b></td><td>{{field['completezza']}}</td></tr>
+
+  
+            </table><hr><br>
+            {% endfor %}
+            {% else %}
+            <p> Nessun record inserito.</p>
+            {% endif %}
+          </div>
+        <div class="tab-pane fade" id="analisi" role="tabpanel" aria-labelledby="analisi-tab">...</div>
+        </div>
+    </div>
+    <div class="col-md col-lg">
+        {% if codice['status'] == "Presentabile" %}
+        <div class="row">
+          <div class="alert alert-warning" role="alert">
+            <p class="text-center">🚧 <b>CATALOGAZIONE IN CORSO</b> 🚧</p>
+            Questa è una versione preliminare della scheda, il catalogatore deve ancora revisionare le informazioni contenute.
+          </div>
+        </div>
+        {% endif %}
+          <div class="alert alert-info" role="alert">
+           
+            <div class="row">
+            <div class="col-sm-9">
+                <p>
+                <b>Autore della scheda:</b>
+              {% if codice['descrizione_esterna'] %}
+                    {% for field in get_authors(codice,'utenti_email') %}
+                    {{field}}<br> 
+                    {% endfor %} 
+              {% endif %}
+              {% if codice['descrizione_esterna'] %}
+                    {% for orchid in get_authors(codice,'orchid') %}
+                    
+                    <a href="{{orchid}}" class='text-dark'>
+                      <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
+                      <small>{{orchid}}</small>
+                    </a>
+                    
+                    {% endfor %} 
+              {% endif %}  
+              <br>  
+              <b>Ultima modifica:</b> {{codice['last_modified']}} 
+            </p>
+          </div>
+          <div class="col-sm-1">
+        <div class="dropdown export">
+          <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            📥 Esporta
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="/printableversion/{{codice['segnatura_idx']}}  "> 🖨️ Versione stampabile </a></li>
+            <li><a class="dropdown-item" href="/unapi?id={{codice['segnatura_idx']}}&format=rdf_bibliontology">
+                <img alt="logo RDF" src={{url_for('static',filename='imgs/RDF60.png')}} width="20" height="20" alt="rdflogo"> RDF</a></li>
+            <li><a class="dropdown-item" href="/unapi?id={{codice['segnatura_idx']}}&format=tei_manuscriptdescription">
+                <img alt="logo TEI" src={{url_for('static',filename='imgs/TEI60.png')}} width="20" height="20" alt="TEI logo"> TEI</a></li>
+            <!-- <li><a class="dropdown-item" href="#"> <img src=
+              "https://media.geeksforgeeks.org/wp-content/uploads/20200630132504/uflag.jpg"
+                                  width="20" height="15"> Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+          </ul>
+        </div>
+        </div>
+
+  </div>
+  <div>
+    <p>I <b>Consistenza:</b> II, 349, II, II. <b>Consistenza:</b> II, 349, II</p> 
+<!--     <p>
+    I. 
+    <b>Consistenza:</b> II, 349, II
+    <b>Collocazione:</b> [2312132]
+    <b>Carte di guardia:</b>	la terza carta di guardia anteriore è membranacea, probabilmente originale; la prima e l’ultima carta di guardia, rispettivamente anteriore e posteriore, non sono originali, dacché inserite nel corso del restauro della legatura
+  </p><p>
+    II. 
+    <b>Consistenza:</b> II, 349, II
+    <b>Collocazione:</b> [2312132]
+    <b>Carte di guardia:</b>	la terza carta di guardia anteriore è membranacea, probabilmente originale; la prima e l’ultima carta di guardia, rispettivamente anteriore e posteriore, non sono originali, dacché inserite nel corso del restauro della legatura
+  </p> -->
+  </div>
+    {% if 'sommario_desc' in codice.keys() %}
+             {{codice['sommario_desc']}} 
+    {% endif %}
+  </div>
+
+      
+      
+      
+
+       <div class="menu sticky-top p-3  py-5">
+        <br>
+        <br>
+        <h5 class="text-dark">Navigazione:</h5>
+        <div class="nav flex-column">
+            <a class="text-dark" href="#content"> Torna all'inizio della pagina.</a>
+            <a class="text-dark" href="javascript:window.location.reload(true)"> Collassa le schede.</a>
+        </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script src={{url_for('static', filename="generatesections.js")}}></script>
+
+{% endblock body %}

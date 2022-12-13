@@ -358,3 +358,38 @@ abbr[title] {
   cursor: inherit !important;
   text-decoration: none !important;
 }
+
+.scriventelist { list-style: none;}
+.scriventelist:before { content: '\270D'; margin-left: -20px; margin-right: 10px; list-style: none; } 
+
+
+.annotationlist { list-style: none;}
+.annotationlist:before { content: '📝'; margin-left: -20px; margin-right: 10px; list-style: none; } 
+
+
+.olnumbered {
+  list-style-type: none;
+  counter-reset: item;
+  margin: 0;
+  padding: 0;
+}
+
+.olnumbered > .linumbered {
+  display: table;
+  counter-increment: item;
+  margin-bottom: 0.6em;
+}
+
+.olnumbered > .linumbered:before {
+  content: counters(item, ".") ". ";
+  display: table-cell;
+  padding-right: 0.6em;    
+}
+
+.linumbered .olnumbered > .linumbered {
+  margin: 0;
+}
+
+.linumbered .olnumbered > .linumbered:before {
+  content: counters(item, ".") " ";
+}
