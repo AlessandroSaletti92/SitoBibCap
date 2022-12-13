@@ -13,7 +13,7 @@ from TEIexporter import TEImsdesc
 import requests
 import filigranestatic
 #from flask_consent import Consent
-from flask_debugtoolbar import DebugToolbarExtension
+#from flask_debugtoolbar import DebugToolbarExtension
 
 import os
 
