@@ -60,54 +60,28 @@
 </div>
 </div>  
 <button class="accordion" id="accordion_descrizione_esterna">Descrizione Esterna</button>
-        <div class="panel">
-          <div class="show" id="panel_descrizione_esterna"></div>
-        </div>
+  <div class="panel">
+    <div class="show" id="panel_descrizione_esterna"></div>
+  </div>
 
 <button class="accordion py-1" id="accordion_scritture_avventizie"><small>&nbsp;&nbsp;&nbsp; Scritture avventizie</small></button>
-        <div class="panel">
-          <div class="show" id="panel_scritture_avventizie"></div>
-        </div>
-
+  <div class="panel">
+    <div class="show" id="panel_scritture_avventizie"></div>
+  </div>
 
 <button class="accordion" id="accordion_descInt">Descrizione Interna</button>
-        <div class="panel">
-          <div class="show" id="panel_descInt"></div>
-        </div>
+  <div class="panel">
+    <div class="show" id="panel_descInt"></div>
+  </div>
 
-
-<button class="accordion">Note di possesso, di biblioteca e segnature</button>
-        <div class="panel">
-          <div class="show">
-          <p>
-            {% if codice['storia_del_manoscritto'] %}
-            {% for field in codice['storia_del_manoscritto'] %}
-        <span >            
-            <h6>{{field['Id_auto_inc']}}</h6>
-            <br>
-            <table>
-            <tr><td><b>Datazione: </b></td><td>{{field['Datazione']}}</td></tr>
-            <tr><td><b>Contenuto: </b></td><td>{{field['Contenuto']}}</td></tr>
-            <tr><td><b>Trascrizione: </b></td><td>{{field['Trascrizione']}}</td></tr>
-            <tr><td><b>Posizione: </b></td><td>{{field['Posizione']}}{% if field['link_img'] != "" %}<sup><a href={{field['link_img']}} target="_blank">&#x1F4F7;</a></sup>{% endif %}</td></tr>
-            <tr><td><b>Tipologia scrittura: </b></td><td>{{field['Tipologia_scrittura']}}</td></tr>
-            <tr><td><b>Unità codicologica: </b></td><td>{{field['Descrizione_Esterna_Segnatura']}}</td></tr>
-        </table><br>
-        {% if field['link_ROI'] != "" %}<img src={{field['link_ROI']}} class="rounded mx-auto d-block" alt="{{field['Contenuto']}}">{% endif %}
-        <hr><br>
-        </span>
-            {% endfor %}
-            {% else %}
-            <p> Nessun record inserito.</p>
-            {% endif %}
-            </p>
-          </div>
-          </div>
+<button class="accordion" id="btn_note_di_possesso">Note di possesso, di biblioteca e segnature</button>
+  <div class="panel">
+    <div class="show" id="panel_notepossesso"></div>
+  </div>
 
 <button class="accordion" id="btn_storia_desc">Storia del manoscritto</button>
-    <div class="panel">
-        <div class="show" id="show_storia_desc">
-        </div>
+  <div class="panel">
+    <div class="show" id="show_storia_desc"></div>
   </div>
 
 

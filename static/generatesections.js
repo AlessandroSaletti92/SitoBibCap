@@ -194,13 +194,51 @@ function populateDescInt() {
     }
 }
 
+
+function populatenotedipossesso() {
+    pNotep = document.querySelector('#panel_notepossesso')
+    if (pNotep.innerHTML == "") {
+        fields = ['Tipologia_scrittura','Posizione', 'trascrizione','Contenuto', 'Datazione']
+        for (let index = 0; index < codice.storia_del_manoscritto.length; index++) {
+            const field = codice.storia_del_manoscritto[index]
+            h6a = document.createElement("h6");
+            h6a.innerHTML = field.Id_AT.bold()
+            pNotep.append(h6a)
+            let table = document.createElement("table");
+            for (let j = 0; j < fields.length; j++) {
+                counter = 0
+                if (field[fields[j]] != "") {
+                    let row = table.insertRow(counter);
+                    row.insertCell(0).innerHTML = t[fields[j]].bold();
+                    row.insertCell(1).innerHTML = field[fields[j]];
+                    counter++;
+                }
+            }
+            pNotep.append(table)
+            img = document.createElement("img");
+            img.src = field.link_ROI
+            img.alt = field.Contenuto
+            img.width = "400"
+            img.className = "rounded mx-auto d-block p-3"
+            pNotep.appendChild(img)
+            }
+        }
+      }
+
+
+
+
+
 function populateStoriaDesc() {
     pStoria = document.querySelector('#show_storia_desc')
     pStoria.innerHTML = codice.storia_desc
 
 }
 
+
+
 document.getElementById("accordion_descrizione_esterna").addEventListener("click", populateDescEst);
 document.getElementById("accordion_scritture_avventizie").addEventListener("click", populateScrittureAvventizie);
 document.getElementById("accordion_descInt").addEventListener("click", populateDescInt);
+document.getElementById("btn_note_di_possesso").addEventListener("click", populatenotedipossesso);
 document.getElementById("btn_storia_desc").addEventListener("click", populateStoriaDesc);
