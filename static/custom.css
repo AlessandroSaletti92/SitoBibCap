@@ -311,6 +311,10 @@ tr:nth-of-type(odd) {
     border: 1px solid rgb(211, 204, 204);
   }
 
+td{
+	padding-right: 5px;
+}
+
   table {
     width: 100%;
   }
@@ -386,10 +390,19 @@ abbr[title] {
   padding-right: 0.6em;    
 }
 
+.show{
+	text-align: justify;
+}
+
 .linumbered .olnumbered > .linumbered {
   margin: 0;
 }
 
 .linumbered .olnumbered > .linumbered:before {
   content: counters(item, ".") " ";
+}
+
+
+#sommario_desc{
+	text-align: justify;
 }

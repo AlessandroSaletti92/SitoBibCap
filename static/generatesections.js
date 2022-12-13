@@ -35,11 +35,11 @@ function toRoman(str) {
     return [...str].map((s, i) => g[str.length - i][s]).join("")
 }
 
-function getUC(descrizione_interna){
+function getUC(descin){
     res  = ""
-    if (descrizione_interna['Descrizione_Esterna_Segnatura'] != "0") {
-        r = toRoman(descrizione_interna['Descrizione_Esterna_Segnatura'])
-        res = '(Unità codicologica ' + r + ' ) ' 
+    if (descin['Descrizione_Esterna_Segnatura'] != "0") {
+        r = toRoman(descin['Descrizione_Esterna_Segnatura'])
+        res = '(Unità codicologica ' + r + ') ' 
     }
     return res  
 }
@@ -49,7 +49,7 @@ codice = JSON.parse(g.innerHTML)
 function populateDescEst() {
     pDescEst = document.querySelector('#panel_descrizione_esterna')
     if (pDescEst.innerHTML == "") {
-        fields = ['legatura', 'foratura', 'rigatura', 'dimensioni', 'arrangiamento_fogli_gregory', 'prospetto_fascicolazione', 'numerazione_carte', 'carte_di_guardia', 'tipo_di_supporto_e_qualita', 'trascrizione_luogo', 'luogo', 'trascrizione_datazione', 'consistenza', 'datazione']
+        fields = ['legatura', 'foratura', 'rigatura', 'dimensioni', 'arrangiamento_fogli_gregory', 'prospetto_fascicolazione', 'numerazione_carte', 'carte_di_guardia', 'tipo_di_supporto_e_qualita', 'trascrizione_luogo', 'luogo', 'trascrizione_datazione', 'datazione','consistenza']
         for (let index = 0; index < codice.descrizione_esterna.length; index++) {
             const field = codice.descrizione_esterna[index];
             if (field['Descrizione_Esterna_Segnatura'] != "0") {
@@ -89,7 +89,7 @@ function populateDescEst() {
             ol = document.createElement("ol");
             for (let index = 0; index < codice.annotazioni_marginali.length; index++) {
                 anno = codice.annotazioni_marginali[index]
-                if (scr.Descrizione_Esterna_Segnatura.includes(field['Descrizione_Esterna_Segnatura']) && anno.tipologia == 'Postilla o annotazione') {
+                if (anno.Descrizione_Esterna_Segnatura == field['Descrizione_Esterna_Segnatura'] && anno.tipologia == 'Postilla o annotazione') {
                     li = document.createElement("li");
                     li.className = 'annotationlist'
                     let f = [(anno.Id_anno).bold(), anno.intervallo_carte, anno.Posizione, anno.Datazione, anno.Tipologia_scrittura, anno.Contenuto]
@@ -113,7 +113,7 @@ function populateDescEst() {
 function populateScrittureAvventizie() {
     pScrAvv = document.querySelector('#panel_scritture_avventizie')
     if (pScrAvv.innerHTML == "") {
-        fields = ['intervallo_carte', 'Posizione', 'trascrizione', 'Contenuto', 'Datazione', 'Tipologia_scrittura', 'identificazione', 'Descrizione_Esterna_Segnatura',]
+        fields = ['intervallo_carte', 'Posizione', 'trascrizione', 'Contenuto', 'Datazione', 'Tipologia_scrittura', 'identificazione']
         for (let index = 0; index < codice.annotazioni_marginali.length; index++) {
             const field = codice.annotazioni_marginali[index];
             if (field.tipologia == "Scrittura avventizia") {
@@ -180,7 +180,7 @@ function populateDescInt() {
             }
             li = document.createElement("li")
             li.className = 'linumbered'
-            li.innerHTML = getUC(di) + di.titolo.bold() + " " + di.autore + "," + di.carte + "." + "<b>Incipit: </b>" + di.incipit.italics() + "<b> Explicit: </b> " + di.explicit.italics()
+            li.innerHTML = getUC(di).bold() + di.autore + ", " + di.titolo.italics() + ", " + di.carte + ". " + "<b>Incipit: </b>" + di.incipit + "<b> Explicit: </b> " + di.explicit
             if (di.incipit_url != "") {
                 a = document.createElement("a")
                 a.href = di.incipit_url

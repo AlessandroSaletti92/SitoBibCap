@@ -42,20 +42,21 @@
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
 <div class="p-2 bg-secondary text-white">
-<h5 class="text-center">CXXI</h5>
+<h5 class="text-center">{{codice['segnatura']}}</h5>
 <!-- <h6>I</h6> -->
-<div class="text-center">
-  <p>
-  I.     
-  <b>Consistenza:</b> II, 349, II
-  <b>Collocazione:</b> [2312132]
-  <b>Carte di guardia:</b>	la terza carta di guardia anteriore è membranacea, probabilmente originale; la prima e l’ultima carta di guardia, rispettivamente anteriore e posteriore, non sono originali, dacché inserite nel corso del restauro della legatura
-</p><p>
-  II. 
-  <b>Consistenza:</b> II, 349, II
-  <b>Collocazione:</b> [2312132]
-  <b>Carte di guardia:</b>	la terza carta di guardia anteriore è membranacea, probabilmente originale; la prima e l’ultima carta di guardia, rispettivamente anteriore e posteriore, non sono originali, dacché inserite nel corso del restauro della legatura
-</p>
+<div class="text-justify" id="desc_parti">
+  {% if codice['parte'] %}
+    {% for field in codice['parte'] %}
+    <div>
+    <b>collocazione: </b>{{field['collocazione']}}
+    <b>consistenza: </b>{{field['consistenza']}}
+    <b>legatura: </b>{{field['legatura']}}
+    <b>carte di guardia: </b>{{field['carte_di_guardia']}}             
+    </div>
+    {% endfor %}
+  {% else %}
+  <p> Nessuna parte inserita.</p>
+  {% endif %}
 </div>
 </div>  
 <button class="accordion" id="accordion_descrizione_esterna">Descrizione Esterna</button>
@@ -73,9 +74,6 @@
         <div class="panel">
           <div class="show" id="panel_descInt"></div>
         </div>
-
-
-
 
 
 <button class="accordion">Note di possesso, di biblioteca e segnature</button>
@@ -154,7 +152,7 @@ function mostraDI(elem) {
 </script>
         
     </div>
-        <div class="tab-pane fade bg-light" id="Fac-similes" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="tab-pane fade bg-light" id="Fac-similes" role="tabpanel" aria-labelledby="profile-tab">
 
             {% if codice['facsimile'] %}
             {% for field in codice['facsimile'] %}
@@ -186,62 +184,66 @@ function mostraDI(elem) {
         <div class="tab-pane fade" id="analisi" role="tabpanel" aria-labelledby="analisi-tab">...</div>
         </div>
     </div>
+<!-- 
+  Pannello laterale destro.
+  -->
     <div class="col-md col-lg">
-        {% if codice['status'] == "Presentabile" %}
-        <div class="row">
-          <div class="alert alert-warning" role="alert">
-            <p class="text-center">🚧 <b>CATALOGAZIONE IN CORSO</b> 🚧</p>
-            Questa è una versione preliminare della scheda, il catalogatore deve ancora revisionare le informazioni contenute.
-          </div>
+      {% if codice['status'] == "Presentabile" %}
+      <div class="row">
+        <div class="alert alert-warning" role="alert">
+          <p class="text-center">🚧 <b>CATALOGAZIONE IN CORSO</b> 🚧</p>
+          Questa è una versione preliminare della scheda, il catalogatore deve ancora revisionare le informazioni contenute.
         </div>
-        {% endif %}
-          <div class="alert alert-info" role="alert">
-           
-            <div class="row">
+      </div>
+      {% endif %}
+<!-- 
+  Alert INFO inizio.
+  -->
+      <div class="alert alert-info" role="alert">
+          <div class="row">
             <div class="col-sm-9">
-                <p>
-                <b>Autore della scheda:</b>
-              {% if codice['descrizione_esterna'] %}
-                    {% for field in get_authors(codice,'utenti_email') %}
-                    {{field}}<br> 
-                    {% endfor %} 
-              {% endif %}
-              {% if codice['descrizione_esterna'] %}
-                    {% for orchid in get_authors(codice,'orchid') %}
-                    
-                    <a href="{{orchid}}" class='text-dark'>
-                      <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
-                      <small>{{orchid}}</small>
-                    </a>
-                    
-                    {% endfor %} 
-              {% endif %}  
-              <br>  
-              <b>Ultima modifica:</b> {{codice['last_modified']}} 
-            </p>
+              <p>
+              <b>Autore della scheda:</b>
+                {% if codice['descrizione_esterna'] %}
+                      {% for field in get_authors(codice,'utenti_email') %}
+                      {{field}}<br> 
+                      {% endfor %} 
+                {% endif %}
+                {% if codice['descrizione_esterna'] %}
+                      {% for orchid in get_authors(codice,'orchid') %}                
+                      <a href="{{orchid}}" class='text-dark'>
+                        <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
+                        <small>{{orchid}}</small></a>             
+                      {% endfor %} 
+                {% endif %}  
+                <br>  
+                <b>Ultima modifica:</b> {{codice['last_modified']}} 
+              </p>
+            </div>
+            <div class="col-sm-1">
+              <div class="dropdown export">
+                <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  📥 Esporta
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="/printableversion/{{codice['segnatura_idx']}}  "> 🖨️ Versione stampabile </a></li>
+                  <li><a class="dropdown-item" href="/unapi?id={{codice['segnatura_idx']}}&format=rdf_bibliontology">
+                      <img alt="logo RDF" src={{url_for('static',filename='imgs/RDF60.png')}} width="20" height="20" alt="rdflogo"> RDF</a></li>
+                  <li><a class="dropdown-item" href="/unapi?id={{codice['segnatura_idx']}}&format=tei_manuscriptdescription">
+                      <img alt="logo TEI" src={{url_for('static',filename='imgs/TEI60.png')}} width="20" height="20" alt="TEI logo"> TEI</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="col-sm-1">
-        <div class="dropdown export">
-          <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            📥 Esporta
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="/printableversion/{{codice['segnatura_idx']}}  "> 🖨️ Versione stampabile </a></li>
-            <li><a class="dropdown-item" href="/unapi?id={{codice['segnatura_idx']}}&format=rdf_bibliontology">
-                <img alt="logo RDF" src={{url_for('static',filename='imgs/RDF60.png')}} width="20" height="20" alt="rdflogo"> RDF</a></li>
-            <li><a class="dropdown-item" href="/unapi?id={{codice['segnatura_idx']}}&format=tei_manuscriptdescription">
-                <img alt="logo TEI" src={{url_for('static',filename='imgs/TEI60.png')}} width="20" height="20" alt="TEI logo"> TEI</a></li>
-            <!-- <li><a class="dropdown-item" href="#"> <img src=
-              "https://media.geeksforgeeks.org/wp-content/uploads/20200630132504/uflag.jpg"
-                                  width="20" height="15"> Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li> -->
-          </ul>
-        </div>
-        </div>
-
-  </div>
-  <div>
-    <p>I <b>Consistenza:</b> II, 349, II, II. <b>Consistenza:</b> II, 349, II</p> 
+          <div id='sommario_desc'> 
+            {% if 'sommario_desc' in codice.keys() %}
+              {{codice['sommario_desc']}} 
+            {% endif %}
+          </div>
+      <div>
+<!-- 
+  Alert INFO fine.
+  -->
 <!--     <p>
     I. 
     <b>Consistenza:</b> II, 349, II
@@ -254,23 +256,21 @@ function mostraDI(elem) {
     <b>Carte di guardia:</b>	la terza carta di guardia anteriore è membranacea, probabilmente originale; la prima e l’ultima carta di guardia, rispettivamente anteriore e posteriore, non sono originali, dacché inserite nel corso del restauro della legatura
   </p> -->
   </div>
-    {% if 'sommario_desc' in codice.keys() %}
-             {{codice['sommario_desc']}} 
-    {% endif %}
+
   </div>
 
       
       
       
 
-       <div class="menu sticky-top p-3  py-5">
+    <div class="menu sticky-top p-3  py-5">
         <br>
         <br>
         <h5 class="text-dark">Navigazione:</h5>
-        <div class="nav flex-column">
-            <a class="text-dark" href="#content"> Torna all'inizio della pagina.</a>
-            <a class="text-dark" href="javascript:window.location.reload(true)"> Collassa le schede.</a>
-        </div>
+          <div class="nav flex-column">
+              <a class="text-dark" href="#content"> Torna all'inizio della pagina.</a>
+              <a class="text-dark" href="javascript:window.location.reload(true)"> Collassa le schede.</a>
+          </div>
         </div>
     </div>
     </div>
