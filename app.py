@@ -258,7 +258,8 @@ def segnatura(segnatura_id):
 
 @app.route('/<locale>/zoteroapi/<segnatura>')
 def zoteroapi(locale,segnatura):
-	url = f"https://api.zotero.org/groups/3759014/items?key={zoteroapikey}&tag={segnatura}&format=bib&locale=it-IT"
+	style = "https://raw.githubusercontent.com/giacomomarchioro/LaMeDanCSL/main/LaMeDan_author_date/LaMeDan_author_date.csl"
+	url = f"https://api.zotero.org/groups/3759014/items?key={zoteroapikey}&tag={segnatura}&format=bib&locale=it-IT&style={style}"
 	r = requests.get(url)
 	return r.text
 
