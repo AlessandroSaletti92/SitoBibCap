@@ -116,14 +116,13 @@ function populateDescEst() {
 function populateScrittureAvventizie() {
     pScrAvv = document.querySelector('#panel_scritture_avventizie')
     if (pScrAvv.innerHTML == "") {
+        pScrAvv.innerHTML = "<br>"
         fields = ['intervallo_carte', 'Posizione', 'trascrizione', 'Contenuto', 'Datazione', 'Tipologia_scrittura', 'identificazione']
         for (let index = 0; index < codice.annotazioni_marginali.length; index++) {
             const field = codice.annotazioni_marginali[index];
             if (field.tipologia == "Scrittura avventizia") {
-                h6a = document.createElement("h6");
-                h6a.innerHTML = field.Id_anno.bold()
-                pScrAvv.append(h6a)
                 let table = document.createElement("table");
+                table.id = "scritturaaventizia-"+field.Id_anno
                 for (let index = 0; index < fields.length; index++) {
                     counter = 0
                     if (field[fields[index]] != "") {
@@ -201,13 +200,12 @@ function populateDescInt() {
 function populatenotedipossesso() {
     pNotep = document.querySelector('#panel_notepossesso')
     if (pNotep.innerHTML == "") {
+        pNotep.innerHTML = "<br>"
         fields = ['Tipologia_scrittura','Posizione', 'trascrizione','Contenuto', 'Datazione']
         for (let index = 0; index < codice.storia_del_manoscritto.length; index++) {
             const field = codice.storia_del_manoscritto[index]
-            h6a = document.createElement("h6");
-            h6a.innerHTML = field.Id_AT.bold()
-            pNotep.append(h6a)
             let table = document.createElement("table");
+            table.id = "notedibibl-"+field.ID_At
             for (let j = 0; j < fields.length; j++) {
                 counter = 0
                 if (field[fields[j]] != "") {
