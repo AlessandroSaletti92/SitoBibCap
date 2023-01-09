@@ -33,19 +33,19 @@ function toRoman(str) {
         4: ['', 'M', 'MM', 'MMM','MMMM']
     }
     if(/^-?\d+$/.test(str)){
-    return [...str].map((s, i) => g[str.length - i][s]).join("")
+        return [...str].map((s, i) => g[str.length - i][s]).join("")
     }else{
         return str
-}
+    }
 }
 
 function getUC(descin){
     res  = ""
     if (descin['Descrizione_Esterna_Segnatura'] != "0") {
         r = toRoman(descin['Descrizione_Esterna_Segnatura'])
-        res = '(Unità codicologica ' + r + ') ' 
+        res = '(Unità codicologica ' + r + ') '
     }
-    return res  
+    return res
 }
 
 g = document.querySelector("#JSONMetadata")
@@ -74,7 +74,7 @@ function populateDescEst() {
                 }
             }
             pDescEst.append(table)
-            // scriventi 
+            // scriventi
             pDescEst.insertAdjacentHTML("beforeend", "Scriventi principali:".bold());
             ol = document.createElement("ol");
             for (let index = 0; index < codice.copisti.length; index++) {
@@ -88,7 +88,7 @@ function populateDescEst() {
                 }
             }
             pDescEst.appendChild(ol)
-            // Postille e annotazioni 
+            // Postille e annotazioni
             pDescEst.insertAdjacentHTML("beforeend", "Postille e annotazioni:".bold());
             ol = document.createElement("ol");
             for (let index = 0; index < codice.annotazioni_marginali.length; index++) {
@@ -104,8 +104,10 @@ function populateDescEst() {
                     img.className = "rounded mx-auto d-block"
                     img.width = "400"
                     li.appendChild(img)
-                    li.insertAdjacentHTML("beforeend", "Trascrizione:".bold());
-                    li.insertAdjacentHTML("beforeend", anno.trascrizione);
+                    if (anno.trascrizione != ''){
+                        li.insertAdjacentHTML("beforeend", "Trascrizione: ".bold());
+                        li.insertAdjacentHTML("beforeend", anno.trascrizione);
+                    }
                     ol.appendChild(li)
                 }
             }
@@ -164,6 +166,7 @@ function populateDescInt() {
                     br = document.createElement("br")
                     li.append(br)
                     btn = document.createElement("button")
+                    btn.className = 'DI-button'
                     btn.setAttribute("onClick", "javascript: mostraDI(this);")
                     btn.innerHTML = "Mostra contenuto"
                     li.append(btn)
@@ -265,3 +268,5 @@ document.getElementById("accordion_scritture_avventizie").addEventListener("clic
 document.getElementById("accordion_descInt").addEventListener("click", populateDescInt);
 document.getElementById("btn_note_di_possesso").addEventListener("click", populatenotedipossesso);
 document.getElementById("btn_storia_desc").addEventListener("click", populateStoriaDesc);
+document.getElementById("btn_bibext").addEventListener("click", getBiblio)
+
