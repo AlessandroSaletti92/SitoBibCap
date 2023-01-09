@@ -406,3 +406,11 @@ abbr[title] {
 #sommario_desc{
 	text-align: justify;
 }
+
+.TOC-scheda > li {
+	cursor: pointer;
+}
+
+.accordion {
+	scroll-margin-top: 80px;
+}
