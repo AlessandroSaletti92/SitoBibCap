@@ -15,14 +15,14 @@
 <br>
 
 <div class="manbanner" id="content">
-  <img alt="Particolare del manoscritto" src="{{codice['immagine_banner']}}" class="img-fluid mb5" id="imgmanu">
+  <img alt="Particolare del manoscritto" src="{{codice['immagine_banner']}}" class="img-fluid mb5" id="imgmanu" width="1200">
   <div class="mantext"><abbr class="unapi-id" title={{codice['segnatura_idx']}}>{{codice['descrizione_esterna'][0]['Segnatura']}}</abbr></div>
 </div>
   <div class="container py-3 px-0" id="scheda">
     <div class="row">
 
     <div class="col-2 py-5">
-        <img alt="Dorso del manoscritto" src="{{codice['immagine_dorso']}}"  class="rounded d-block" >
+        <img alt="Dorso del manoscritto" src="{{codice['immagine_dorso']}}"  class="rounded d-block" width="150">
     </div>
     <div class="col" style="min-width: 320px;">
 
@@ -51,14 +51,14 @@
     <b>collocazione: </b>{{field['collocazione']}}
     <b>consistenza: </b>{{field['consistenza']}}
     <b>legatura: </b>{{field['legatura']}}
-    <b>carte di guardia: </b>{{field['carte_di_guardia']}}             
+    <b>carte di guardia: </b>{{field['carte_di_guardia']}}
     </div>
     {% endfor %}
   {% else %}
   <p> Nessuna parte inserita.</p>
   {% endif %}
 </div>
-</div>  
+</div>
 <button class="accordion" id="accordion_descrizione_esterna">Descrizione Esterna</button>
   <div class="panel">
     <div class="show" id="panel_descrizione_esterna"></div>
@@ -89,19 +89,12 @@
         <div class="panel">
           <br>
           <div class="show" id="bibextshow"></div>
-          <div class="show">
-            {{bibliografia|safe}}
-          </div>
          <br>
          <div class="d-grid gap-2 col-10 mx-auto">
           <a href="https://www.zotero.org/groups/3759014/capitolare-univr/tags/{{sgn}}/library" class="btn btn-outline-primary" target="_blank">Visualizzazione avanzata su una nuova scheda su zotero.org</a>
           </div>
           <br>
-          
           </div>
-
-
-
 
 
 <script>
@@ -124,7 +117,6 @@ function mostraDI(elem) {
     elem.nextElementSibling.toggleAttribute('hidden')
 }
 </script>
-        
     </div>
       <div class="tab-pane fade bg-light" id="Fac-similes" role="tabpanel" aria-labelledby="profile-tab">
 
@@ -232,10 +224,6 @@ function mostraDI(elem) {
   </div>
 
   </div>
-
-      
-      
-      
 
     <div class="menu sticky-top p-3  py-5">
         <br>
