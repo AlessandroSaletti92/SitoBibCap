@@ -237,6 +237,27 @@ function populateStoriaDesc() {
 
 }
 
+function getBiblio() {
+    bib = document.getElementById('bibextshow')
+    if (bib.innerHTML == "") {
+        bib.innerHTML = '<div class="text-center">' +
+                        '<span class="sr-only">Sto acquisendo i dati da ZoteroAPI...</span> <br>'+
+                        '<div class="spinner-border" role="status">'+
+                        '</div>'+
+                        '</div>'
+        // da sostituire con codice.segnatura
+        fetch('/it/zoteroapi/DCCCXLIX%20(DCCCLIII)').then(function (response) {
+            // The API call was successful!
+            return response.text();
+        }).then(function (html) {
+            // This is the HTML from our response as a text string
+            bib.innerHTML= html
+        }).catch(function (err) {
+            // There was an error
+            console.warn('Something went wrong.', err);
+        });
+    }
+}
 
 
 document.getElementById("accordion_descrizione_esterna").addEventListener("click", populateDescEst);
