@@ -32,7 +32,10 @@ function toRoman(str) {
         3: ['', 'C', 'CC', 'CCC', 'CD', 'DC', 'DCC', 'DCCC', 'CM'],
         4: ['', 'M', 'MM', 'MMM','MMMM']
     }
+    if(/^-?\d+$/.test(str)){
     return [...str].map((s, i) => g[str.length - i][s]).join("")
+    }else{
+        return str
 }
 
 function getUC(descin){
