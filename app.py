@@ -1,5 +1,5 @@
 # coding=utf-8
-from flask import Flask, render_template, request, url_for,send_file,jsonify,send_from_directory
+from flask import Flask, render_template, request,send_file,jsonify,send_from_directory
 from confidenziale import databaseaddress_capitolare_mongo,secret_key,zoteroapikey
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField
@@ -12,11 +12,8 @@ import xml.etree.ElementTree as ET
 from TEIexporter import TEImsdesc
 import requests
 import filigranestatic
-#from flask_consent import Consent
-#from flask_debugtoolbar import DebugToolbarExtension
-
-import os
-
+# from flask_consent import Consent
+# from flask_debugtoolbar import DebugToolbarExtension
 GlobalVar = []
 
 class FormFiligrane(FlaskForm):
@@ -76,12 +73,13 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config['SECRET_KEY'] = secret_key
 # the toolbar is only enabled in debug mode:
 # app.debug = True
-# app.config['DEBUG_TB_PROFILER_ENABLED'] = False
+# app.config['DEBUG_TB_PROFILER_ENABLED'] = True
+# toolbar = DebugToolbarExtension(app)
+
 #app.config['CONSENT_FULL_TEMPLATE'] = 'consent.html'
 #app.config['CONSENT_BANNER_TEMPLATE'] = 'consent_banner.html'
 #consent = Consent(app)
 #consent.add_standard_categories()
-# toolbar = DebugToolbarExtension(app)
 
 @app.context_processor
 def inject_template_scope():
@@ -258,22 +256,28 @@ def segnatura(segnatura_id):
 	# 4 versione prima, 5,6,3
 	return render_template("risultati6.html", codice=var,bibliografia = r.text,sgn=sgn,filigrane=filigrane)
 
+@app.route('/<locale>/zoteroapi/<segnatura>')
+def zoteroapi(locale,segnatura):
+	url = f"https://api.zotero.org/groups/3759014/items?key={zoteroapikey}&tag={segnatura}&format=bib&locale=it-IT"
+	r = requests.get(url)
+	return r.text
+
+
 @app.route('/segnaturadyn/<segnatura_id>')
 def segnaturadyn(segnatura_id):
 	var = client.capitolare.codici.find_one({'segnatura_idx': segnatura_id})
 	if var is None:
 		return render_template("noncreato.html",segnatura=segnatura_id)
 	sgn = var['descrizione_esterna'][0]['Segnatura']
-	#sgn = "DCCCXLIX (DCCCLIII)"
-	filigrane = None
-	url = f"https://api.zotero.org/groups/3759014/items?key={zoteroapikey}&tag={sgn}&format=bib&locale=it-IT"
-	r = requests.get(url)
 	# 4 versione prima, 5,6,3
 	# breakpoint()
 	del var['_id']
 	var['created'] = var['created'].strftime('%Y-%m-%d')
 	var['last_modified'] = var['last_modified'].strftime('%Y-%m-%d')
-	return render_template("risultati6dyn.html", codice=var,bibliografia = r.text,sgn=sgn)
+	return render_template("risultati6dyn.html",
+						   codice=var,
+						   bibliografia ="none",
+						   sgn=sgn)
 
 @app.route('/printableversion/<segnatura_id>')
 def printableversion(segnatura_id):
