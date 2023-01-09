@@ -111,6 +111,10 @@ function populateDescEst() {
                     ol.appendChild(li)
                 }
             }
+            if (ol.innerHTML == '') {
+                ol.innerHTML = "Nessuna."
+                
+            }
             pDescEst.appendChild(ol)
         }
     }
@@ -263,10 +267,55 @@ function getBiblio() {
 }
 
 
-document.getElementById("accordion_descrizione_esterna").addEventListener("click", populateDescEst);
-document.getElementById("accordion_scritture_avventizie").addEventListener("click", populateScrittureAvventizie);
-document.getElementById("accordion_descInt").addEventListener("click", populateDescInt);
-document.getElementById("btn_note_di_possesso").addEventListener("click", populatenotedipossesso);
-document.getElementById("btn_storia_desc").addEventListener("click", populateStoriaDesc);
-document.getElementById("btn_bibext").addEventListener("click", getBiblio)
+descest = document.getElementById("accordion_descrizione_esterna")
+descest.addEventListener("click", populateDescEst);
+scrittureavv  = document.getElementById("accordion_scritture_avventizie")
+scrittureavv.addEventListener("click", populateScrittureAvventizie);
+descint = document.getElementById("accordion_descInt")
+descint.addEventListener("click", populateDescInt);
+notediposs = document.getElementById("btn_note_di_possesso")
+notediposs.addEventListener("click", populatenotedipossesso);
+storiadesc = document.getElementById("btn_storia_desc")
+storiadesc.addEventListener("click", populateStoriaDesc);
+bibext = document.getElementById("btn_bibext")
+bibext.addEventListener("click", getBiblio)
 
+function hideacc(e) {
+  se = e.currentTarget.selectedElement
+  if(!se.classList.contains('active')){
+      se.click()
+    }
+  se.scrollIntoView({behavior: 'smooth', block: "start"});
+  }
+      
+//TOC 
+tcDE = document.getElementById("toc_Descrizione_esterna")
+tcDE.addEventListener("click", hideacc)
+tcDE.selectedElement = descest
+tcSA = document.getElementById("toc_Scritture_avventizie")
+tcSA.addEventListener("click", hideacc)
+tcSA.selectedElement = scrittureavv
+tcDI = document.getElementById("toc_Descrizione_interna")
+tcDI.addEventListener("click", hideacc)
+tcDI.selectedElement = descint
+tcNP = document.getElementById("toc_Note_di_possesso")
+tcNP.addEventListener("click", hideacc)
+tcNP.selectedElement = notediposs
+tcSD = document.getElementById("toc_Storia_del_manoscritto")
+tcSD.addEventListener("click", hideacc)
+tcSD.selectedElement = storiadesc
+tcBB = document.getElementById("toc_Bibliografia_esterna")
+tcBB.addEventListener("click", hideacc)
+tcBB.selectedElement = bibext
+
+function closeall() {
+    accordions = document.getElementsByClassName("accordion")
+    for
+        (let index = 0; index < accordions.length; index++) {
+              if(accordions[index].classList.contains('active')){
+              accordions[index].click()
+            }    
+    }
+}
+
+document.getElementById("chiuditutto").addEventListener("click",closeall)
