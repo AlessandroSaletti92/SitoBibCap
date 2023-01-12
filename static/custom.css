@@ -188,7 +188,7 @@ section.progetti.container {
     padding: 15px 0;
 
     }
-  
+
 .sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
@@ -199,9 +199,10 @@ section.progetti.container {
 
 label.nvb {
     color: #ffffff;
-} 
+}
+
 a.bka {
-    color: #ffffff; 
+    color: #ffffff;
 }
 .sidenav a:hover {
     color: #47d240;
@@ -364,12 +365,9 @@ abbr[title] {
 }
 
 .scriventelist { list-style: none;}
-.scriventelist:before { content: '\270D'; margin-left: -20px; margin-right: 10px; list-style: none; } 
-
-
+.scriventelist:before { content: '\270D'; margin-left: -20px; margin-right: 10px; list-style: none; }
 .annotationlist { list-style: none;}
-.annotationlist:before { content: '📝'; margin-left: -20px; margin-right: 10px; list-style: none; } 
-
+.annotationlist:before { content: '📝'; margin-left: -20px; margin-right: 10px; list-style: none; }
 
 .olnumbered {
   list-style-type: none;
@@ -387,7 +385,7 @@ abbr[title] {
 .olnumbered > .linumbered:before {
   content: counters(item, ".") ". ";
   display: table-cell;
-  padding-right: 0.6em;    
+  padding-right: 0.6em;
 }
 
 .show{
@@ -402,12 +400,11 @@ abbr[title] {
   content: counters(item, ".") " ";
 }
 
-
 #sommario_desc{
 	text-align: justify;
 }
 
-.TOC-scheda > li {
+.TOC-scheda > li, .clickable {
 	cursor: pointer;
 }
 

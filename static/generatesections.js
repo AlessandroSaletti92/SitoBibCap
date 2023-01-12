@@ -48,6 +48,27 @@ function getUC(descin){
     return res
 }
 
+
+
+let acc = document.getElementsByClassName("accordion");
+let i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function () {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+
+function mostraDI(elem) {
+  elem.nextElementSibling.toggleAttribute('hidden')
+}
+
 g = document.querySelector("#JSONMetadata")
 codice = JSON.parse(g.innerHTML)
 function populateDescEst() {
@@ -113,7 +134,6 @@ function populateDescEst() {
             }
             if (ol.innerHTML == '') {
                 ol.innerHTML = "Nessuna."
-                
             }
             pDescEst.appendChild(ol)
         }
@@ -287,8 +307,8 @@ function hideacc(e) {
     }
   se.scrollIntoView({behavior: 'smooth', block: "start"});
   }
-      
-//TOC 
+
+//TOC
 tcDE = document.getElementById("toc_Descrizione_esterna")
 tcDE.addEventListener("click", hideacc)
 tcDE.selectedElement = descest
@@ -314,7 +334,7 @@ function closeall() {
         (let index = 0; index < accordions.length; index++) {
               if(accordions[index].classList.contains('active')){
               accordions[index].click()
-            }    
+            }
     }
 }
 
