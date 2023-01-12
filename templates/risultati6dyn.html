@@ -95,28 +95,6 @@
             </div>
             <br>
           </div>
-
-
-          <script>
-            var acc = document.getElementsByClassName("accordion");
-            var i;
-
-            for (i = 0; i < acc.length; i++) {
-              acc[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.display === "block") {
-                  panel.style.display = "none";
-                } else {
-                  panel.style.display = "block";
-                }
-              });
-            }
-
-            function mostraDI(elem) {
-              elem.nextElementSibling.toggleAttribute('hidden')
-            }
-          </script>
         </div>
         <div class="tab-pane fade bg-light" id="Fac-similes" role="tabpanel" aria-labelledby="profile-tab">
 
@@ -268,15 +246,15 @@
           <details>
             <summary class="text-dark">Indice delle sezioni</summary>
             <ul class="TOC-scheda">
-              <li id="toc_Descrizione_esterna"><a>Descrizione esterna</a></li>
-              <li id="toc_Scritture_avventizie"><a>Scritture avventizie</a></li>
-              <li id="toc_Descrizione_interna"><a>Descrizione interna</a></li>
-              <li id="toc_Note_di_possesso"><a>Note di possesso, di biblioteca e segnature</a></li>
-              <li id="toc_Storia_del_manoscritto"><a>Storia del manoscritto</a></li>
-              <li id="toc_Bibliografia_esterna"><a>Bibliografia esterna</a></li>
+              <li id="toc_Descrizione_esterna">Descrizione esterna</li>
+              <li id="toc_Scritture_avventizie">Scritture avventizie</li>
+              <li id="toc_Descrizione_interna">Descrizione interna</li>
+              <li id="toc_Note_di_possesso">Note di possesso, di biblioteca e segnature</li>
+              <li id="toc_Storia_del_manoscritto">Storia del manoscritto</li>
+              <li id="toc_Bibliografia_esterna">Bibliografia esterna</li>
             </ul>
           </details>
-          <a class="text-dark" id="chiuditutto"> Chiudi tutte le sezioni.</a>
+          <span class="text-dark clickable" id="chiuditutto"> Chiudi tutte le sezioni.</span>
         </div>
       </div>
     </div>
