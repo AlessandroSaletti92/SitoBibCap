@@ -11,7 +11,7 @@ currentyear = 2021
 
 def HTMLexp(var):
     """Ritorna i dati di un istanza MongoDB del database capitolare in formato
-    TEI.
+    HTML.
 
     Args:
         var (dict): il record come dizionario
