@@ -32,7 +32,11 @@ def RDFexporter(var):
     bibom.set("rdf:resource",'lezione.meneghetti.it') # cambia
 
     title = ET.SubElement(bibom,'dcterms:title')
-    title.text = var['descrizione_esterna'][0]['Segnatura']
+    value_title = var['descrizione_esterna'][0]['Segnatura']
+    if value_title == "":
+         value_title = var['segnatura']
+
+    title.text = value_title
     abstract = ET.SubElement(bibom,'dcterms:abstract')
     abstract.text = var['sommario_desc']
     date = ET.SubElement(bibom,'dcterms:date')
@@ -58,12 +62,12 @@ def RDFexporter(var):
     seq = ET.SubElement(authorlist,'rdf:Seq')
     #for i in author
     autori = set([descint['autore'] for descint in var['descrizione_interna']])
-    rdfli = ET.SubElement(seq,'rdf:li')
-    rdfli.set('rdf:nodeID','n15')
     for autore in autori:
+        rdfli = ET.SubElement(seq,'rdf:li')
+        #rdfli.set('rdf:nodeID','n15')
         #TODO: GIVEN NAME, firstnae
-        foafp = ET.SubElement(bibom,'foaf:Person')
-        foafp.set('rdf:nodeID','n15')
+        foafp = ET.SubElement(rdfli,'foaf:Person')
+        #foafp.set('rdf:nodeID','n15')
         splitted =  autore.split(' ')
         if len(splitted) == 1:
             name = ET.SubElement(foafp,'foaf:givenName')
