@@ -178,7 +178,10 @@ def TEImsdesc(var):
     dimensions = ET.SubElement(extent , 'dimensions')
     dimensions.set('unit','mm')
     dims = var['descrizione_esterna'][0]['dimensioni'].split('=')[0]
-    height,width = dims.split('x')
+    if 'x' in dims:
+        height,width = dims.split('x')
+    if '×' in dims:
+        height,width = dims.split('×')
     height_p = ET.SubElement(dimensions , 'height')
     height_p.text = height
     width_p = ET.SubElement(dimensions , 'width')
