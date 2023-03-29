@@ -239,6 +239,18 @@ def segnatura(segnatura_id):
 	var = client.capitolare.codici.find_one({'segnatura_idx': segnatura_id})
 	if var is None:
 		return render_template("noncreato.html",segnatura=segnatura_id)
+	## WORKAROUND temporary
+	if segnatura_id == 'm0256_0':
+		sgn = var['segnatura']
+		# 4 versione prima, 5,6,3
+		# breakpoint()
+		del var['_id']
+		var['created'] = var['created'].strftime('%Y-%m-%d')
+		var['last_modified'] = var['last_modified'].strftime('%Y-%m-%d')
+		return render_template("risultati6dyn.html",
+							codice=var,
+							bibliografia ="none",
+							sgn=sgn)
 	# get_all_values(var)
 	# breakpoint()
 	#sort_dec_int(var)
@@ -269,7 +281,7 @@ def segnaturadyn(segnatura_id):
 	var = client.capitolare.codici.find_one({'segnatura_idx': segnatura_id})
 	if var is None:
 		return render_template("noncreato.html",segnatura=segnatura_id)
-	sgn = var['descrizione_esterna'][0]['Segnatura']
+	sgn = var['segnatura']
 	# 4 versione prima, 5,6,3
 	# breakpoint()
 	del var['_id']
@@ -304,22 +316,19 @@ def autocomplete():
 def test():
 	return render_template("testautoc.html")
 
-
-
-
 @app.route('/ricerca', methods=['GET', 'POST'])
 def BT2():
 	form = MyForm()
-	cursor = client.capitolare.codici.find({"$and":[{"version" : 1 },{"status": { "$in": ["Concluso","Presentabile"] } }]})
+	cursor = client.capitolare.codici.find({"$and":[{"version" : { "$gte": 1 } },{"status": { "$in": ["Concluso","Presentabile"] } }]})
 	#import pdb; pdb.set_trace()
 	if form.validate_on_submit():
 		#data = request.form['slider-range']
 		#anno = request.form['anno']
 		#query = defaultdict(list)
-		query = {"$and":[{"version" : 1 },{"status": { "$ne": "appena creato" } }]}
+		query = {"$and":[{"version" : { "$gte": 1 } },{"status": { "$ne": "appena creato" } }]}
 		if form.autore.data != "":
 			query_autore_re2 = {"descrizione_interna" :
-									{"$elemMatch": 
+									{"$elemMatch":
 									{"autore":re.compile(form.autore.data,
 									re.IGNORECASE)}}}
 			query["$and"].append(query_autore_re2)
